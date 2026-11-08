@@ -1,0 +1,389 @@
+{
+ "meta": {
+  "time": "2026-11-03T18:34:20",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "host": "cachyos-x8664",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "torch": "2.15.0+cu132",
+  "data_sha": "8b20dadd349297ea",
+  "config": {
+   "exp": "E004",
+   "layers": [
+    9,
+    14,
+    18,
+    21,
+    25,
+    27,
+    28,
+    30,
+    32,
+    34,
+    35
+   ],
+   "n": 420
+  }
+ },
+ "n_pos": 150,
+ "n_neg": 270,
+ "cv": {
+  "base_first_token": 0.8468,
+  "tfidf": 0.9801,
+  "tfidf_hard_only": 0.9832,
+  "layers": {
+   "L9/lda": {
+    "all": 0.8944,
+    "hard": 0.9035
+   },
+   "L9/lcmv": {
+    "all": 0.8589,
+    "hard": 0.8912
+   },
+   "L14/lda": {
+    "all": 0.8727,
+    "hard": 0.8794
+   },
+   "L14/lcmv": {
+    "all": 0.8293,
+    "hard": 0.8607
+   },
+   "L18/lda": {
+    "all": 0.9053,
+    "hard": 0.9286
+   },
+   "L18/lcmv": {
+    "all": 0.8397,
+    "hard": 0.8853
+   },
+   "L21/lda": {
+    "all": 0.9731,
+    "hard": 0.985
+   },
+   "L21/lcmv": {
+    "all": 0.8756,
+    "hard": 0.9569
+   },
+   "L25/lda": {
+    "all": 0.962,
+    "hard": 0.9787
+   },
+   "L25/lcmv": {
+    "all": 0.8493,
+    "hard": 0.922
+   },
+   "L27/lda": {
+    "all": 0.9611,
+    "hard": 0.9774
+   },
+   "L27/lcmv": {
+    "all": 0.8617,
+    "hard": 0.9357
+   },
+   "L28/lda": {
+    "all": 0.9642,
+    "hard": 0.9758
+   },
+   "L28/lcmv": {
+    "all": 0.8459,
+    "hard": 0.9225
+   },
+   "L30/lda": {
+    "all": 0.9531,
+    "hard": 0.9692
+   },
+   "L30/lcmv": {
+    "all": 0.8486,
+    "hard": 0.9225
+   },
+   "L32/lda": {
+    "all": 0.9489,
+    "hard": 0.9595
+   },
+   "L32/lcmv": {
+    "all": 0.8422,
+    "hard": 0.9097
+   },
+   "L34/lda": {
+    "all": 0.9665,
+    "hard": 0.9781
+   },
+   "L34/lcmv": {
+    "all": 0.8673,
+    "hard": 0.9405
+   },
+   "L35/lda": {
+    "all": 0.9574,
+    "hard": 0.9604
+   },
+   "L35/lcmv": {
+    "all": 0.9071,
+    "hard": 0.9621
+   }
+  },
+  "best_layer": 21,
+  "auroc_diff_best_minus_tfidf": {
+   "mean": -0.0068,
+   "ci95": [
+    -0.0242,
+    0.0098
+   ],
+   "note": "best layer chosen on the same data, so biased upward"
+  }
+ },
+ "leave_kind_out": {
+  "capability": {
+   "tfidf": 0.903,
+   "L21": 0.949,
+   "L34": 0.967
+  },
+  "code": {
+   "tfidf": 1.0,
+   "L21": 0.9267,
+   "L34": 0.8633
+  },
+  "contrast": {
+   "tfidf": 0.8983,
+   "L21": 0.9635,
+   "L34": 0.9755
+  },
+  "general": {
+   "tfidf": 0.986,
+   "L21": 0.858,
+   "L34": 0.782
+  },
+  "math": {
+   "tfidf": 0.99,
+   "L21": 0.82,
+   "L34": 0.8667
+  },
+  "memory_topic": {
+   "tfidf": 0.9971,
+   "L21": 0.9829,
+   "L34": 0.9971
+  },
+  "missing_input": {
+   "tfidf": 0.732,
+   "L21": 0.962,
+   "L34": 0.878
+  },
+  "past_public": {
+   "tfidf": 0.9086,
+   "L21": 0.9314,
+   "L34": 0.9129
+  },
+  "realtime": {
+   "tfidf": 0.973,
+   "L21": 0.994,
+   "L34": 0.984
+  },
+  "refusal": {
+   "tfidf": 0.914,
+   "L21": 0.984,
+   "L34": 0.989
+  },
+  "second_person": {
+   "tfidf": 0.9586,
+   "L21": 0.9614,
+   "L34": 0.8886
+  },
+  "self_contained": {
+   "tfidf": 0.915,
+   "L21": 0.8933,
+   "L34": 0.9033
+  },
+  "self_contained_past": {
+   "tfidf": 0.8929,
+   "L21": 0.9371,
+   "L34": 0.9014
+  },
+  "tool_talk": {
+   "tfidf": 0.9914,
+   "L21": 0.9929,
+   "L34": 0.9957
+  },
+  "unknowable": {
+   "tfidf": 0.943,
+   "L21": 0.998,
+   "L34": 0.981
+  },
+  "writing": {
+   "tfidf": 0.9933,
+   "L21": 0.9233,
+   "L34": 0.7933
+  }
+ },
+ "behaviour_cv": {
+  "L21/a0.25": {
+   "tpr": 0.3333,
+   "tpr_ci": [
+    0.2629,
+    0.4121
+   ],
+   "fpr": 0.0333,
+   "fpr_ci": [
+    0.0176,
+    0.0621
+   ],
+   "auroc": 0.9253,
+   "n_pos": 150,
+   "n_neg": 270,
+   "by_split_fpr": {
+    "train": 0.0,
+    "adversarial": 0.114,
+    "contrast": 0.017,
+    "cantanswer": 0.0
+   },
+   "by_split_tpr": {
+    "train": 0.575,
+    "adversarial": 0.14,
+    "contrast": 0.333
+   }
+  },
+  "L21/a0.5": {
+   "tpr": 0.42,
+   "tpr_ci": [
+    0.344,
+    0.5
+   ],
+   "fpr": 0.0296,
+   "fpr_ci": [
+    0.0151,
+    0.0574
+   ],
+   "auroc": 0.9396,
+   "n_pos": 150,
+   "n_neg": 270,
+   "by_split_fpr": {
+    "train": 0.0,
+    "adversarial": 0.1,
+    "contrast": 0.017,
+    "cantanswer": 0.0
+   },
+   "by_split_tpr": {
+    "train": 0.6,
+    "adversarial": 0.24,
+    "contrast": 0.45
+   }
+  },
+  "L21/a1.0": {
+   "tpr": 0.4,
+   "tpr_ci": [
+    0.325,
+    0.48
+   ],
+   "fpr": 0.0148,
+   "fpr_ci": [
+    0.0058,
+    0.0375
+   ],
+   "auroc": 0.9392,
+   "n_pos": 150,
+   "n_neg": 270,
+   "by_split_fpr": {
+    "train": 0.0,
+    "adversarial": 0.043,
+    "contrast": 0.017,
+    "cantanswer": 0.0
+   },
+   "by_split_tpr": {
+    "train": 0.525,
+    "adversarial": 0.38,
+    "contrast": 0.333
+   }
+  },
+  "L34/a0.25": {
+   "tpr": 0.3933,
+   "tpr_ci": [
+    0.3188,
+    0.4732
+   ],
+   "fpr": 0.0296,
+   "fpr_ci": [
+    0.0151,
+    0.0574
+   ],
+   "auroc": 0.9171,
+   "n_pos": 150,
+   "n_neg": 270,
+   "by_split_fpr": {
+    "train": 0.0,
+    "adversarial": 0.1,
+    "contrast": 0.017,
+    "cantanswer": 0.0
+   },
+   "by_split_tpr": {
+    "train": 0.65,
+    "adversarial": 0.24,
+    "contrast": 0.35
+   }
+  },
+  "L34/a0.5": {
+   "tpr": 0.2867,
+   "tpr_ci": [
+    0.2203,
+    0.3637
+   ],
+   "fpr": 0.0259,
+   "fpr_ci": [
+    0.0126,
+    0.0525
+   ],
+   "auroc": 0.8997,
+   "n_pos": 150,
+   "n_neg": 270,
+   "by_split_fpr": {
+    "train": 0.0,
+    "adversarial": 0.086,
+    "contrast": 0.017,
+    "cantanswer": 0.0
+   },
+   "by_split_tpr": {
+    "train": 0.575,
+    "adversarial": 0.22,
+    "contrast": 0.15
+   }
+  },
+  "L34/a1.0": {
+   "tpr": 0.16,
+   "tpr_ci": [
+    0.1099,
+    0.227
+   ],
+   "fpr": 0.0148,
+   "fpr_ci": [
+    0.0058,
+    0.0375
+   ],
+   "auroc": 0.9139,
+   "n_pos": 150,
+   "n_neg": 270,
+   "by_split_fpr": {
+    "train": 0.0,
+    "adversarial": 0.057,
+    "contrast": 0.0,
+    "cantanswer": 0.0
+   },
+   "by_split_tpr": {
+    "train": 0.45,
+    "adversarial": 0.02,
+    "contrast": 0.083
+   }
+  }
+ },
+ "base_rates": {
+  "tpr": 0.2,
+  "tpr_ci": [
+   0.1438,
+   0.2711
+  ],
+  "fpr": 0.0481,
+  "fpr_ci": [
+   0.0284,
+   0.0806
+  ],
+  "auroc": 0.8468,
+  "n_pos": 150,
+  "n_neg": 270
+ }
+}

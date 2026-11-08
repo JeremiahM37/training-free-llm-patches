@@ -1,0 +1,11 @@
+# Versions the recorded results were produced with (2026-11-03). CPU users: install torch from the CPU index first,
+#   pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
+torch==2.15.0
+transformers==5.22.1
+accelerate==1.15.0
+scikit-learn==1.9.1
+scipy==1.18.1
+numpy==2.5.4
+datasets==5.1.0
+huggingface-hub==2.4.0
+safetensors==0.8.0

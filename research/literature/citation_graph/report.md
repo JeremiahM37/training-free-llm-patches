@@ -1,0 +1,121 @@
+# Citation graph report
+
+Papers with reference lists: 4349 of 18495. Edges: 163510. Inside-corpus citations: 2580.
+
+## Backward: most referenced by the top-decile relevance set (in corpus)
+
+- 9 | 2021 | unread | 2104.08691 | The Power of Scale for Parameter-Efficient Prompt Tuning
+- 9 | 2021 | unread | 2101.00190 | Prefix-Tuning: Optimizing Continuous Prompts for Generation
+- 6 | 2018 | unread | 1811.03962 | A Convergence Theory for Deep Learning via Over-Parameterization
+- 6 | 2020 | unread | 2006.16971 | Improving robustness against common corruptions by covariate shift adaptation
+- 6 | 2020 | unread | 2006.10726 | Tent: Fully Test-time Adaptation by Entropy Minimization
+- 6 | 2016 | unread | 10.1038/nature20101 | Hybrid computing using a neural network with dynamic external memory
+- 5 | 2021 | READ | 2106.09685 | LoRA: Low-Rank Adaptation of Large Language Models
+- 5 | 2022 | unread | 2212.13345 | The Forward-Forward Algorithm: Some Preliminary Investigations
+- 4 | 2015 | unread | 1508.05326 | A large annotated corpus for learning natural language inference
+- 4 | 2022 | unread | 10.1109/cvpr52688.2022.01435 | The Norm Must Go On: Dynamic Unsupervised Domain Adaptation by Normalization
+- 4 | 2022 | unread | 2110.09506 | MEMO: Test Time Robustness Via Adaptation and Augmentation
+- 4 | 2014 | unread | 1410.5401 | Neural Turing Machines
+- 4 | 2016 | unread | 1602.01407 | A Kronecker-factored approximate Fisher matrix for convolution layers
+- 3 | 2023 | unread | 2304.00740 | Inspecting and Editing Knowledge Representations in Language Models
+- 3 | 2023 | READ | 2310.15916 | In-Context Learning Creates Task Vectors
+- 3 | 2024 | READ | 2406.17563 | Multi-property Steering of Large Language Models with Dynamic Activation Composition
+- 3 | 2024 | READ | 2406.11717 | Refusal in Language Models Is Mediated by a Single Direction
+- 3 | 2023 | READ | 2306.03341 | Inference-Time Intervention: Eliciting Truthful Answers from a Language Model
+- 3 | 2016 | unread | 1603.04779 | Revisiting Batch Normalization For Practical Domain Adaptation
+- 3 | 2021 | unread | 10.1109/wacv48630.2021.00054 | Revisiting Batch Normalization for Improving Corruption Robustness
+- 3 | 2016 | unread | 1610.09027 | Scaling Memory-Augmented Neural Networks with Sparse Reads and Writes
+- 3 | 2019 | unread | 1902.04760 | Scaling Limits of Wide Neural Networks with Weight Sharing: Gaussian Process Behavior, Gra
+- 3 | 2022 | unread | 2201.03514 | Black-Box Tuning for Language-Model-as-a-Service
+- 2 | 2022 | READ | 2202.05262 | Locating and Editing Factual Associations in GPT
+- 2 | 2023 | unread | 2305.14314 | QLoRA: Efficient Finetuning of Quantized LLMs
+- 2 | 2017 | unread | 1505.07818 | Domain-Adversarial Training of Neural Networks
+- 2 | 2019 | unread | 1909.04630 | Meta-Learning with Implicit Gradients
+- 2 | 2018 | unread | 1807.01613 | Conditional Neural Processes
+- 2 | 2017 | unread | 1712.06567 | Deep Neuroevolution: Genetic Algorithms Are a Competitive Alternative for Training Deep Ne
+
+## Backward: referenced but NOT in our corpus (OpenAlex ids, to resolve)
+
+- 52 | https://openalex.org/W2194775991
+- 23 | https://openalex.org/W3118608800
+- 18 | https://openalex.org/W2108598243
+- 18 | https://openalex.org/W1522301498
+- 18 | https://openalex.org/W2112796928
+- 16 | https://openalex.org/W2963341956
+- 14 | https://openalex.org/W3030163527
+- 14 | https://openalex.org/W2560647685
+- 13 | https://openalex.org/W2970971581
+- 13 | https://openalex.org/W1498436455
+- 13 | https://openalex.org/W1686810756
+- 13 | https://openalex.org/W2064675550
+- 12 | https://openalex.org/W2163605009
+- 11 | https://openalex.org/W2626778328
+- 11 | https://openalex.org/W2964121744
+- 11 | https://openalex.org/W2809090039
+- 10 | https://openalex.org/W2965373594
+- 10 | https://openalex.org/W2981852735
+- 10 | https://openalex.org/W2949117887
+- 9 | https://openalex.org/W2913946806
+- 9 | https://openalex.org/W2942052807
+- 8 | https://openalex.org/W3176828726
+- 8 | https://openalex.org/W2604763608
+- 8 | https://openalex.org/W2194321275
+- 8 | https://openalex.org/W2095705004
+- 7 | https://openalex.org/W2117539524
+- 7 | https://openalex.org/W2896457183
+- 7 | https://openalex.org/W2919115771
+- 7 | https://openalex.org/W2964137095
+- 7 | https://openalex.org/W2963446712
+- 7 | https://openalex.org/W1836465849
+- 7 | https://openalex.org/W2436219157
+- 7 | https://openalex.org/W2552737632
+- 6 | https://openalex.org/W2886067286
+- 6 | https://openalex.org/W2894604724
+- 6 | https://openalex.org/W2950220847
+- 6 | https://openalex.org/W2962698540
+- 6 | https://openalex.org/W2097117768
+- 6 | https://openalex.org/W2964299589
+- 6 | https://openalex.org/W2335728318
+
+## Forward: unread corpus papers citing several papers we read
+
+- 4 | 2026 | rel 0.7243 | 10.1145/3770855.3818109 | A Geometric Information Bottleneck for Activation Steering
+- 3 | 2026 | rel 0.7402 | 10.17615/xdm4-gm38 | Representation Control for Large Language Models: Survey and Research Challenges
+- 2 | 2023 | rel 0.7142 | 2306.03882 | Causal interventions expose implicit situation models for commonsense language understandi
+- 2 | 2025 | rel 0.6105 | 2410.19750 | The Geometry of Concepts: Sparse Autoencoder Feature Structure
+- 2 | 2023 | rel 0.6815 | 10.32657/10356/167965 | Data-efficient domain adaptation for pretrained language models
+- 2 | 2026 | rel 0.7213 | 10.1109/aann71145.2026.11709352 | Representation Engineering for Fine-Grained Output Degradation Control in Large Language M
+- 2 | 2026 | rel 0.7135 | 10.1109/aice71085.2026.11736957 | Manipulating Large Language Model Outputs through Activation Steering
+- 2 | 2026 | rel 0.6758 | 10.1109/orss71174.2026.11684276 | Auditing Abliteration: Normalization Placement, Edit Budget, and Transfer in Single-Direct
+- 2 | 2026 | rel None | 10.1007/978-3-032-30860-3_6 | How Models Say No: Localizing Safety Mechanisms in Mixture-of-Experts Models
+- 2 | 2026 | rel None | 10.1007/978-3-032-38692-2_18 | CARD: Category-Aware Risk Detection for Vision-Language Models via Depth-Localized Hidden-
+- 2 | 2025 | rel None | 10.2139/ssrn.5170182 | Beyond Stochastic Parroting: LLMs' Human-Like Behavioral Biases Emerge from Linear Neural 
+- 1 | 2024 | rel 0.6906 | 2307.12976 | Evaluating the Ripple Effects of Knowledge Editing in Language Models
+- 1 | 2025 | rel 0.6788 | 10.1109/nnice64954.2025.11063722 | Edited Knowledge Fusion with Large Language Models
+- 1 | 2023 | rel 0.7141 | 2305.14795 | MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions
+- 1 | 2024 | rel 0.6853 | 2402.18099 | Editing Factual Knowledge and Explanatory Ability of Medical Large Language Models
+- 1 | 2024 | rel None | 10.2139/ssrn.4882305 | Mlke: A Benchmark for Multilingual Knowledge Editing on Large Language Model
+- 1 | 2025 | rel 0.6746 | 10.1145/3696410.3714732 | Assessing and Post-Processing Black Box Large Language Models for Knowledge Editing
+- 1 | 2023 | rel 0.6666 | 2310.20138 | DEPN: Detecting and Editing Privacy Neurons in Pretrained Language Models
+- 1 | 2023 | rel None | 10.1016/j.knosys.2023.110826 | A divide and conquer framework for Knowledge Editing
+- 1 | 2023 | rel 0.6771 | 2305.12740 | Can We Edit Factual Knowledge by In-Context Learning?
+- 1 | 2025 | rel 0.696 | 2401.17809 | SWEA: Updating Factual Knowledge in Large Language Models via Subject Word Embedding Alter
+- 1 | 2024 | rel None | 10.1145/3627673.3679821 | Trojan Activation Attack: Red-Teaming Large Language Models using Steering Vectors for Saf
+- 1 | 2024 | rel 0.6628 | 2407.11215 | Mechanistic interpretability of large language models with applications to the financial s
+- 1 | 2026 | rel None | 10.1038/s42256-026-01276-y | Towards principled knowledge editing methods for large language model reasoning
+- 1 | 2024 | rel 0.6932 | 10.1109/smartiot62235.2024.00092 | Learning from Mistakes: A Comprehensive Review of Knowledge Editing for Large Language Mod
+- 1 | 2026 | rel 0.637 | 10.1109/tip.2026.3712345 | Safe Image Generation via Lightweight Concept Erasure in Diffusion Models
+- 1 | 2026 | rel 0.642 | 2511.18684 | Now you see it, now you don't - Instant Concept Erasure for Safe Text-to-Image and Video G
+- 1 | 2026 | rel 0.6668 | 10.1109/cvprf71909.2026.00390 | FedErase: Personalized Federated Unlearning for Text-to-Image Diffusion Models
+- 1 | 2026 | rel 0.6471 | 10.1109/cvprf71909.2026.00458 | SafetyBPO: Bidirectional Preference Optimization for Safe Text- to- Image Generation
+- 1 | 2023 | rel 0.6822 | 2311.11696 | Sparse Low-rank Adaptation of Pre-trained Language Models
+- 1 | 2024 | rel 0.6605 | 2312.17493 | Differentially Private Low-Rank Adaptation of Large Language Model Using Federated Learnin
+- 1 | 2026 | rel 0.6976 | 10.1007/s44196-026-01402-z | Quantized Low-Rank Adaptation in Large Language Models for Clinical Text Simplification
+- 1 | 2025 | rel 0.6871 | 10.1088/2631-8695/add642 | SCAT_LoRA: self-consistency adversarial training in large language models through low-rank
+- 1 | 2024 | rel 0.6605 | 10.21203/rs.3.rs-4515250/v1 | Combining LoRA to GPT-Neo to Reduce Large Language Model Hallucination
+- 1 | 2023 | rel 0.6864 | 10.18653/v1/2023.eacl-main.239 | DyLoRA: Parameter-Efficient Tuning of Pre-trained Models using Dynamic Search-Free Low-Ran
+- 1 | 2025 | rel 0.6896 | 10.1109/iccai66501.2025.00063 | LLM-NER: Advancing Named Entity Recognition with LoRA+ Fine-Tuned Large Language Models
+- 1 | 2024 | rel 0.6746 | 10.1109/cascon62161.2024.10838185 | Sentiment Analysis with LLMs: Evaluating QLoRA Fine-Tuning, Instruction Strategies, and Pr
+- 1 | 2023 | rel 0.7045 | 2310.03059 | Point-PEFT: Parameter-Efficient Fine-Tuning for 3D Pre-trained Models
+- 1 | 2023 | rel 0.6663 | 2304.01933 | LLM-Adapters: An Adapter Family for Parameter-Efficient Fine-Tuning of Large Language Mode
+- 1 | 2024 | rel 0.6579 | 2407.11033 | Hadamard Adapter: An Extreme Parameter-Efficient Adapter Tuning Method for Pre-trained Lan

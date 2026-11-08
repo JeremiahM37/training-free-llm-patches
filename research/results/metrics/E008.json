@@ -1,0 +1,266 @@
+{
+ "meta": {
+  "time": "2026-11-03T18:51:56",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "host": "cachyos-x8664",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "torch": "2.15.0+cu132",
+  "data_sha": "8b20dadd349297ea",
+  "config": {
+   "exp": "E008",
+   "layer": 26,
+   "alpha": 0.25
+  }
+ },
+ "effect_max": 13.085128784179688,
+ "float32": {
+  "max_diff_from_hook": 2.0265579223632812e-05,
+  "mean_diff_from_hook": 2.09630343306344e-06,
+  "p99_diff_from_hook": 7.152557373046875e-06,
+  "update_kept_frac": 0.9999994039535522,
+  "base_quant_max_diff": 0.0,
+  "dev": {
+   "tpr": 0.9333,
+   "tpr_ci": [
+    0.8407,
+    0.9738
+   ],
+   "fpr": 0.0,
+   "fpr_ci": [
+    -0.0,
+    0.0602
+   ],
+   "auroc": 0.9994,
+   "n_pos": 60,
+   "n_neg": 60
+  },
+  "adv": {
+   "tpr": 0.54,
+   "tpr_ci": [
+    0.404,
+    0.6703
+   ],
+   "fpr": 0.2143,
+   "fpr_ci": [
+    0.1344,
+    0.3239
+   ],
+   "auroc": 0.7863,
+   "n_pos": 50,
+   "n_neg": 70
+  }
+ },
+ "bfloat16": {
+  "max_diff_from_hook": 0.014094233512878418,
+  "mean_diff_from_hook": 0.0024446891620755196,
+  "p99_diff_from_hook": 0.007581921759992838,
+  "update_kept_frac": 0.9186398983001709,
+  "base_quant_max_diff": 0.0,
+  "dev": {
+   "tpr": 0.9333,
+   "tpr_ci": [
+    0.8407,
+    0.9738
+   ],
+   "fpr": 0.0,
+   "fpr_ci": [
+    -0.0,
+    0.0602
+   ],
+   "auroc": 0.9994,
+   "n_pos": 60,
+   "n_neg": 60
+  },
+  "adv": {
+   "tpr": 0.54,
+   "tpr_ci": [
+    0.404,
+    0.6703
+   ],
+   "fpr": 0.2143,
+   "fpr_ci": [
+    0.1344,
+    0.3239
+   ],
+   "auroc": 0.786,
+   "n_pos": 50,
+   "n_neg": 70
+  }
+ },
+ "fp16": {
+  "max_diff_from_hook": 0.0018887519836425781,
+  "mean_diff_from_hook": 0.00027011375641450286,
+  "p99_diff_from_hook": 0.0008828639984130859,
+  "update_kept_frac": 0.9847245216369629,
+  "base_quant_max_diff": 9.775161743164062e-06,
+  "dev": {
+   "tpr": 0.9333,
+   "tpr_ci": [
+    0.8407,
+    0.9738
+   ],
+   "fpr": 0.0,
+   "fpr_ci": [
+    -0.0,
+    0.0602
+   ],
+   "auroc": 0.9994,
+   "n_pos": 60,
+   "n_neg": 60
+  },
+  "adv": {
+   "tpr": 0.54,
+   "tpr_ci": [
+    0.404,
+    0.6703
+   ],
+   "fpr": 0.2143,
+   "fpr_ci": [
+    0.1344,
+    0.3239
+   ],
+   "auroc": 0.7863,
+   "n_pos": 50,
+   "n_neg": 70
+  }
+ },
+ "q8_simulated": {
+  "max_diff_from_hook": 0.5164954662322998,
+  "mean_diff_from_hook": 0.07078781723976135,
+  "p99_diff_from_hook": 0.23644988238811493,
+  "update_kept_frac": 0.9407426118850708,
+  "base_quant_max_diff": 0.4669860601425171,
+  "dev": {
+   "tpr": 0.9333,
+   "tpr_ci": [
+    0.8407,
+    0.9738
+   ],
+   "fpr": 0.0,
+   "fpr_ci": [
+    -0.0,
+    0.0602
+   ],
+   "auroc": 0.9992,
+   "n_pos": 60,
+   "n_neg": 60
+  },
+  "adv": {
+   "tpr": 0.54,
+   "tpr_ci": [
+    0.404,
+    0.6703
+   ],
+   "fpr": 0.2143,
+   "fpr_ci": [
+    0.1344,
+    0.3239
+   ],
+   "auroc": 0.7869,
+   "n_pos": 50,
+   "n_neg": 70
+  }
+ },
+ "q4_simulated": {
+  "max_diff_from_hook": 10.248384475708008,
+  "mean_diff_from_hook": 1.5681096315383911,
+  "p99_diff_from_hook": 5.096635818481445,
+  "update_kept_frac": 0.08710436522960663,
+  "base_quant_max_diff": 8.799894332885742,
+  "dev": {
+   "tpr": 0.0,
+   "tpr_ci": [
+    -0.0,
+    0.0602
+   ],
+   "fpr": 0.0,
+   "fpr_ci": [
+    -0.0,
+    0.0602
+   ],
+   "auroc": 0.9886,
+   "n_pos": 60,
+   "n_neg": 60
+  },
+  "adv": {
+   "tpr": 0.0,
+   "tpr_ci": [
+    0.0,
+    0.0714
+   ],
+   "fpr": 0.0143,
+   "fpr_ci": [
+    0.0025,
+    0.0766
+   ],
+   "auroc": 0.7743,
+   "n_pos": 50,
+   "n_neg": 70
+  }
+ },
+ "hook_runtime": {
+  "dev": {
+   "tpr": 0.9333,
+   "tpr_ci": [
+    0.8407,
+    0.9738
+   ],
+   "fpr": 0.0,
+   "fpr_ci": [
+    -0.0,
+    0.0602
+   ],
+   "auroc": 0.9994,
+   "n_pos": 60,
+   "n_neg": 60
+  },
+  "adv": {
+   "tpr": 0.54,
+   "tpr_ci": [
+    0.404,
+    0.6703
+   ],
+   "fpr": 0.2143,
+   "fpr_ci": [
+    0.1344,
+    0.3239
+   ],
+   "auroc": 0.7863,
+   "n_pos": 50,
+   "n_neg": 70
+  }
+ },
+ "rectified": {
+  "dev": {
+   "tpr": 0.9667,
+   "tpr_ci": [
+    0.8864,
+    0.9908
+   ],
+   "fpr": 0.4667,
+   "fpr_ci": [
+    0.3463,
+    0.5911
+   ],
+   "auroc": 0.9153,
+   "n_pos": 60,
+   "n_neg": 60
+  },
+  "adv": {
+   "tpr": 0.62,
+   "tpr_ci": [
+    0.4815,
+    0.7414
+   ],
+   "fpr": 0.3857,
+   "fpr_ci": [
+    0.2805,
+    0.5028
+   ],
+   "auroc": 0.6729,
+   "n_pos": 50,
+   "n_neg": 70
+  }
+ }
+}

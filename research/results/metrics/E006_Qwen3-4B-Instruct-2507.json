@@ -1,0 +1,1398 @@
+{
+ "meta": {
+  "time": "2026-11-03T22:44:09",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "host": "cachyos-x8664",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "torch": "2.15.0+cu132",
+  "data_sha": "8b20dadd349297ea",
+  "config": {
+   "exp": "E006",
+   "KS": [
+    1,
+    4,
+    16,
+    64,
+    150
+   ],
+   "nfit": 10,
+   "nev": 10,
+   "alphas": [
+    0.5,
+    1,
+    2,
+    4,
+    8
+   ],
+   "layers": [
+    35,
+    32
+   ]
+  }
+ },
+ "participation_ratio": {
+  "35": {
+   "uncentred": 3.616935515599919,
+   "centred": 3.4786618310600885
+  },
+  "32": {
+   "uncentred": 29.518941945818504,
+   "centred": 34.46614796533138
+  }
+ },
+ "gain_curve": {
+  "35": [
+   {
+    "K": 1,
+    "gain_rel_to_alone": 1.0
+   },
+   {
+    "K": 2,
+    "gain_rel_to_alone": 1.0067
+   },
+   {
+    "K": 5,
+    "gain_rel_to_alone": 1.0127
+   },
+   {
+    "K": 10,
+    "gain_rel_to_alone": 1.0598
+   },
+   {
+    "K": 20,
+    "gain_rel_to_alone": 1.14
+   },
+   {
+    "K": 40,
+    "gain_rel_to_alone": 1.3019
+   },
+   {
+    "K": 60,
+    "gain_rel_to_alone": 1.4618
+   },
+   {
+    "K": 80,
+    "gain_rel_to_alone": 1.605
+   },
+   {
+    "K": 100,
+    "gain_rel_to_alone": 1.7429
+   },
+   {
+    "K": 120,
+    "gain_rel_to_alone": 1.9094
+   },
+   {
+    "K": 140,
+    "gain_rel_to_alone": 2.2051
+   },
+   {
+    "K": 150,
+    "gain_rel_to_alone": -9202462415118.934
+   }
+  ],
+  "32": [
+   {
+    "K": 1,
+    "gain_rel_to_alone": 1.0
+   },
+   {
+    "K": 2,
+    "gain_rel_to_alone": 1.0038
+   },
+   {
+    "K": 5,
+    "gain_rel_to_alone": 1.0043
+   },
+   {
+    "K": 10,
+    "gain_rel_to_alone": 1.0281
+   },
+   {
+    "K": 20,
+    "gain_rel_to_alone": 1.0694
+   },
+   {
+    "K": 40,
+    "gain_rel_to_alone": 1.1468
+   },
+   {
+    "K": 60,
+    "gain_rel_to_alone": 1.2246
+   },
+   {
+    "K": 80,
+    "gain_rel_to_alone": 1.2937
+   },
+   {
+    "K": 100,
+    "gain_rel_to_alone": 1.3565
+   },
+   {
+    "K": 120,
+    "gain_rel_to_alone": 1.4394
+   },
+   {
+    "K": 140,
+    "gain_rel_to_alone": 1.6334
+   },
+   {
+    "K": 150,
+    "gain_rel_to_alone": 82675934661559.62
+   }
+  ]
+ },
+ "rows": [
+  {
+   "K": 1,
+   "seed": 0,
+   "n_pos": 10,
+   "n_neg": 200,
+   "base": {
+    "correct": 0.0,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.0,
+    "s_per_prompt": 0.0049,
+    "added_tokens": 0
+   },
+   "prompt_all": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.535,
+    "J": 0.465,
+    "s_per_prompt": 0.008,
+    "added_tokens": 18
+   },
+   "router_only": {
+    "correct": 0.0,
+    "fpr": 0.0,
+    "J": 0.0,
+    "note": "decision only, separate classifier"
+   },
+   "prompt_rag": {
+    "correct": 0.0,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.0,
+    "s_per_prompt": 0.0048,
+    "added_tokens": 18,
+    "fit_bytes_note": "router vocabulary is separate"
+   },
+   "patch_indep_L35": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.085,
+    "J": 0.915,
+    "alpha": 8,
+    "s_per_prompt": 0.0049,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.0026,
+    "mean_offset_on_bg": -0.00051,
+    "gate_on_fit_diag": 0.9726
+   },
+   "patch_joint_L35": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.085,
+    "J": 0.915,
+    "alpha": 8,
+    "s_per_prompt": 0.0049,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.0026,
+    "mean_offset_on_bg": -0.00051,
+    "gate_on_fit_diag": 0.9726
+   },
+   "patch_jointnull_L35": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.105,
+    "J": 0.895,
+    "alpha": 8,
+    "s_per_prompt": 0.0049,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00265,
+    "mean_offset_on_bg": 0.00037,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L35": {
+    "correct": 0.6,
+    "fpr": 0.0,
+    "J": 0.6
+   },
+   "patch_indep_L32": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.02,
+    "J": 0.98,
+    "alpha": 8,
+    "s_per_prompt": 0.0049,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00367,
+    "mean_offset_on_bg": 0.00151,
+    "gate_on_fit_diag": 0.9468
+   },
+   "patch_joint_L32": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.02,
+    "J": 0.98,
+    "alpha": 8,
+    "s_per_prompt": 0.0048,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00367,
+    "mean_offset_on_bg": 0.00151,
+    "gate_on_fit_diag": 0.9468
+   },
+   "patch_jointnull_L32": {
+    "correct": 0.5,
+    "wrong_word": 0.0,
+    "fpr": 0.01,
+    "J": 0.49,
+    "alpha": 4,
+    "s_per_prompt": 0.0048,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00398,
+    "mean_offset_on_bg": 0.00301,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L32": {
+    "correct": 0.6,
+    "fpr": 0.0,
+    "J": 0.6
+   }
+  },
+  {
+   "K": 1,
+   "seed": 1,
+   "n_pos": 10,
+   "n_neg": 200,
+   "base": {
+    "correct": 0.0,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.0,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0
+   },
+   "prompt_all": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.405,
+    "J": 0.595,
+    "s_per_prompt": 0.0063,
+    "added_tokens": 18
+   },
+   "router_only": {
+    "correct": 0.8,
+    "fpr": 0.0,
+    "J": 0.8,
+    "note": "decision only, separate classifier"
+   },
+   "prompt_rag": {
+    "correct": 0.8,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.8,
+    "s_per_prompt": 0.0049,
+    "added_tokens": 18,
+    "fit_bytes_note": "router vocabulary is separate"
+   },
+   "patch_indep_L35": {
+    "correct": 0.8,
+    "wrong_word": 0.0,
+    "fpr": 0.01,
+    "J": 0.79,
+    "alpha": 8,
+    "s_per_prompt": 0.0033,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00079,
+    "mean_offset_on_bg": 0.0,
+    "gate_on_fit_diag": 1.0071
+   },
+   "patch_joint_L35": {
+    "correct": 0.8,
+    "wrong_word": 0.0,
+    "fpr": 0.01,
+    "J": 0.79,
+    "alpha": 8,
+    "s_per_prompt": 0.0033,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00079,
+    "mean_offset_on_bg": 0.0,
+    "gate_on_fit_diag": 1.0071
+   },
+   "patch_jointnull_L35": {
+    "correct": 0.8,
+    "wrong_word": 0.0,
+    "fpr": 0.005,
+    "J": 0.795,
+    "alpha": 8,
+    "s_per_prompt": 0.0033,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00079,
+    "mean_offset_on_bg": -0.00023,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L35": {
+    "correct": 0.6,
+    "fpr": 0.0,
+    "J": 0.6
+   },
+   "patch_indep_L32": {
+    "correct": 0.8,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.8,
+    "alpha": 8,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00067,
+    "mean_offset_on_bg": -0.00037,
+    "gate_on_fit_diag": 1.0087
+   },
+   "patch_joint_L32": {
+    "correct": 0.8,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.8,
+    "alpha": 8,
+    "s_per_prompt": 0.0033,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00067,
+    "mean_offset_on_bg": -0.00037,
+    "gate_on_fit_diag": 1.0087
+   },
+   "patch_jointnull_L32": {
+    "correct": 0.8,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.8,
+    "alpha": 8,
+    "s_per_prompt": 0.0033,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00069,
+    "mean_offset_on_bg": -0.0006,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L32": {
+    "correct": 0.7,
+    "fpr": 0.0,
+    "J": 0.7
+   }
+  },
+  {
+   "K": 1,
+   "seed": 2,
+   "n_pos": 10,
+   "n_neg": 200,
+   "base": {
+    "correct": 0.0,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.0,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0
+   },
+   "prompt_all": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.695,
+    "J": 0.305,
+    "s_per_prompt": 0.0067,
+    "added_tokens": 18
+   },
+   "router_only": {
+    "correct": 0.7,
+    "fpr": 0.0,
+    "J": 0.7,
+    "note": "decision only, separate classifier"
+   },
+   "prompt_rag": {
+    "correct": 0.7,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.7,
+    "s_per_prompt": 0.0048,
+    "added_tokens": 18,
+    "fit_bytes_note": "router vocabulary is separate"
+   },
+   "patch_indep_L35": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.045,
+    "J": 0.955,
+    "alpha": 8,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00288,
+    "mean_offset_on_bg": 0.00073,
+    "gate_on_fit_diag": 1.0011
+   },
+   "patch_joint_L35": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.045,
+    "J": 0.955,
+    "alpha": 8,
+    "s_per_prompt": 0.0033,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00288,
+    "mean_offset_on_bg": 0.00073,
+    "gate_on_fit_diag": 1.0011
+   },
+   "patch_jointnull_L35": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.045,
+    "J": 0.955,
+    "alpha": 8,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00288,
+    "mean_offset_on_bg": 0.00069,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L35": {
+    "correct": 1.0,
+    "fpr": 0.0,
+    "J": 1.0
+   },
+   "patch_indep_L32": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.01,
+    "J": 0.99,
+    "alpha": 8,
+    "s_per_prompt": 0.0033,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.0018,
+    "mean_offset_on_bg": -0.00129,
+    "gate_on_fit_diag": 0.9845
+   },
+   "patch_joint_L32": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.01,
+    "J": 0.99,
+    "alpha": 8,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.0018,
+    "mean_offset_on_bg": -0.00129,
+    "gate_on_fit_diag": 0.9845
+   },
+   "patch_jointnull_L32": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.01,
+    "J": 0.99,
+    "alpha": 8,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 24576,
+    "gate_energy_mean_heldout_bg": 0.00179,
+    "mean_offset_on_bg": -0.00089,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L32": {
+    "correct": 1.0,
+    "fpr": 0.0,
+    "J": 1.0
+   }
+  },
+  {
+   "K": 4,
+   "seed": 0,
+   "n_pos": 40,
+   "n_neg": 200,
+   "base": {
+    "correct": 0.0,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.0,
+    "s_per_prompt": 0.0037,
+    "added_tokens": 0
+   },
+   "prompt_all": {
+    "correct": 1.0,
+    "wrong_word": 0.0,
+    "fpr": 0.195,
+    "J": 0.805,
+    "s_per_prompt": 0.0117,
+    "added_tokens": 75
+   },
+   "router_only": {
+    "correct": 0.375,
+    "fpr": 0.01,
+    "J": 0.365,
+    "note": "decision only, separate classifier"
+   },
+   "prompt_rag": {
+    "correct": 0.375,
+    "wrong_word": 0.0,
+    "fpr": 0.01,
+    "J": 0.365,
+    "s_per_prompt": 0.0047,
+    "added_tokens": 18,
+    "fit_bytes_note": "router vocabulary is separate"
+   },
+   "patch_indep_L35": {
+    "correct": 0.875,
+    "wrong_word": 0.0,
+    "fpr": 0.07,
+    "J": 0.805,
+    "alpha": 8,
+    "s_per_prompt": 0.0037,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.00109,
+    "mean_offset_on_bg": 9e-05,
+    "gate_on_fit_diag": 1.0043
+   },
+   "patch_joint_L35": {
+    "correct": 0.875,
+    "wrong_word": 0.0,
+    "fpr": 0.07,
+    "J": 0.805,
+    "alpha": 8,
+    "s_per_prompt": 0.0037,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.0011,
+    "mean_offset_on_bg": 9e-05,
+    "gate_on_fit_diag": 1.0044
+   },
+   "patch_jointnull_L35": {
+    "correct": 0.875,
+    "wrong_word": 0.0,
+    "fpr": 0.08,
+    "J": 0.795,
+    "alpha": 8,
+    "s_per_prompt": 0.0037,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.0011,
+    "mean_offset_on_bg": -6e-05,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L35": {
+    "correct": 0.675,
+    "fpr": 0.01,
+    "J": 0.665
+   },
+   "patch_indep_L32": {
+    "correct": 0.7,
+    "wrong_word": 0.0,
+    "fpr": 0.015,
+    "J": 0.685,
+    "alpha": 8,
+    "s_per_prompt": 0.0037,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.00057,
+    "mean_offset_on_bg": 0.00037,
+    "gate_on_fit_diag": 0.9984
+   },
+   "patch_joint_L32": {
+    "correct": 0.725,
+    "wrong_word": 0.0,
+    "fpr": 0.015,
+    "J": 0.71,
+    "alpha": 8,
+    "s_per_prompt": 0.0037,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.00058,
+    "mean_offset_on_bg": 0.00039,
+    "gate_on_fit_diag": 0.9995
+   },
+   "patch_jointnull_L32": {
+    "correct": 0.5,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.5,
+    "alpha": 4,
+    "s_per_prompt": 0.0036,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.00058,
+    "mean_offset_on_bg": 0.0004,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L32": {
+    "correct": 0.75,
+    "fpr": 0.01,
+    "J": 0.74
+   }
+  },
+  {
+   "K": 4,
+   "seed": 1,
+   "n_pos": 40,
+   "n_neg": 200,
+   "base": {
+    "correct": 0.0,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.0,
+    "s_per_prompt": 0.0032,
+    "added_tokens": 0
+   },
+   "prompt_all": {
+    "correct": 0.975,
+    "wrong_word": 0.0,
+    "fpr": 0.445,
+    "J": 0.53,
+    "s_per_prompt": 0.0117,
+    "added_tokens": 75
+   },
+   "router_only": {
+    "correct": 0.325,
+    "fpr": 0.01,
+    "J": 0.315,
+    "note": "decision only, separate classifier"
+   },
+   "prompt_rag": {
+    "correct": 0.325,
+    "wrong_word": 0.0,
+    "fpr": 0.005,
+    "J": 0.32,
+    "s_per_prompt": 0.0049,
+    "added_tokens": 19,
+    "fit_bytes_note": "router vocabulary is separate"
+   },
+   "patch_indep_L35": {
+    "correct": 0.775,
+    "wrong_word": 0.0,
+    "fpr": 0.2,
+    "J": 0.575,
+    "alpha": 8,
+    "s_per_prompt": 0.0032,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.00184,
+    "mean_offset_on_bg": 0.00017,
+    "gate_on_fit_diag": 0.9992
+   },
+   "patch_joint_L35": {
+    "correct": 0.775,
+    "wrong_word": 0.0,
+    "fpr": 0.205,
+    "J": 0.57,
+    "alpha": 8,
+    "s_per_prompt": 0.0032,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.00184,
+    "mean_offset_on_bg": 0.00016,
+    "gate_on_fit_diag": 0.9992
+   },
+   "patch_jointnull_L35": {
+    "correct": 0.775,
+    "wrong_word": 0.0,
+    "fpr": 0.205,
+    "J": 0.57,
+    "alpha": 8,
+    "s_per_prompt": 0.0032,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.00184,
+    "mean_offset_on_bg": 0.00019,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L35": {
+    "correct": 0.425,
+    "fpr": 0.01,
+    "J": 0.415
+   },
+   "patch_indep_L32": {
+    "correct": 0.6,
+    "wrong_word": 0.0,
+    "fpr": 0.085,
+    "J": 0.515,
+    "alpha": 8,
+    "s_per_prompt": 0.0032,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.00141,
+    "mean_offset_on_bg": -0.00016,
+    "gate_on_fit_diag": 0.992
+   },
+   "patch_joint_L32": {
+    "correct": 0.625,
+    "wrong_word": 0.0,
+    "fpr": 0.075,
+    "J": 0.55,
+    "alpha": 8,
+    "s_per_prompt": 0.0032,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.0014,
+    "mean_offset_on_bg": -0.00011,
+    "gate_on_fit_diag": 0.9929
+   },
+   "patch_jointnull_L32": {
+    "correct": 0.625,
+    "wrong_word": 0.0,
+    "fpr": 0.08,
+    "J": 0.545,
+    "alpha": 8,
+    "s_per_prompt": 0.0032,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.0014,
+    "mean_offset_on_bg": 7e-05,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L32": {
+    "correct": 0.45,
+    "fpr": 0.02,
+    "J": 0.43
+   }
+  },
+  {
+   "K": 4,
+   "seed": 2,
+   "n_pos": 40,
+   "n_neg": 200,
+   "base": {
+    "correct": 0.0,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.0,
+    "s_per_prompt": 0.0041,
+    "added_tokens": 0
+   },
+   "prompt_all": {
+    "correct": 0.75,
+    "wrong_word": 0.075,
+    "fpr": 0.36,
+    "J": 0.39,
+    "s_per_prompt": 0.0114,
+    "added_tokens": 71
+   },
+   "router_only": {
+    "correct": 0.475,
+    "fpr": 0.0,
+    "J": 0.475,
+    "note": "decision only, separate classifier"
+   },
+   "prompt_rag": {
+    "correct": 0.475,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.475,
+    "s_per_prompt": 0.005,
+    "added_tokens": 19,
+    "fit_bytes_note": "router vocabulary is separate"
+   },
+   "patch_indep_L35": {
+    "correct": 0.85,
+    "wrong_word": 0.0,
+    "fpr": 0.055,
+    "J": 0.795,
+    "alpha": 8,
+    "s_per_prompt": 0.0038,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.00159,
+    "mean_offset_on_bg": -0.00037,
+    "gate_on_fit_diag": 0.9924
+   },
+   "patch_joint_L35": {
+    "correct": 0.85,
+    "wrong_word": 0.0,
+    "fpr": 0.055,
+    "J": 0.795,
+    "alpha": 8,
+    "s_per_prompt": 0.0038,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.00162,
+    "mean_offset_on_bg": -0.00029,
+    "gate_on_fit_diag": 0.9946
+   },
+   "patch_jointnull_L35": {
+    "correct": 0.85,
+    "wrong_word": 0.0,
+    "fpr": 0.08,
+    "J": 0.77,
+    "alpha": 8,
+    "s_per_prompt": 0.0038,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.00159,
+    "mean_offset_on_bg": -0.00011,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L35": {
+    "correct": 0.775,
+    "fpr": 0.01,
+    "J": 0.765
+   },
+   "patch_indep_L32": {
+    "correct": 0.75,
+    "wrong_word": 0.05,
+    "fpr": 0.045,
+    "J": 0.705,
+    "alpha": 8,
+    "s_per_prompt": 0.0038,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.00135,
+    "mean_offset_on_bg": -0.0004,
+    "gate_on_fit_diag": 0.9794
+   },
+   "patch_joint_L32": {
+    "correct": 0.775,
+    "wrong_word": 0.0,
+    "fpr": 0.04,
+    "J": 0.735,
+    "alpha": 8,
+    "s_per_prompt": 0.0038,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.0013,
+    "mean_offset_on_bg": -0.0003,
+    "gate_on_fit_diag": 0.9825
+   },
+   "patch_jointnull_L32": {
+    "correct": 0.8,
+    "wrong_word": 0.0,
+    "fpr": 0.06,
+    "J": 0.74,
+    "alpha": 8,
+    "s_per_prompt": 0.0038,
+    "added_tokens": 0,
+    "bytes_fp16": 98304,
+    "gate_energy_mean_heldout_bg": 0.00129,
+    "mean_offset_on_bg": 0.00016,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L32": {
+    "correct": 0.775,
+    "fpr": 0.01,
+    "J": 0.765
+   }
+  },
+  {
+   "K": 16,
+   "seed": 0,
+   "n_pos": 160,
+   "n_neg": 200,
+   "base": {
+    "correct": 0.0,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.0,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0
+   },
+   "prompt_all": {
+    "correct": 0.875,
+    "wrong_word": 0.0813,
+    "fpr": 0.52,
+    "J": 0.355,
+    "s_per_prompt": 0.03,
+    "added_tokens": 291
+   },
+   "router_only": {
+    "correct": 0.525,
+    "fpr": 0.01,
+    "J": 0.515,
+    "note": "decision only, separate classifier"
+   },
+   "prompt_rag": {
+    "correct": 0.525,
+    "wrong_word": 0.0063,
+    "fpr": 0.01,
+    "J": 0.515,
+    "s_per_prompt": 0.0047,
+    "added_tokens": 18,
+    "fit_bytes_note": "router vocabulary is separate"
+   },
+   "patch_indep_L35": {
+    "correct": 0.5563,
+    "wrong_word": 0.0375,
+    "fpr": 0.085,
+    "J": 0.4713,
+    "alpha": 4,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 393216,
+    "gate_energy_mean_heldout_bg": 0.00132,
+    "mean_offset_on_bg": -0.00058,
+    "gate_on_fit_diag": 0.9954
+   },
+   "patch_joint_L35": {
+    "correct": 0.5563,
+    "wrong_word": 0.0312,
+    "fpr": 0.08,
+    "J": 0.4763,
+    "alpha": 4,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 393216,
+    "gate_energy_mean_heldout_bg": 0.00142,
+    "mean_offset_on_bg": -0.00061,
+    "gate_on_fit_diag": 0.9953
+   },
+   "patch_jointnull_L35": {
+    "correct": 0.5625,
+    "wrong_word": 0.0375,
+    "fpr": 0.085,
+    "J": 0.4775,
+    "alpha": 4,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 393216,
+    "gate_energy_mean_heldout_bg": 0.0014,
+    "mean_offset_on_bg": -0.00046,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L35": {
+    "correct": 0.725,
+    "fpr": 0.045,
+    "J": 0.68
+   },
+   "patch_indep_L32": {
+    "correct": 0.5437,
+    "wrong_word": 0.1625,
+    "fpr": 0.23,
+    "J": 0.3137,
+    "alpha": 8,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 393216,
+    "gate_energy_mean_heldout_bg": 0.00116,
+    "mean_offset_on_bg": -0.00031,
+    "gate_on_fit_diag": 0.9886
+   },
+   "patch_joint_L32": {
+    "correct": 0.5938,
+    "wrong_word": 0.0938,
+    "fpr": 0.23,
+    "J": 0.3638,
+    "alpha": 8,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 393216,
+    "gate_energy_mean_heldout_bg": 0.00117,
+    "mean_offset_on_bg": -0.00033,
+    "gate_on_fit_diag": 0.991
+   },
+   "patch_jointnull_L32": {
+    "correct": 0.3937,
+    "wrong_word": 0.0187,
+    "fpr": 0.045,
+    "J": 0.3488,
+    "alpha": 4,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 393216,
+    "gate_energy_mean_heldout_bg": 0.00113,
+    "mean_offset_on_bg": -7e-05,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L32": {
+    "correct": 0.7312,
+    "fpr": 0.05,
+    "J": 0.6812
+   }
+  },
+  {
+   "K": 16,
+   "seed": 1,
+   "n_pos": 160,
+   "n_neg": 200,
+   "base": {
+    "correct": 0.0,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.0,
+    "s_per_prompt": 0.0033,
+    "added_tokens": 0
+   },
+   "prompt_all": {
+    "correct": 0.8313,
+    "wrong_word": 0.0625,
+    "fpr": 0.695,
+    "J": 0.1363,
+    "s_per_prompt": 0.03,
+    "added_tokens": 291
+   },
+   "router_only": {
+    "correct": 0.4062,
+    "fpr": 0.04,
+    "J": 0.3663,
+    "note": "decision only, separate classifier"
+   },
+   "prompt_rag": {
+    "correct": 0.3812,
+    "wrong_word": 0.0125,
+    "fpr": 0.035,
+    "J": 0.3462,
+    "s_per_prompt": 0.0047,
+    "added_tokens": 18,
+    "fit_bytes_note": "router vocabulary is separate"
+   },
+   "patch_indep_L35": {
+    "correct": 0.6875,
+    "wrong_word": 0.1125,
+    "fpr": 0.295,
+    "J": 0.3925,
+    "alpha": 8,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 393216,
+    "gate_energy_mean_heldout_bg": 0.00121,
+    "mean_offset_on_bg": -0.00016,
+    "gate_on_fit_diag": 0.9962
+   },
+   "patch_joint_L35": {
+    "correct": 0.7063,
+    "wrong_word": 0.1062,
+    "fpr": 0.285,
+    "J": 0.4213,
+    "alpha": 8,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 393216,
+    "gate_energy_mean_heldout_bg": 0.00123,
+    "mean_offset_on_bg": -0.00024,
+    "gate_on_fit_diag": 0.9976
+   },
+   "patch_jointnull_L35": {
+    "correct": 0.7125,
+    "wrong_word": 0.1187,
+    "fpr": 0.295,
+    "J": 0.4175,
+    "alpha": 8,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 393216,
+    "gate_energy_mean_heldout_bg": 0.00122,
+    "mean_offset_on_bg": -0.00016,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L35": {
+    "correct": 0.6,
+    "fpr": 0.035,
+    "J": 0.565
+   },
+   "patch_indep_L32": {
+    "correct": 0.5938,
+    "wrong_word": 0.0563,
+    "fpr": 0.165,
+    "J": 0.4287,
+    "alpha": 8,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 393216,
+    "gate_energy_mean_heldout_bg": 0.00111,
+    "mean_offset_on_bg": -0.00022,
+    "gate_on_fit_diag": 0.9861
+   },
+   "patch_joint_L32": {
+    "correct": 0.6125,
+    "wrong_word": 0.0625,
+    "fpr": 0.165,
+    "J": 0.4475,
+    "alpha": 8,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 393216,
+    "gate_energy_mean_heldout_bg": 0.00111,
+    "mean_offset_on_bg": -0.0002,
+    "gate_on_fit_diag": 0.989
+   },
+   "patch_jointnull_L32": {
+    "correct": 0.6312,
+    "wrong_word": 0.075,
+    "fpr": 0.22,
+    "J": 0.4113,
+    "alpha": 8,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 393216,
+    "gate_energy_mean_heldout_bg": 0.00108,
+    "mean_offset_on_bg": 0.00011,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L32": {
+    "correct": 0.6375,
+    "fpr": 0.045,
+    "J": 0.5925
+   }
+  },
+  {
+   "K": 64,
+   "seed": 0,
+   "n_pos": 640,
+   "n_neg": 200,
+   "base": {
+    "correct": 0.0,
+    "wrong_word": 0.0031,
+    "fpr": 0.01,
+    "J": -0.01,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0
+   },
+   "prompt_all": {
+    "correct": 0.6312,
+    "wrong_word": 0.2812,
+    "fpr": 0.68,
+    "J": -0.0488,
+    "s_per_prompt": 0.1318,
+    "added_tokens": 1154
+   },
+   "router_only": {
+    "correct": 0.6047,
+    "fpr": 0.13,
+    "J": 0.4747,
+    "note": "decision only, separate classifier"
+   },
+   "prompt_rag": {
+    "correct": 0.5687,
+    "wrong_word": 0.0594,
+    "fpr": 0.11,
+    "J": 0.4587,
+    "s_per_prompt": 0.0051,
+    "added_tokens": 17,
+    "fit_bytes_note": "router vocabulary is separate"
+   },
+   "patch_indep_L35": {
+    "correct": 0.5578,
+    "wrong_word": 0.1766,
+    "fpr": 0.265,
+    "J": 0.2928,
+    "alpha": 4,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 1572864,
+    "gate_energy_mean_heldout_bg": 0.00163,
+    "mean_offset_on_bg": -0.00013,
+    "gate_on_fit_diag": 0.9967
+   },
+   "patch_joint_L35": {
+    "correct": 0.5703,
+    "wrong_word": 0.1313,
+    "fpr": 0.265,
+    "J": 0.3053,
+    "alpha": 4,
+    "s_per_prompt": 0.0035,
+    "added_tokens": 0,
+    "bytes_fp16": 1572864,
+    "gate_energy_mean_heldout_bg": 0.00209,
+    "mean_offset_on_bg": 0.00024,
+    "gate_on_fit_diag": 0.9995
+   },
+   "patch_jointnull_L35": {
+    "correct": 0.5656,
+    "wrong_word": 0.1344,
+    "fpr": 0.265,
+    "J": 0.3006,
+    "alpha": 4,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 1572864,
+    "gate_energy_mean_heldout_bg": 0.00209,
+    "mean_offset_on_bg": 0.00025,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L35": {
+    "correct": 0.6953,
+    "fpr": 0.135,
+    "J": 0.5603
+   },
+   "patch_indep_L32": {
+    "correct": 0.4297,
+    "wrong_word": 0.075,
+    "fpr": 0.135,
+    "J": 0.2947,
+    "alpha": 4,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 1572864,
+    "gate_energy_mean_heldout_bg": 0.00133,
+    "mean_offset_on_bg": -0.00031,
+    "gate_on_fit_diag": 0.9895
+   },
+   "patch_joint_L32": {
+    "correct": 0.4328,
+    "wrong_word": 0.0469,
+    "fpr": 0.135,
+    "J": 0.2978,
+    "alpha": 4,
+    "s_per_prompt": 0.0034,
+    "added_tokens": 0,
+    "bytes_fp16": 1572864,
+    "gate_energy_mean_heldout_bg": 0.00139,
+    "mean_offset_on_bg": -7e-05,
+    "gate_on_fit_diag": 0.9965
+   },
+   "patch_jointnull_L32": {
+    "correct": 0.45,
+    "wrong_word": 0.0516,
+    "fpr": 0.145,
+    "J": 0.305,
+    "alpha": 4,
+    "s_per_prompt": 0.0035,
+    "added_tokens": 0,
+    "bytes_fp16": 1572864,
+    "gate_energy_mean_heldout_bg": 0.00138,
+    "mean_offset_on_bg": -0.0,
+    "gate_on_fit_diag": 1.0
+   },
+   "probe_L32": {
+    "correct": 0.7188,
+    "fpr": 0.1,
+    "J": 0.6188
+   }
+  },
+  {
+   "K": 150,
+   "seed": 0,
+   "n_pos": 1500,
+   "n_neg": 100,
+   "base": {
+    "correct": 0.0,
+    "wrong_word": 0.0027,
+    "fpr": 0.01,
+    "J": -0.01,
+    "s_per_prompt": 0.0035,
+    "added_tokens": 0
+   },
+   "prompt_all": {
+    "correct": 0.4887,
+    "wrong_word": 0.392,
+    "fpr": 0.66,
+    "J": -0.1713,
+    "s_per_prompt": 0.3924,
+    "added_tokens": 2719
+   },
+   "router_only": {
+    "correct": 0.6513,
+    "fpr": 0.66,
+    "J": -0.0087,
+    "note": "decision only, separate classifier"
+   },
+   "prompt_rag": {
+    "correct": 0.6213,
+    "wrong_word": 0.2027,
+    "fpr": 0.43,
+    "J": 0.1913,
+    "s_per_prompt": 0.005,
+    "added_tokens": 19,
+    "fit_bytes_note": "router vocabulary is separate"
+   },
+   "patch_indep_L35": {
+    "correct": 0.3687,
+    "wrong_word": 0.2427,
+    "fpr": 0.31,
+    "J": 0.0587,
+    "alpha": 4,
+    "s_per_prompt": 0.0035,
+    "added_tokens": 0,
+    "bytes_fp16": 3686400,
+    "gate_energy_mean_heldout_bg": 0.00163,
+    "mean_offset_on_bg": -0.00033,
+    "gate_on_fit_diag": 0.9946
+   },
+   "patch_joint_L35": {
+    "correct": 0.382,
+    "wrong_word": 0.0987,
+    "fpr": 0.2,
+    "J": 0.182,
+    "alpha": 4,
+    "s_per_prompt": 0.0035,
+    "added_tokens": 0,
+    "bytes_fp16": 3686400,
+    "gate_energy_mean_heldout_bg": 0.00343,
+    "mean_offset_on_bg": -0.0078,
+    "gate_on_fit_diag": 0.9873
+   },
+   "patch_jointnull_L35": {
+    "correct": 0.0013,
+    "wrong_word": 0.0,
+    "fpr": 0.0,
+    "J": 0.0013,
+    "alpha": 4,
+    "s_per_prompt": 0.0035,
+    "added_tokens": 0,
+    "bytes_fp16": 3686400,
+    "gate_energy_mean_heldout_bg": 1458.58545,
+    "mean_offset_on_bg": -5.4003,
+    "gate_on_fit_diag": 1.0009
+   },
+   "probe_L35": {
+    "correct": 0.7113,
+    "fpr": 1.0,
+    "J": -0.2887
+   },
+   "patch_indep_L32": {
+    "correct": 0.3333,
+    "wrong_word": 0.1187,
+    "fpr": 0.19,
+    "J": 0.1433,
+    "alpha": 4,
+    "s_per_prompt": 0.0035,
+    "added_tokens": 0,
+    "bytes_fp16": 3686400,
+    "gate_energy_mean_heldout_bg": 0.00137,
+    "mean_offset_on_bg": -0.00037,
+    "gate_on_fit_diag": 0.9854
+   },
+   "patch_joint_L32": {
+    "correct": 0.206,
+    "wrong_word": 0.0567,
+    "fpr": 0.11,
+    "J": 0.096,
+    "alpha": 4,
+    "s_per_prompt": 0.0035,
+    "added_tokens": 0,
+    "bytes_fp16": 3686400,
+    "gate_energy_mean_heldout_bg": 0.00273,
+    "mean_offset_on_bg": -0.00614,
+    "gate_on_fit_diag": 0.9564
+   },
+   "patch_jointnull_L32": {
+    "correct": 0.0053,
+    "wrong_word": 0.03,
+    "fpr": 0.02,
+    "J": -0.0147,
+    "alpha": 8,
+    "s_per_prompt": 0.0035,
+    "added_tokens": 0,
+    "bytes_fp16": 3686400,
+    "gate_energy_mean_heldout_bg": 13.29942,
+    "mean_offset_on_bg": -0.0941,
+    "gate_on_fit_diag": 1.0018
+   },
+   "probe_L32": {
+    "correct": 0.7167,
+    "fpr": 1.0,
+    "J": -0.2833
+   }
+  }
+ ]
+}

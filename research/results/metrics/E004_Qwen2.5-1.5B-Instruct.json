@@ -1,0 +1,389 @@
+{
+ "meta": {
+  "time": "2026-11-03T17:53:04",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "host": "cachyos-x8664",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "torch": "2.15.0+cu132",
+  "data_sha": "675937f1051199bb",
+  "config": {
+   "exp": "E004",
+   "layers": [
+    7,
+    11,
+    14,
+    16,
+    19,
+    21,
+    22,
+    23,
+    25,
+    26,
+    27
+   ],
+   "n": 420
+  }
+ },
+ "n_pos": 150,
+ "n_neg": 270,
+ "cv": {
+  "base_first_token": 0.5913,
+  "tfidf": 0.9801,
+  "tfidf_hard_only": 0.9832,
+  "layers": {
+   "L7/lda": {
+    "all": 0.8417,
+    "hard": 0.8445
+   },
+   "L7/lcmv": {
+    "all": 0.8409,
+    "hard": 0.884
+   },
+   "L11/lda": {
+    "all": 0.8813,
+    "hard": 0.8817
+   },
+   "L11/lcmv": {
+    "all": 0.8614,
+    "hard": 0.9175
+   },
+   "L14/lda": {
+    "all": 0.869,
+    "hard": 0.8746
+   },
+   "L14/lcmv": {
+    "all": 0.849,
+    "hard": 0.905
+   },
+   "L16/lda": {
+    "all": 0.9262,
+    "hard": 0.9373
+   },
+   "L16/lcmv": {
+    "all": 0.8649,
+    "hard": 0.9157
+   },
+   "L19/lda": {
+    "all": 0.9142,
+    "hard": 0.9338
+   },
+   "L19/lcmv": {
+    "all": 0.8369,
+    "hard": 0.893
+   },
+   "L21/lda": {
+    "all": 0.9296,
+    "hard": 0.9503
+   },
+   "L21/lcmv": {
+    "all": 0.8495,
+    "hard": 0.8909
+   },
+   "L22/lda": {
+    "all": 0.9291,
+    "hard": 0.9502
+   },
+   "L22/lcmv": {
+    "all": 0.8459,
+    "hard": 0.8856
+   },
+   "L23/lda": {
+    "all": 0.9253,
+    "hard": 0.9416
+   },
+   "L23/lcmv": {
+    "all": 0.8501,
+    "hard": 0.8894
+   },
+   "L25/lda": {
+    "all": 0.918,
+    "hard": 0.9362
+   },
+   "L25/lcmv": {
+    "all": 0.8445,
+    "hard": 0.8843
+   },
+   "L26/lda": {
+    "all": 0.8948,
+    "hard": 0.909
+   },
+   "L26/lcmv": {
+    "all": 0.8804,
+    "hard": 0.9015
+   },
+   "L27/lda": {
+    "all": 0.9275,
+    "hard": 0.9403
+   },
+   "L27/lcmv": {
+    "all": 0.8611,
+    "hard": 0.9028
+   }
+  },
+  "best_layer": 21,
+  "auroc_diff_best_minus_tfidf": {
+   "mean": -0.0503,
+   "ci95": [
+    -0.0757,
+    -0.0282
+   ],
+   "note": "best layer chosen on the same data, so biased upward"
+  }
+ },
+ "leave_kind_out": {
+  "capability": {
+   "tfidf": 0.903,
+   "L21": 0.642,
+   "L26": 0.545
+  },
+  "code": {
+   "tfidf": 1.0,
+   "L21": 0.9967,
+   "L26": 0.9633
+  },
+  "contrast": {
+   "tfidf": 0.8983,
+   "L21": 0.8685,
+   "L26": 0.9239
+  },
+  "general": {
+   "tfidf": 0.986,
+   "L21": 0.906,
+   "L26": 0.98
+  },
+  "math": {
+   "tfidf": 0.99,
+   "L21": 0.8033,
+   "L26": 0.97
+  },
+  "memory_topic": {
+   "tfidf": 0.9971,
+   "L21": 1.0,
+   "L26": 0.9971
+  },
+  "missing_input": {
+   "tfidf": 0.732,
+   "L21": 0.681,
+   "L26": 0.354
+  },
+  "past_public": {
+   "tfidf": 0.9086,
+   "L21": 0.9286,
+   "L26": 0.98
+  },
+  "realtime": {
+   "tfidf": 0.973,
+   "L21": 0.986,
+   "L26": 0.94
+  },
+  "refusal": {
+   "tfidf": 0.914,
+   "L21": 0.911,
+   "L26": 0.883
+  },
+  "second_person": {
+   "tfidf": 0.9586,
+   "L21": 0.9814,
+   "L26": 0.9429
+  },
+  "self_contained": {
+   "tfidf": 0.915,
+   "L21": 0.8983,
+   "L26": 0.975
+  },
+  "self_contained_past": {
+   "tfidf": 0.8929,
+   "L21": 0.9414,
+   "L26": 0.9343
+  },
+  "tool_talk": {
+   "tfidf": 0.9914,
+   "L21": 1.0,
+   "L26": 0.9957
+  },
+  "unknowable": {
+   "tfidf": 0.943,
+   "L21": 0.986,
+   "L26": 0.971
+  },
+  "writing": {
+   "tfidf": 0.9933,
+   "L21": 0.9567,
+   "L26": 0.98
+  }
+ },
+ "behaviour_cv": {
+  "L21/a0.25": {
+   "tpr": 0.6667,
+   "tpr_ci": [
+    0.5879,
+    0.7371
+   ],
+   "fpr": 0.1259,
+   "fpr_ci": [
+    0.0915,
+    0.1708
+   ],
+   "auroc": 0.8989,
+   "n_pos": 150,
+   "n_neg": 270,
+   "by_split_fpr": {
+    "train": 0.175,
+    "adversarial": 0.057,
+    "contrast": 0.183,
+    "cantanswer": 0.12
+   },
+   "by_split_tpr": {
+    "train": 0.35,
+    "adversarial": 0.7,
+    "contrast": 0.85
+   }
+  },
+  "L21/a0.5": {
+   "tpr": 0.58,
+   "tpr_ci": [
+    0.5,
+    0.656
+   ],
+   "fpr": 0.1222,
+   "fpr_ci": [
+    0.0884,
+    0.1667
+   ],
+   "auroc": 0.8908,
+   "n_pos": 150,
+   "n_neg": 270,
+   "by_split_fpr": {
+    "train": 0.175,
+    "adversarial": 0.029,
+    "contrast": 0.15,
+    "cantanswer": 0.15
+   },
+   "by_split_tpr": {
+    "train": 0.3,
+    "adversarial": 0.68,
+    "contrast": 0.683
+   }
+  },
+  "L21/a1.0": {
+   "tpr": 0.3267,
+   "tpr_ci": [
+    0.2568,
+    0.4052
+   ],
+   "fpr": 0.1,
+   "fpr_ci": [
+    0.0696,
+    0.1416
+   ],
+   "auroc": 0.8528,
+   "n_pos": 150,
+   "n_neg": 270,
+   "by_split_fpr": {
+    "train": 0.15,
+    "adversarial": 0.029,
+    "contrast": 0.117,
+    "cantanswer": 0.12
+   },
+   "by_split_tpr": {
+    "train": 0.35,
+    "adversarial": 0.38,
+    "contrast": 0.267
+   }
+  },
+  "L26/a0.25": {
+   "tpr": 0.7667,
+   "tpr_ci": [
+    0.6928,
+    0.8272
+   ],
+   "fpr": 0.3,
+   "fpr_ci": [
+    0.2485,
+    0.3572
+   ],
+   "auroc": 0.8125,
+   "n_pos": 150,
+   "n_neg": 270,
+   "by_split_fpr": {
+    "train": 0.25,
+    "adversarial": 0.243,
+    "contrast": 0.25,
+    "cantanswer": 0.39
+   },
+   "by_split_tpr": {
+    "train": 0.45,
+    "adversarial": 0.8,
+    "contrast": 0.95
+   }
+  },
+  "L26/a0.5": {
+   "tpr": 0.5467,
+   "tpr_ci": [
+    0.4668,
+    0.6242
+   ],
+   "fpr": 0.2778,
+   "fpr_ci": [
+    0.2278,
+    0.334
+   ],
+   "auroc": 0.7463,
+   "n_pos": 150,
+   "n_neg": 270,
+   "by_split_fpr": {
+    "train": 0.1,
+    "adversarial": 0.2,
+    "contrast": 0.267,
+    "cantanswer": 0.41
+   },
+   "by_split_tpr": {
+    "train": 0.55,
+    "adversarial": 0.56,
+    "contrast": 0.533
+   }
+  },
+  "L26/a1.0": {
+   "tpr": 0.1867,
+   "tpr_ci": [
+    0.1324,
+    0.2566
+   ],
+   "fpr": 0.1407,
+   "fpr_ci": [
+    0.1043,
+    0.1873
+   ],
+   "auroc": 0.6993,
+   "n_pos": 150,
+   "n_neg": 270,
+   "by_split_fpr": {
+    "train": 0.075,
+    "adversarial": 0.186,
+    "contrast": 0.15,
+    "cantanswer": 0.13
+   },
+   "by_split_tpr": {
+    "train": 0.375,
+    "adversarial": 0.24,
+    "contrast": 0.017
+   }
+  }
+ },
+ "base_rates": {
+  "tpr": 0.2933,
+  "tpr_ci": [
+   0.2264,
+   0.3706
+  ],
+  "fpr": 0.3,
+  "fpr_ci": [
+   0.2485,
+   0.3572
+  ],
+  "auroc": 0.5913,
+  "n_pos": 150,
+  "n_neg": 270
+ }
+}

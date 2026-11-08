@@ -1,0 +1,118 @@
+{
+ "meta": {
+  "time": "2026-11-03T17:56:36",
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "revision": "aa8e72537993ba99e69dfaafa59ed015b17504d1",
+  "host": "cachyos-x8664",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "torch": "2.15.0+cu132",
+  "data_sha": "675937f1051199bb",
+  "config": {
+   "exp": "E001"
+  }
+ },
+ "conds": {
+  "dev/schema": {
+   "tpr": 0.2333,
+   "tpr_ci": [
+    0.1444,
+    0.3544
+   ],
+   "fpr": 0.4833,
+   "fpr_ci": [
+    0.3617,
+    0.6069
+   ],
+   "auroc": 0.3572,
+   "n_pos": 60,
+   "n_neg": 60,
+   "exec_ok_of_called": 0.7857,
+   "n_tokens_prompt_overhead": 0
+  },
+  "dev/instruction": {
+   "tpr": 0.4333,
+   "tpr_ci": [
+    0.3157,
+    0.559
+   ],
+   "fpr": 0.2833,
+   "fpr_ci": [
+    0.1851,
+    0.4077
+   ],
+   "auroc": 0.6179,
+   "n_pos": 60,
+   "n_neg": 60,
+   "exec_ok_of_called": 0.8846,
+   "n_tokens_prompt_overhead": 47
+  },
+  "dev/fewshot": {
+   "tpr": 0.3833,
+   "tpr_ci": [
+    0.2709,
+    0.5098
+   ],
+   "fpr": 0.0667,
+   "fpr_ci": [
+    0.0262,
+    0.1593
+   ],
+   "auroc": 0.8261,
+   "n_pos": 60,
+   "n_neg": 60,
+   "exec_ok_of_called": 0.8261,
+   "n_tokens_prompt_overhead": 119
+  },
+  "adversarial/schema": {
+   "tpr": 0.12,
+   "tpr_ci": [
+    0.0562,
+    0.2381
+   ],
+   "fpr": 0.6286,
+   "fpr_ci": [
+    0.5115,
+    0.7323
+   ],
+   "auroc": 0.2104,
+   "n_pos": 50,
+   "n_neg": 70,
+   "exec_ok_of_called": 0.3333,
+   "n_tokens_prompt_overhead": 0
+  },
+  "adversarial/instruction": {
+   "tpr": 0.14,
+   "tpr_ci": [
+    0.0695,
+    0.2619
+   ],
+   "fpr": 0.5,
+   "fpr_ci": [
+    0.386,
+    0.614
+   ],
+   "auroc": 0.3086,
+   "n_pos": 50,
+   "n_neg": 70,
+   "exec_ok_of_called": 0.7143,
+   "n_tokens_prompt_overhead": 47
+  },
+  "adversarial/fewshot": {
+   "tpr": 0.14,
+   "tpr_ci": [
+    0.0695,
+    0.2619
+   ],
+   "fpr": 0.1714,
+   "fpr_ci": [
+    0.1009,
+    0.2762
+   ],
+   "auroc": 0.6343,
+   "n_pos": 50,
+   "n_neg": 70,
+   "exec_ok_of_called": 0.4286,
+   "n_tokens_prompt_overhead": 119
+  }
+ }
+}

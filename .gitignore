@@ -1,0 +1,12 @@
+__pycache__/
+*.pt
+*.safetensors
+research/literature/fulltext/
+research/literature/raw/
+.venv/
+# not redistributed: publisher abstracts and extracted paper text (rebuild with research/tools/)
+research/literature/papers.jsonl
+research/literature/reading_queue.jsonl
+research/literature/citation_graph/edges.jsonl
+research/literature/batches/*/
+repro/out/

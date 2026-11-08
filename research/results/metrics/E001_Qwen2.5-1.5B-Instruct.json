@@ -1,0 +1,118 @@
+{
+ "meta": {
+  "time": "2026-11-03T17:25:36",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "host": "cachyos-x8664",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "torch": "2.15.0+cu132",
+  "data_sha": "4609d4e3cbee1669",
+  "config": {
+   "exp": "E001"
+  }
+ },
+ "conds": {
+  "dev/schema": {
+   "tpr": 0.2167,
+   "tpr_ci": [
+    0.1312,
+    0.3362
+   ],
+   "fpr": 0.4667,
+   "fpr_ci": [
+    0.3463,
+    0.5911
+   ],
+   "auroc": 0.384,
+   "n_pos": 60,
+   "n_neg": 60,
+   "exec_ok_of_called": 0.3846,
+   "n_tokens_prompt_overhead": 0
+  },
+  "dev/instruction": {
+   "tpr": 0.75,
+   "tpr_ci": [
+    0.6277,
+    0.8422
+   ],
+   "fpr": 0.8167,
+   "fpr_ci": [
+    0.7008,
+    0.8944
+   ],
+   "auroc": 0.4481,
+   "n_pos": 60,
+   "n_neg": 60,
+   "exec_ok_of_called": 0.5333,
+   "n_tokens_prompt_overhead": 47
+  },
+  "dev/fewshot": {
+   "tpr": 0.5667,
+   "tpr_ci": [
+    0.441,
+    0.6843
+   ],
+   "fpr": 0.5167,
+   "fpr_ci": [
+    0.3931,
+    0.6383
+   ],
+   "auroc": 0.5531,
+   "n_pos": 60,
+   "n_neg": 60,
+   "exec_ok_of_called": 0.5,
+   "n_tokens_prompt_overhead": 119
+  },
+  "adversarial/schema": {
+   "tpr": 0.32,
+   "tpr_ci": [
+    0.2076,
+    0.4581
+   ],
+   "fpr": 0.3857,
+   "fpr_ci": [
+    0.2805,
+    0.5028
+   ],
+   "auroc": 0.5686,
+   "n_pos": 50,
+   "n_neg": 70,
+   "exec_ok_of_called": 0.375,
+   "n_tokens_prompt_overhead": 0
+  },
+  "adversarial/instruction": {
+   "tpr": 0.86,
+   "tpr_ci": [
+    0.7381,
+    0.9305
+   ],
+   "fpr": 0.5714,
+   "fpr_ci": [
+    0.4548,
+    0.6806
+   ],
+   "auroc": 0.59,
+   "n_pos": 50,
+   "n_neg": 70,
+   "exec_ok_of_called": 0.3953,
+   "n_tokens_prompt_overhead": 47
+  },
+  "adversarial/fewshot": {
+   "tpr": 0.68,
+   "tpr_ci": [
+    0.5419,
+    0.7924
+   ],
+   "fpr": 0.3429,
+   "fpr_ci": [
+    0.2425,
+    0.4596
+   ],
+   "auroc": 0.7367,
+   "n_pos": 50,
+   "n_neg": 70,
+   "exec_ok_of_called": 0.2941,
+   "n_tokens_prompt_overhead": 119
+  }
+ }
+}
