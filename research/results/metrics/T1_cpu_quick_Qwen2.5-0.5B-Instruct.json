@@ -1,0 +1,130 @@
+{
+ "model": "Qwen/Qwen2.5-0.5B-Instruct",
+ "threads": 8,
+ "device": "cpu",
+ "identity": {
+  "max_abs_logit_diff_hook_vs_weight_edit": 1.633167266845703e-05,
+  "max_abs_patch_effect": 8.999991416931152,
+  "dtype": "torch.float32"
+ },
+ "state_dependence_heldout_R2": {
+  "L14": {
+   "constant_shift": -0.017,
+   "rank1": 0.141,
+   "rank4": 0.297,
+   "rank16": 0.437
+  },
+  "L19": {
+   "constant_shift": -0.016,
+   "rank1": 0.161,
+   "rank4": 0.362,
+   "rank16": 0.521
+  },
+  "L21": {
+   "constant_shift": -0.016,
+   "rank1": 0.154,
+   "rank4": 0.383,
+   "rank16": 0.502
+  }
+ },
+ "words_vs_activations_cv_auroc": {
+  "tfidf": 0.98,
+  "gate_L14": 0.878,
+  "gate_L19": 0.866,
+  "gate_L21": 0.889,
+  "n_pos": 150,
+  "n_neg": 270
+ },
+ "decision_table": {
+  "no_patch": {
+   "dev": {
+    "tpr": 0.1,
+    "fpr": 0.1,
+    "auroc": 0.5536
+   },
+   "style2": {
+    "tpr": 0.25,
+    "fpr": 0.175,
+    "auroc": 0.5369
+   },
+   "contrast": {
+    "tpr": 0.0,
+    "fpr": 0.0667,
+    "auroc": 0.5547
+   },
+   "cantanswer": {
+    "fpr": 0.09
+   }
+  },
+  "fewshot_prompt": {
+   "dev": {
+    "tpr": 0.7167,
+    "fpr": 0.6333,
+    "auroc": 0.4561
+   },
+   "style2": {
+    "tpr": 0.775,
+    "fpr": 0.7,
+    "auroc": 0.5275
+   },
+   "contrast": {
+    "tpr": 0.3,
+    "fpr": 0.3333,
+    "auroc": 0.5286
+   },
+   "cantanswer": {
+    "fpr": 0.55
+   }
+  },
+  "rank1_patch_L21_a0.5": {
+   "dev": {
+    "tpr": 0.8667,
+    "fpr": 0.0,
+    "auroc": 0.9781
+   },
+   "style2": {
+    "tpr": 0.825,
+    "fpr": 0.125,
+    "auroc": 0.9244
+   },
+   "contrast": {
+    "tpr": 0.5333,
+    "fpr": 0.1,
+    "auroc": 0.8722
+   },
+   "cantanswer": {
+    "fpr": 0.5
+   }
+  }
+ },
+ "capacity_curve": {
+  "layer": 19,
+  "rows": [
+   {
+    "K": 1,
+    "noise_gain_vs_alone": 1.0
+   },
+   {
+    "K": 10,
+    "noise_gain_vs_alone": 1.035
+   },
+   {
+    "K": 40,
+    "noise_gain_vs_alone": 1.235
+   },
+   {
+    "K": 80,
+    "noise_gain_vs_alone": 1.442
+   },
+   {
+    "K": 120,
+    "noise_gain_vs_alone": 1.703
+   },
+   {
+    "K": 140,
+    "noise_gain_vs_alone": 1.968
+   }
+  ],
+  "note": "149 intents; K=150 is excluded because 150 centred means are linearly dependent"
+ }
+}

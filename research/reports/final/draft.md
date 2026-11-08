@@ -1,6 +1,6 @@
 # Prompts, Steering Vectors and Closed-Form Weight Edits for a Tool-Use Decision: What a Training-Free Patch Can and Cannot Do
 
-*First draft, 2026-11-07. Every number traces to a file in `research/results/metrics/`. `python repro/tables.py` prints the tables; `python repro/quick.py` reproduces the core mechanisms on a laptop CPU.*
+*First draft, 2026-11-07; revised 2026-11-08 after critique 02. Every number traces to a file in `research/results/metrics/` (the CPU-tier reference output is `T1_cpu_quick_Qwen2.5-0.5B-Instruct.json`). `python repro/tables.py` prints the tables; `python repro/quick.py` reproduces the core mechanisms on a laptop CPU.*
 
 ## Abstract
 
@@ -9,9 +9,9 @@ We ask whether a behaviour can be added to a pretrained language model without g
 Five findings.
 1. **An apparently perfect small-model result was an artefact.** On Qwen2.5-1.5B a 21 KB closed-form patch reached TPR 1.00 and FPR 0.00 on the tuning split. A TF-IDF classifier matched it, and it fired on 81% of requests that were unanswerable for other reasons.
 2. **On a capable model a prompt is hard to beat for one behaviour.** On a sealed test with Qwen3-4B, a ~70-token rules prompt yields 93% correct end-to-end answers.
-3. **A prompt's effect is a low-rank function of the model state, not a constant shift.** At the decision token a constant shift explains R² ≈ 0 of the prompt-induced activation change (held out). A rank-4 map explains 0.37–0.52, depending on layer and representation. This holds on a 0.5B model too, and it accounts for why constant steering falls short.
-4. **That structure can be compiled without labels or gradients.** A rank-4 map fitted only from paired forward passes matches the 119-token few-shot prompt it imitates at zero prompt tokens: 87% vs 83% end-to-end on 120 test positives, a difference within noise. A hook-free closed-form LoRA recovers less of the gain, with no measurable MMLU change.
-5. **Patches have hard limits.** A conditional rank-one edit that decides correctly can wreck the call that follows (11% end-to-end). No patch produces a valid call without the tool schema (0/90). With many behaviours at once, patches beat an all-rules prompt but lose to a retrieval router or a linear probe beyond about 16 behaviours.
+3. **A prompt's effect is largely a low-rank function of the model state, not a constant shift.** At the decision token a constant shift explains R² ≈ 0 of the prompt-induced activation change across held-out inputs; a rank-4 linear map explains 0.37–0.52, depending on layer and representation. This holds on a 0.5B model too, and is consistent with constant steering falling short.
+4. **A prompt can be distilled into a zero-token map without labels or gradients.** A rank-4 map fitted only from paired forward passes (the hand-written few-shot prompt is the teacher, so its information enters through the prompt) is statistically indistinguishable from that 119-token prompt at zero prompt tokens: 87% vs 83% end-to-end on 120 test positives (95% CIs [.79, .92] and [.75, .88]). It needs a runtime hook. A hook-free closed-form LoRA recovers less of the gain, and no MMLU drop was detected (400 items; a few-point drop would not be resolvable).
+5. **Patches have hard limits.** A conditional rank-one edit that decides correctly can wreck the call that follows (11% end-to-end). With the value construction tested, no patch produced a valid call without the tool schema (0/90). With many behaviours at once, patches beat an all-rules prompt at small K but fall behind a linear probe on the same features by K = 16 (ranges overlap at K = 4 and against the router at K = 16).
 
 Conditional closed-form weight edits (SteerEdit) and prompt-to-weights ridge compilation (ICC) are prior art. We do not claim them; our contribution is the controlled comparison, the state-dependence measurement, and the limits.
 
@@ -40,7 +40,7 @@ Methods in scope need no gradient training. All fitting is forward passes plus c
 
 **Models.** Qwen2.5-0.5B, 1.5B and 3B-Instruct, and Qwen3-4B-Instruct-2507, all using their native tool-call templates. The memory tool is `recall_memory(query)`.
 
-**Data.** All data was hand-written for this study, with domains disjoint across splits:
+**Data.** All splits except CLINC150 were written for this study (by Haiku, except style2, written by the PI), with domains disjoint across splits:
 
 | split | positives / negatives | purpose |
 |---|---|---|
@@ -53,17 +53,17 @@ Methods in scope need no gradient training. All fitting is forward passes plus c
 | style2 | 40 / 40 | a second author, first-person in both classes |
 | CLINC150 | | human-written intents, for the many-behaviour study |
 
-Haiku wrote the main splits and the PI wrote style2, so author style is a known confound. We control for it with a text classifier on every split.
+Author style is therefore a known confound. A TF-IDF classifier is reported as a strong text baseline (dev, adversarial and contrast on 1.5B; every split on Qwen3-4B); it can exploit author style, so beating it is necessary but not sufficient.
 
 **Controls.** The controls are a TF-IDF classifier, a one-number logit bias, the best of four prompts, and MMLU (400 items, McNemar test).
 
 ## 4. Methods
 
-**Identity.** For a block `h_out = h + W a`, the edit `W' = W + αΔvᵀ` gives exactly `h' = h + α(vᵀa)Δ`. A gated steering intervention is therefore a rank-one LoRA, with the gate computed from the block's own MLP features. We confirmed the identity numerically: a 1.5e-5 logit difference on a 0.5B model and 2e-5 on 1.5B, in float32. In bf16 inference, arithmetic rounding raises the gap to about 0.75 logits.
+**Identity.** For a block `h_out = h + W a`, the edit `W' = W + αΔvᵀ` gives exactly `h' = h + α(vᵀa)Δ`. A gated steering intervention is therefore a rank-one LoRA, with the gate computed from the block's own MLP features. We confirmed the identity numerically in float32: 1.6e-5 logits on 0.5B (CPU tier) and 2e-5 on 1.5B (E008). In bf16, rounding the merged weight alone moves logits by at most .014 (E008), but running the whole bf16 forward pass with hook versus merged edit differs by up to 0.75 logits against a 5.9 effect (E003); all GPU results use bf16 with the merged edit.
 
 **Conditional rank-one edit (DKE).** `v = R⁻¹(μ₊ − μ₋)` with `R` the uncentred second moment of background keys, solved by Woodbury in sample space. `Δ` is the prompted-minus-unprompted (or positive-minus-negative) residual mean. We tested a minimum-variance version with zero mean response on negatives (LCMV), and it was worse (E002, E004).
 
-**Reduced-rank map at the decision token (RRM).** This is a dual ridge regression from unprompted to prompted residuals at the last token, truncated to rank r by SVD. Its inputs are paired forward passes over unlabelled utterances, and no labels are used. It is applied at the decision position, which requires a runtime hook.
+**Reduced-rank map at the decision token (RRM).** This is a dual ridge regression from unprompted to prompted residuals at the last token, truncated to rank r by SVD. Its inputs are paired forward passes over unlabelled utterances; no labels are used, though the teacher prompt is hand-written. It runs as a forward hook on the last position. **Correction (2026-11-08):** in E011 that hook edits the last position of every forward call, so during generation it also acts on every generated token, not only the decision token; E013 measures a prefill-only variant separately.
 
 **Closed-form LoRA (CF-LoRA).** This is the same regression from MLP keys, with zero targets at every other position (template, user text, generated text), so the position logic lives in the weights. It runs as a plain LoRA, and its strength comes from the regression, with no α.
 
@@ -79,36 +79,38 @@ The best closed-form patch on dev reached TPR 1.00 and FPR 0.00, as the maximum 
 2. **The gate fires on 81% of can't-answer requests,** against 19% unpatched. It encodes something closer to "I cannot answer from what I have" than "this needs memory". Adding such negatives to the fit cut that rate to 12%, at a cost in recall (E004).
 3. **The false-positive gain comes from a signed push.** On this trigger-happy model, clamping the gate's negative side raises dev FPR from .00 to .47. The patch works by pushing negatives away, not by staying silent on them (E008).
 
-Pooled 5-fold CV over all hard data gives TF-IDF .980 against the best gate .930. The difference is −.050, with 95% CI [−.076, −.028]. The CPU tier reproduces the same pattern on Qwen2.5-0.5B:
+Pooled 5-fold CV over all hard data gives TF-IDF .980 against the best gate .930. The difference is −.050, with 95% CI [−.076, −.028]. The CPU tier shows the same pattern on Qwen2.5-0.5B (patch and prompt on dev; TF-IDF is pooled 5-fold CV, so not the same quantity):
 
-| method (0.5B, tier 1) | dev AUROC | can't-answer FPR |
+| method (0.5B, tier 1) | AUROC | can't-answer FPR |
 |---|---|---|
 | few-shot prompt | .46 | .55 |
 | rank-one patch | .98 | .50 |
-| TF-IDF | .98 | n/a |
+| TF-IDF (5-fold CV, all data) | .98 | n/a |
 
 ### 5.2 On a capable model, the ranking reverses (Qwen3-4B)
 
-Qwen3-4B separates the classes unaided (AUROC .971 with only the schema) but under-calls (TPR .50). Prompts now work well, a logit bias overshoots (style2 FPR .55), and gating adds little. In E002, at dev selection, an unconditional steer reaches J .88 against .90–.95 for gated variants. Activations now tie with words: CV AUROC gate .973 vs TF-IDF .980, difference CI [−.024, .010].
+Qwen3-4B separates the classes unaided (AUROC .971 with only the schema) but under-calls (TPR .50). Prompts now work well, a logit bias overshoots (style2 FPR .55), and gating adds little. In E002, at dev selection, an unconditional steer reaches J .88 against .90–.95 for gated variants. Activations are now close to words: CV AUROC of the best of about 12 gate layers .973 vs TF-IDF .980, difference CI [−.024, .010]. With layer selection unpenalised and no equivalence margin, this is "no detected difference", not a tie.
 
 **Table 1. Sealed test, single use, Qwen3-4B (E011).** 120 positives and 120 negatives from unseen domains, with every method frozen beforehand. These test domains are easier than the adversarial and style2 sets: the unpatched model already reaches AUROC .97.
 
-| method | prompt tokens | TPR | FPR | used the answer (of 120) |
+| method | prompt tokens | TPR | FPR | used the answer (of 120), 95% CI |
 |---|---|---|---|---|
-| no patch | 0 | .61 | .00 | .56 |
-| few-shot prompt | 119 | .89 | .00 | .83 |
-| rules prompt | ~70 | .99 | .10 | **.93** |
-| TFTV (rank-one) | 0 | .88 | .05 | .83 |
-| Steer2Edit (rank-one) | 0 | .95 | .08 | .88 |
-| gated rank-one (DKE) | 0 | .88 | .00 | **.11** |
-| CF-LoRA r16, no labels | 0 | .71 | .00 | .65 |
-| RRM r4, no labels, hook | 0 | .94 | .00 | **.87** |
+| no patch | 0 | .61 | .00 | .56 [.47, .64] |
+| few-shot prompt | 119 | .89 | .00 | .83 [.75, .88] |
+| rules prompt | ~70 | .99 | .10 | **.93** [.86, .96] |
+| TFTV (rank-one)† | 0 | .88 | .05 | .83 [.75, .88] |
+| Steer2Edit (rank-one)† | 0 | .95 | .08 | .88 [.81, .93] |
+| gated rank-one (DKE) | 0 | .88 | .00 | **.11** [.06, .18] |
+| CF-LoRA r16, no labels | 0 | .71 | .00 | .65 [.56, .73] |
+| RRM r4, no labels, hook | 0 | .94 | .00 | **.87** [.79, .92] |
 | TF-IDF (decision only) | n/a | .89 | .05 | n/a |
 
+"Used" is graded on the 120 positives only: the model called `recall_memory`, and its answer after the stored record contains the record's answer string. False calls on negatives show only in FPR (rules prompt .10, CI [.06, .17]). Single seed. † α at the edge of the E005 grid; E013 re-selects on a wider dev grid.
+
 Three readings of Table 1:
-- **RRM matches the prompt it imitates** at zero prompt tokens: .87 vs .83 end-to-end, inside noise at n = 120. On harder non-test sets it trails the prompt on adversarial (.48/.13 vs .68/.09) and matches it on style2 and contrast (E007).
+- **RRM is indistinguishable from the prompt it imitates** at zero prompt tokens: .87 vs .83 end-to-end, overlapping CIs at n = 120. On harder non-test sets (TPR/FPR, E007) it trails the prompt on adversarial (.48/.13 vs .68/.09) and contrast (.75/.02 vs .87/.03), and matches it on style2 (.98/.08 vs .93/.10). Whether the learned map, rather than intervening at that position at all, causes the gain is tested in E013 (constant-shift and random rank-4 controls).
 - **The conditional rank-one edit decides well but breaks generation.** It remains active while the call is written, and execution falls from .98 called to .48 executed. Unconditional published edits do not have this failure.
-- **CF-LoRA keeps everything else intact**, with no MMLU change (E010: .7175 → .71, p = .375, and identical greedy generations on 30 prompts). It recovers less of the prompt's end-to-end gain over no patch: 58% on 150 non-test positives ((.49−.18)/(.71−.18)) and 33% on test ((.65−.56)/(.83−.56)).
+- **CF-LoRA: no side effect detected.** MMLU .7175 → .71 on 400 items (4 worse, 1 better, p = .375; a drop of a few points would not be resolvable), and greedy generations identical on 30 prompts (E010). It recovers less of the prompt's end-to-end gain over no patch: 58% on 150 non-test positives ((.49−.18)/(.71−.18)) and 33% on test ((.65−.56)/(.83−.56)).
 
 ### 5.3 The prompt's effect is state-dependent and low-rank (E007, E010, tier 1)
 
@@ -118,9 +120,9 @@ Three readings of Table 1:
 |---|---|---|---|---|
 | Qwen3-4B, residual, L28 / L34 | −.02 / −.03 | .19 / .21 | .37 / .40 | .51 / .50 |
 | Qwen3-4B, MLP keys, L21 (E010) | | .03 | .52 | .67 |
-| Qwen2.5-0.5B, residual, L14 / L19 / L21 (CPU tier) | −.02 / −.03 / −.03 | .15 / .14 / .15 | .32 / .36 / .38 | .48 / .54 / .53 |
+| Qwen2.5-0.5B, residual, L14 / L19 / L21 (CPU tier) | −.02 / −.02 / −.02 | .14 / .16 / .15 | .30 / .36 / .38 | .44 / .52 / .50 |
 
-A constant steering vector is the best constant approximation to this change, and it explains none of its variance across inputs. A low-rank linear function of the state explains a third to two thirds. This agrees with ICC's observation that fixed task vectors recover only part of in-context gains. It also gives a mechanistic reason why steering underperforms prompting: steering applies the average effect, while the prompt applies an input-specific one.
+The constant shift is the training-set mean, so its held-out R² is near zero by construction: the point is that the effect varies across inputs, and a low-rank linear function of the state captures a third to two thirds of that variation. This agrees with ICC's observation that fixed task vectors recover only part of in-context gains, and suggests (not shows) why steering underperforms prompting: steering applies the average effect, the prompt an input-specific one. E013 tests this end to end with a constant-shift arm at the same hook.
 
 ### 5.4 Many behaviours at once (E006, CLINC150)
 
@@ -132,16 +134,17 @@ Each of K intents triggers a distinct code word as the reply's first token. We c
 | 4 | .39–.81 (75, .012) | .32–.47 | .57–.81 | .41–.77 |
 | 16 | .14–.35 (291, .030) | .35–.52 | .43–.48 | .56–.68 |
 | 64 | −.05 (1154, .132) | .46 | .31 | .56–.62 |
+| 150 | −.17 (2719, .392) | .19 | .18 | −.29 (no rejection class) |
 
-J is correct minus false positives. The "best patch" is selected after the fact from 6 variants, which flatters it.
+J is correct minus false positives. Ranges span variants or layers; there are no CIs. The "best patch" is selected after the fact from 6 variants, which flatters it. At K = 150 the patch's class means are linearly dependent by construction, so that row is an artefact for patches.
 
-- **Prompts:** degrade quickly and cost 39× more per prompt at K = 64.
+- **Prompts:** degrade quickly, and per-prompt latency at K = 64 is 19× that at K = 1 (.132 vs .007 s), 56× at K = 150.
 - **Patches:** win at K ≤ 4, then fall behind the probe built on the same features. The gate holds up but the value path interferes, consistent with H13.
 - **Capacity:** our zero-forcing capacity prediction was wrong as stated. The participation ratio (3–34) is far below K = 140, yet the measured noise gain is only 1.6–2.2.
 
 ### 5.5 Limits (E009)
 
-Without the tool schema in context, no patch produced a valid `recall_memory` call: 0 of 90 in both arms. With a value vector that contained the schema, the model degenerated into repeated `<tool_call>` tokens. Without it, the model never called at all. A patch can select among behaviours the context makes available. In these tests it did not supply the missing interface.
+Without the tool schema in context, no patch produced a valid `recall_memory` call: 0 of 90 in both arms (one value construction, one model). With a value vector that contained the schema, the model degenerated into repeated `<tool_call>` tokens. Without it, the model never called at all. A patch can select among behaviours the context makes available. In these tests it did not supply the missing interface.
 
 ### 5.6 Negative results kept
 
@@ -152,14 +155,14 @@ Without the tool schema in context, no patch produced a valid `recall_memory` ca
 
 ## 6. Cost
 
-- **Fit time:** seconds of closed-form solving after a few hundred forward passes (E003: 1.5–2.2 s solve; 3.8–8.8 s of forward passes).
-- **Patch size:** 21–25 KB for a rank-one patch and 0.4 MB for CF-LoRA r16 (fp16).
-- **Inference cost:** no added prompt tokens. CF-LoRA adds rank-16 multiplies at one layer.
+- **Fit time:** seconds of closed-form solving after a few hundred forward passes (E003, 1.5B: 1.44–1.48 s solve, 3.8 s of forward passes).
+- **Patch size:** 21 KB for a rank-one patch (E003) and 0.4 MB for CF-LoRA r16 (fp16, E010).
+- **Inference cost:** no added prompt tokens. CF-LoRA adds rank-16 multiplies at one layer. RRM adds a rank-4 map plus a forward hook at one layer; its latency was not measured.
 - **Prompt cost:** 70–119 tokens per request for one behaviour, and 1,154 tokens for 64 rules.
 
 ## 7. Limitations
 
-- **Models:** two model families at small scale. No 7B+ result.
+- **Models:** Qwen2.5 and Qwen3 (one vendor) at 0.5–4B, plus a frozen-recipe transfer to SmolLM3-3B (E012). No 7B+ result.
 - **Behaviour:** one behaviour in depth, plus one synthetic many-behaviour task.
 - **Data:** hand-written, with author style a known confound. The test split proved easier than the adversarial sets.
 - **Seeds and samples:** single seeds for most runs. End-to-end differences at n = 120 below about 0.08 are not resolvable.

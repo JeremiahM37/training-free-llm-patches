@@ -78,6 +78,18 @@ def parse_call(text):
     except Exception:
         return {"malformed": True}
 
+def followup(tok, prompt, q, call_text, record, system=DEFAULT_SYS):
+    """Render the turn after a tool call. Uses the template's tool_calls support; if the template silently drops tool_calls
+    (SmolLM3 does), the assistant turn carries the model's own emitted call text and the result is wrapped in <tool_response>."""
+    msgs = [{"role": "system", "content": system}, {"role": "user", "content": prompt},
+            {"role": "assistant", "content": "", "tool_calls": [{"type": "function", "function": {"name": "recall_memory", "arguments": {"query": q}}}]},
+            {"role": "tool", "content": record}]
+    s = tok.apply_chat_template(msgs, tools=[TOOL], tokenize=False, add_generation_prompt=True, enable_thinking=False)
+    if q in s: return s
+    msgs[2] = {"role": "assistant", "content": call_text.split("</tool_call>")[0].strip() + "\n</tool_call>"}
+    msgs[3] = {"role": "tool", "content": f"<tool_response>\n{record}\n</tool_response>"}
+    return tok.apply_chat_template(msgs, tools=[TOOL], tokenize=False, add_generation_prompt=True, enable_thinking=False)
+
 def wilson(k, n, z=1.96):
     if n == 0: return (0.0, 0.0)
     p = k / n; d = 1 + z * z / n; c = p + z * z / (2 * n)

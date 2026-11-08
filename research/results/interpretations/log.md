@@ -130,3 +130,21 @@ Findings: the zero-token reduced-rank hook matches or beats the 119-token few-sh
 
 Findings: prompts degrade fast with K (false positives from unrelated rules) and cost 39-115x per prompt at K=64-150. Patches are best at K≤4, then fall behind the linear probe on the same keys. The probe's gate is fine, so the loss is in the value path (H13 supported). The router is limited by 10 examples per intent.
 **H03 rejected as stated:** the participation ratio of the background keys (3.5 at L35, 30-34 at L32) is far below K=140, yet the noise gain at K=140 is only 1.6-2.2. Real class means are not iid in an r-dimensional space, so the formula's r is not the participation ratio. K=150 is singular by construction (150 centred means are linearly dependent), an artefact, not a capacity limit.
+
+## 2026-11-08
+
+**Critique 02** (`hypotheses/critique_02.md`): 15 findings, all verified, draft revised. PI-found correction: the E011 RRM hook acted on every generated token, not only the decision token.
+
+**E012 frozen-recipe transfer, SmolLM3-3B (HF, not Qwen-derived), test split, decision only (end-to-end "used" was mis-scored and is being rerun).** Every method keeps its Qwen3-4B configuration; layers map by relative depth (36 → 36, so identical indices). TPR / FPR / AUROC:
+| method | TPR | FPR | AUROC |
+|---|---|---|---|
+| no patch | .74 | .97 | .33 |
+| few-shot prompt | .34 | .52 | .34 |
+| rules prompt | .88 | 1.00 | .38 |
+| TFTV (L34, α .05) | .00 | .00 | .19 |
+| Steer2Edit (L25, α −32) | .28 | .10 | .55 |
+| gated rank-one (L34, α 1) | .11 | .03 | .59 |
+| CF-LoRA r16 L21 | .49 | .75 | .40 |
+| RRM r4 L34 hook | .25 | .66 | .23 |
+| TF-IDF (same split) | .89 | .05 | |
+SmolLM3 calls the tool on nearly every negative and its first-token score ranks the classes backwards; neither prompt fixes it. No frozen recipe transfers: they either shut calling off or stay near or below chance. The text is separable (TF-IDF), so the failure is the model's decision representation, not the data. Reading: these recipes need per-model selection; "training-free" does not mean "model-free". Harness bug found: SmolLM3's template drops assistant `tool_calls` and renders tool results as user turns, so the follow-up never showed the model its own call; `lib.followup` fixes it (Qwen rendering unchanged), E012 rerun queued.
