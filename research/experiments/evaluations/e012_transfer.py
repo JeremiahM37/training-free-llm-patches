@@ -56,7 +56,7 @@ Br = (Xc.T @ Al @ Vt[:4].T @ Vt[:4]).float().to(model.device); mxg, myg = mx.flo
 def last_only(m, i, o):
     x = o[0] if isinstance(o, tuple) else o; x = x.clone(); x[:, -1] += ((x[:, -1].float() - mxg) @ Br + myg).to(x.dtype); return (x, *o[1:]) if isinstance(o, tuple) else x
 M["reduced-rank map at decision token, hook (r4, L34)"] = (lambda p: render(tok, p), lambda: Hook(model.model.layers[L34], last_only), "E007 config")
-out = {"meta": provenance(NAME, exp="E012", note="frozen Qwen3-4B recipes, relative-depth layer map, no tuning; follow-up rendered by lib.followup (keeps the emitted call if the template drops tool_calls)", layer_map={21: L21, 25: L25, 34: L34}), "methods": {}}
+out = {"meta": provenance(NAME, exp="E012", note="frozen Qwen3-4B recipes, relative-depth layer map, no tuning; follow-up rendered by lib.followup (keeps the emitted call if the template drops tool_calls)", layer_map={21: L21, 25: L25, 34: L34}, load_8bit=bool(os.environ.get("LOAD_8BIT")), keep_bf16_layers=os.environ.get("KEEP_BF16_LAYERS", "")), "methods": {}}
 pos = [r for r in test if r["label"] == 1]
 for name, (rf, ctx, src) in M.items():
     with ctx():

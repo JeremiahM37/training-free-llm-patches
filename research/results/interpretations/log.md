@@ -148,3 +148,16 @@ Findings: prompts degrade fast with K (false positives from unrelated rules) and
 | RRM r4 L34 hook | .25 | .66 | .23 |
 | TF-IDF (same split) | .89 | .05 | |
 SmolLM3 calls the tool on nearly every negative and its first-token score ranks the classes backwards; neither prompt fixes it. No frozen recipe transfers: they either shut calling off or stay near or below chance. The text is separable (TF-IDF), so the failure is the model's decision representation, not the data. Reading: these recipes need per-model selection; "training-free" does not mean "model-free". Harness bug found: SmolLM3's template drops assistant `tool_calls` and renders tool results as user turns, so the follow-up never showed the model its own call; `lib.followup` fixes it (Qwen rendering unchanged), E012 rerun queued.
+
+**E013 hook controls, Qwen3-4B, non-test sets (150 positives of adversarial + contrast + style2; decisions on dev, adversarial, contrast, style2, can't-answer).** Same fit pool and configuration as E011 (L34, rank 4).
+| arm | used [95% CI] | adversarial TPR/FPR | contrast TPR/FPR | can't-answer FPR |
+|---|---|---|---|---|
+| no patch | .18 [.13, .25] | .04/.17 | .13/.02 | .00 |
+| few-shot prompt (119 tok) | .71 [.64, .78] | .66/.09 | .88/.03 | .02 |
+| RRM r4, every token (as E011) | .73 [.65, .79] | .72/.11 | .88/.02 | .05 |
+| RRM r4, prefill only | .74 [.66, .80] | .72/.11 | .88/.02 | .05 |
+| constant shift (mean effect) | .31 [.24, .39] | .16/.21 | .32/.02 | .01 |
+| random rank-4, same singular values, 3 seeds | .31-.32 | .16/.21 | .28-.32/.02 | .01 |
+| TFTV, wide grid (α .05, interior) | .49 [.41, .57] | .50/.24 | .52/.03 | .13 |
+| Steer2Edit, wide grid (α −32, interior) | .78 [.71, .84] | .86/.26 | .90/.35 | .71 |
+Findings: (1) the gain is the learned map's: a constant shift or random rank-4 maps with identical singular values recover .31, the learned map .74, matching the prompt; this is the end-to-end form of the state-dependence result (H-state supported). (2) Acting on every generated token vs only the decision token makes no difference, so the E011 hook-placement error does not change any result. (3) MMLU under the RRM hook: 0 of 400 answers changed, schema absent or present; constant shift 1 of 400. (4) The published baselines were not understated: on wider grids both choose the same α, now interior. Steer2Edit's higher "used" comes with indiscriminate calling (can't-answer FPR .71, contrast FPR .35). RRM is the only zero-token method matching the prompt on both positives and negatives.

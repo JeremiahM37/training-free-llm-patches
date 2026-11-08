@@ -26,7 +26,13 @@ def load(name="Qwen/Qwen2.5-1.5B-Instruct", dtype=None):
     # bf16 where supported; fp16 on older GPUs such as the Colab T4; float32 on CPU
     dtype = dtype or ((torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16) if dev == "cuda" else torch.float32)
     tok = AutoTokenizer.from_pretrained(name, padding_side="left")
-    model = AutoModelForCausalLM.from_pretrained(name, dtype=dtype, device_map={"": dev}).eval()
+    kw = {}
+    if os.environ.get("LOAD_8BIT") and dev == "cuda":
+        # Phase D on a 16 GB GPU: LLM.int8 everywhere except the down_proj of the layers a recipe edits (KEEP_BF16_LAYERS), so weight edits stay exact
+        from transformers import BitsAndBytesConfig
+        keep = [f"model.layers.{l}.mlp.down_proj" for l in os.environ.get("KEEP_BF16_LAYERS", "").split(",") if l]
+        kw["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True, llm_int8_skip_modules=["lm_head"] + keep)
+    model = AutoModelForCausalLM.from_pretrained(name, dtype=dtype, device_map={"": dev}, **kw).eval()
     model.requires_grad_(False)
     return model, tok
 

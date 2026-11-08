@@ -10,7 +10,7 @@ Five findings.
 1. **An apparently perfect small-model result was an artefact.** On Qwen2.5-1.5B a 21 KB closed-form patch reached TPR 1.00 and FPR 0.00 on the tuning split. A TF-IDF classifier matched it, and it fired on 81% of requests that were unanswerable for other reasons.
 2. **On a capable model a prompt is hard to beat for one behaviour.** On a sealed test with Qwen3-4B, a ~70-token rules prompt yields 93% correct end-to-end answers.
 3. **A prompt's effect is largely a low-rank function of the model state, not a constant shift.** At the decision token a constant shift explains R² ≈ 0 of the prompt-induced activation change across held-out inputs; a rank-4 linear map explains 0.37–0.52, depending on layer and representation. This holds on a 0.5B model too, and is consistent with constant steering falling short.
-4. **A prompt can be distilled into a zero-token map without labels or gradients.** A rank-4 map fitted only from paired forward passes (the hand-written few-shot prompt is the teacher, so its information enters through the prompt) is statistically indistinguishable from that 119-token prompt at zero prompt tokens: 87% vs 83% end-to-end on 120 test positives (95% CIs [.79, .92] and [.75, .88]). It needs a runtime hook. A hook-free closed-form LoRA recovers less of the gain, and no MMLU drop was detected (400 items; a few-point drop would not be resolvable).
+4. **A prompt can be distilled into a zero-token map without labels or gradients.** A rank-4 map fitted only from paired forward passes (the hand-written few-shot prompt is the teacher, so its information enters through the prompt) is statistically indistinguishable from that 119-token prompt at zero prompt tokens: 87% vs 83% end-to-end on 120 test positives (95% CIs [.79, .92] and [.75, .88]). Controls show the gain is the learned map's: a constant shift or random rank-4 maps with the same singular values reach 31%, the learned map 74%, on 150 non-test positives (E013), and no MMLU answer changed. It needs a runtime hook. A hook-free closed-form LoRA recovers less of the gain, and no MMLU drop was detected (400 items; a few-point drop would not be resolvable).
 5. **Patches have hard limits.** A conditional rank-one edit that decides correctly can wreck the call that follows (11% end-to-end). With the value construction tested, no patch produced a valid call without the tool schema (0/90). With many behaviours at once, patches beat an all-rules prompt at small K but fall behind a linear probe on the same features by K = 16 (ranges overlap at K = 4 and against the router at K = 16).
 
 Conditional closed-form weight edits (SteerEdit) and prompt-to-weights ridge compilation (ICC) are prior art. We do not claim them; our contribution is the controlled comparison, the state-dependence measurement, and the limits.
@@ -63,11 +63,11 @@ Author style is therefore a known confound. A TF-IDF classifier is reported as a
 
 **Conditional rank-one edit (DKE).** `v = R⁻¹(μ₊ − μ₋)` with `R` the uncentred second moment of background keys, solved by Woodbury in sample space. `Δ` is the prompted-minus-unprompted (or positive-minus-negative) residual mean. We tested a minimum-variance version with zero mean response on negatives (LCMV), and it was worse (E002, E004).
 
-**Reduced-rank map at the decision token (RRM).** This is a dual ridge regression from unprompted to prompted residuals at the last token, truncated to rank r by SVD. Its inputs are paired forward passes over unlabelled utterances; no labels are used, though the teacher prompt is hand-written. It runs as a forward hook on the last position. **Correction (2026-11-08):** in E011 that hook edits the last position of every forward call, so during generation it also acts on every generated token, not only the decision token; E013 measures a prefill-only variant separately.
+**Reduced-rank map at the decision token (RRM).** This is a dual ridge regression from unprompted to prompted residuals at the last token, truncated to rank r by SVD. Its inputs are paired forward passes over unlabelled utterances; no labels are used, though the teacher prompt is hand-written. It runs as a forward hook on the last position. **Correction (2026-11-08):** in E011 that hook edits the last position of every forward call, so during generation it also acts on every generated token, not only the decision token. E013 shows this makes no difference (end-to-end .73 vs .74 prefill-only).
 
 **Closed-form LoRA (CF-LoRA).** This is the same regression from MLP keys, with zero targets at every other position (template, user text, generated text), so the position logic lives in the weights. It runs as a plain LoRA, and its strength comes from the regression, with no α.
 
-**Baselines.** TFTV and Steer2Edit are reimplemented from the papers' equations, on a single module for comparability. Their best α sat at the edge of the grid, so these baselines may be understated.
+**Baselines.** TFTV and Steer2Edit are reimplemented from the papers' equations, on a single module for comparability. Their best α sat at the edge of the E005 grid; re-selected on a wider dev grid (E013) both choose the same α, now interior.
 
 ## 5. Results
 
@@ -105,10 +105,10 @@ Qwen3-4B separates the classes unaided (AUROC .971 with only the schema) but und
 | RRM r4, no labels, hook | 0 | .94 | .00 | **.87** [.79, .92] |
 | TF-IDF (decision only) | n/a | .89 | .05 | n/a |
 
-"Used" is graded on the 120 positives only: the model called `recall_memory`, and its answer after the stored record contains the record's answer string. False calls on negatives show only in FPR (rules prompt .10, CI [.06, .17]). Single seed. † α at the edge of the E005 grid; E013 re-selects on a wider dev grid.
+"Used" is graded on the 120 positives only: the model called `recall_memory`, and its answer after the stored record contains the record's answer string. False calls on negatives show only in FPR (rules prompt .10, CI [.06, .17]). Single seed. † α at the edge of the E005 grid; a wider grid (E013) picks the same α.
 
 Three readings of Table 1:
-- **RRM is indistinguishable from the prompt it imitates** at zero prompt tokens: .87 vs .83 end-to-end, overlapping CIs at n = 120. On harder non-test sets (TPR/FPR, E007) it trails the prompt on adversarial (.48/.13 vs .68/.09) and contrast (.75/.02 vs .87/.03), and matches it on style2 (.98/.08 vs .93/.10). Whether the learned map, rather than intervening at that position at all, causes the gain is tested in E013 (constant-shift and random rank-4 controls).
+- **RRM is indistinguishable from the prompt it imitates** at zero prompt tokens: .87 vs .83 end-to-end, overlapping CIs at n = 120. On harder non-test sets (TPR/FPR, E007) it trails the prompt on adversarial (.48/.13 vs .68/.09) and contrast (.75/.02 vs .87/.03), and matches it on style2 (.98/.08 vs .93/.10). The learned map, not the intervention itself, causes the gain (§5.3, E013).
 - **The conditional rank-one edit decides well but breaks generation.** It remains active while the call is written, and execution falls from .98 called to .48 executed. Unconditional published edits do not have this failure.
 - **CF-LoRA: no side effect detected.** MMLU .7175 → .71 on 400 items (4 worse, 1 better, p = .375; a drop of a few points would not be resolvable), and greedy generations identical on 30 prompts (E010). It recovers less of the prompt's end-to-end gain over no patch: 58% on 150 non-test positives ((.49−.18)/(.71−.18)) and 33% on test ((.65−.56)/(.83−.56)).
 
@@ -122,7 +122,20 @@ Three readings of Table 1:
 | Qwen3-4B, MLP keys, L21 (E010) | | .03 | .52 | .67 |
 | Qwen2.5-0.5B, residual, L14 / L19 / L21 (CPU tier) | −.02 / −.02 / −.02 | .14 / .16 / .15 | .30 / .36 / .38 | .44 / .52 / .50 |
 
-The constant shift is the training-set mean, so its held-out R² is near zero by construction: the point is that the effect varies across inputs, and a low-rank linear function of the state captures a third to two thirds of that variation. This agrees with ICC's observation that fixed task vectors recover only part of in-context gains, and suggests (not shows) why steering underperforms prompting: steering applies the average effect, the prompt an input-specific one. E013 tests this end to end with a constant-shift arm at the same hook.
+The constant shift is the training-set mean, so its held-out R² is near zero by construction: the point is that the effect varies across inputs, and a low-rank linear function of the state captures a third to two thirds of that variation. This agrees with ICC's observation that fixed task vectors recover only part of in-context gains, and suggests (not shows) why steering underperforms prompting: steering applies the average effect, the prompt an input-specific one. E013 tests this end to end at the same hook, on 150 non-test positives:
+
+**Table 2b. End-to-end controls at the RRM hook (Qwen3-4B, E013).**
+
+| arm | used [95% CI] | contrast FPR | can't-answer FPR |
+|---|---|---|---|
+| no patch | .18 [.13, .25] | .02 | .00 |
+| few-shot prompt (119 tokens) | .71 [.64, .78] | .03 | .02 |
+| RRM rank 4, learned | .74 [.66, .80] | .02 | .05 |
+| constant shift (mean effect) | .31 [.24, .39] | .02 | .01 |
+| random rank-4 map, same singular values (3 seeds) | .31–.32 | .02 | .01 |
+| Steer2Edit, wide grid | .78 [.71, .84] | .35 | .71 |
+
+The constant shift and random maps of identical spectrum recover about a quarter of the prompt's gain; the learned map recovers all of it. So the input-specific part of the map is what does the work. Steer2Edit's higher score comes from calling indiscriminately. Under the RRM hook, 0 of 400 MMLU answers changed (schema absent or present).
 
 ### 5.4 Many behaviours at once (E006, CLINC150)
 
@@ -166,7 +179,7 @@ Without the tool schema in context, no patch produced a valid `recall_memory` ca
 - **Behaviour:** one behaviour in depth, plus one synthetic many-behaviour task.
 - **Data:** hand-written, with author style a known confound. The test split proved easier than the adversarial sets.
 - **Seeds and samples:** single seeds for most runs. End-to-end differences at n = 120 below about 0.08 are not resolvable.
-- **Baselines:** TFTV and Steer2Edit are single-module reimplementations with grid-edge α.
+- **Baselines:** TFTV and Steer2Edit are single-module reimplementations.
 - **Literature:** 128 of 30k harvested papers read, and the citation graph covers 23% of records.
 - **Hook dependence:** the best zero-token method (RRM) still needs a runtime hook at the decision position. CF-LoRA removes the hook but loses accuracy, and closing that gap is the obvious next step.
 
