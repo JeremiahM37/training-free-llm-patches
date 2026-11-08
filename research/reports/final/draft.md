@@ -11,7 +11,7 @@ Five findings.
 2. **On a capable model a prompt is hard to beat for one behaviour.** On a sealed test with Qwen3-4B, a ~70-token rules prompt yields 93% correct end-to-end answers.
 3. **A prompt's effect is largely a low-rank function of the model state, not a constant shift.** At the decision token a constant shift explains R² ≈ 0 of the prompt-induced activation change across held-out inputs; a rank-4 linear map explains 0.37–0.52, depending on layer and representation. This holds on a 0.5B model too, and is consistent with constant steering falling short.
 4. **A prompt can be distilled into a zero-token map without labels or gradients.** A rank-4 map fitted only from paired forward passes (the hand-written few-shot prompt is the teacher, so its information enters through the prompt) is statistically indistinguishable from that 119-token prompt at zero prompt tokens: 87% vs 83% end-to-end on 120 test positives (95% CIs [.79, .92] and [.75, .88]). Controls show the gain is the learned map's: a constant shift or random rank-4 maps with the same singular values reach 31%, the learned map 74%, on 150 non-test positives (E013), and no MMLU answer changed. It needs a runtime hook. A hook-free closed-form LoRA recovers less of the gain, and no MMLU drop was detected (400 items; a few-point drop would not be resolvable).
-5. **Patches have hard limits.** A conditional rank-one edit that decides correctly can wreck the call that follows (11% end-to-end). With the value construction tested, no patch produced a valid call without the tool schema (0/90). With many behaviours at once, patches beat an all-rules prompt at small K but fall behind a linear probe on the same features by K = 16 (ranges overlap at K = 4 and against the router at K = 16).
+5. **Patches have hard limits.** A conditional rank-one edit that decides correctly can wreck the call that follows (11% end-to-end). With the value construction tested, no patch produced a valid call without the tool schema (0/90). The recipes did not transfer to a second model family without re-selection (SmolLM3-3B). With many behaviours at once, patches beat an all-rules prompt at small K but fall behind a linear probe on the same features by K = 16 (ranges overlap at K = 4 and against the router at K = 16).
 
 Conditional closed-form weight edits (SteerEdit) and prompt-to-weights ridge compilation (ICC) are prior art. We do not claim them; our contribution is the controlled comparison, the state-dependence measurement, and the limits.
 
@@ -137,6 +137,24 @@ The constant shift is the training-set mean, so its held-out R² is near zero by
 
 The constant shift and random maps of identical spectrum recover about a quarter of the prompt's gain; the learned map recovers all of it. So the input-specific part of the map is what does the work. Steer2Edit's higher score comes from calling indiscriminately. Under the RRM hook, 0 of 400 MMLU answers changed (schema absent or present).
 
+### 5.3b The recipes do not transfer to another model family (E012, SmolLM3-3B)
+
+Every method keeps its Qwen3-4B configuration (same layer indices, both models have 36 layers; same α, rank and λ) and is refitted only from SmolLM3's own forward passes. Nothing is tuned on SmolLM3. Test split, 120 + 120:
+
+| method | TPR | FPR | AUROC | called | used [95% CI] |
+|---|---|---|---|---|---|
+| no patch | .74 | .97 | .33 | .77 | .60 [.51, .68] |
+| few-shot prompt | .34 | .52 | .34 | .68 | .37 [.29, .46] |
+| rules prompt | .88 | 1.00 | .38 | .92 | .69 [.60, .77] |
+| TFTV | .00 | .00 | .19 | .00 | .00 |
+| Steer2Edit | .28 | .10 | .55 | .70 | .35 [.27, .44] |
+| gated rank-one | .11 | .03 | .59 | .18 | .08 [.04, .14] |
+| CF-LoRA r16 | .49 | .75 | .40 | .52 | .41 [.32, .50] |
+| RRM r4 hook | .25 | .66 | .23 | .78 | .08 [.05, .15] |
+| TF-IDF (decision only) | .89 | .05 | .98 | | |
+
+SmolLM3 has the opposite problem to Qwen: it calls the tool on almost every negative, and its first-token score ranks the classes backwards. No frozen recipe helps: every patch lowers end-to-end use below the unpatched model, and only the rules prompt raises it (while still calling on every negative). The text is separable, so this is the model's decision representation, not the data. The RRM hook keeps the call rate but destroys use of the answer; the first-token metric also under-reads it here (TPR .25 vs called .78), since the hook makes the model defer the call. **Training-free does not mean model-free:** these recipes need per-model selection, and a prompt was the only method that transferred at all.
+
 ### 5.4 Many behaviours at once (E006, CLINC150)
 
 Each of K intents triggers a distinct code word as the reply's first token. We compare all K rules in the prompt, a router that inserts one rule, K-rank patches, and a linear probe on the same keys.
@@ -175,7 +193,7 @@ Without the tool schema in context, no patch produced a valid `recall_memory` ca
 
 ## 7. Limitations
 
-- **Models:** Qwen2.5 and Qwen3 (one vendor) at 0.5–4B, plus a frozen-recipe transfer to SmolLM3-3B (E012). No 7B+ result.
+- **Models:** Qwen2.5 and Qwen3 (one vendor) at 0.5–4B, plus a frozen-recipe transfer to SmolLM3-3B (E012), which failed. No 7B+ result yet.
 - **Behaviour:** one behaviour in depth, plus one synthetic many-behaviour task.
 - **Data:** hand-written, with author style a known confound. The test split proved easier than the adversarial sets.
 - **Seeds and samples:** single seeds for most runs. End-to-end differences at n = 120 below about 0.08 are not resolvable.
