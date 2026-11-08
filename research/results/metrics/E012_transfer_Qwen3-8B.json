@@ -1,0 +1,224 @@
+{
+ "meta": {
+  "time": "2026-11-08T15:23:03",
+  "model": "Qwen/Qwen3-8B",
+  "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "host": "cachyos-x8664",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "torch": "2.15.0+cu132",
+  "data_sha": "8b20dadd349297ea",
+  "config": {
+   "exp": "E012",
+   "note": "frozen Qwen3-4B recipes, relative-depth layer map, no tuning; follow-up rendered by lib.followup (keeps the emitted call if the template drops tool_calls)",
+   "layer_map": {
+    "21": 21,
+    "25": 25,
+    "34": 34
+   },
+   "load_8bit": true,
+   "keep_bf16_layers": "21,25,34"
+  }
+ },
+ "methods": {
+  "no patch": {
+   "tpr": 0.925,
+   "tpr_ci": [
+    0.8636,
+    0.96
+   ],
+   "fpr": 0.0833,
+   "fpr_ci": [
+    0.0459,
+    0.1466
+   ],
+   "auroc": 0.9855,
+   "n_pos": 120,
+   "n_neg": 120,
+   "called": 0.95,
+   "executed": 0.95,
+   "used": 0.8667,
+   "use_ci": [
+    0.7944,
+    0.9162
+   ],
+   "frozen_from": "-"
+  },
+  "few-shot prompt": {
+   "tpr": 0.925,
+   "tpr_ci": [
+    0.8636,
+    0.96
+   ],
+   "fpr": 0.0167,
+   "fpr_ci": [
+    0.0046,
+    0.0587
+   ],
+   "auroc": 0.9856,
+   "n_pos": 120,
+   "n_neg": 120,
+   "called": 0.925,
+   "executed": 0.9167,
+   "used": 0.8417,
+   "use_ci": [
+    0.7659,
+    0.8962
+   ],
+   "frozen_from": "E001/E007 teacher"
+  },
+  "rules prompt": {
+   "tpr": 0.9583,
+   "tpr_ci": [
+    0.9062,
+    0.9821
+   ],
+   "fpr": 0.0583,
+   "fpr_ci": [
+    0.0285,
+    0.1155
+   ],
+   "auroc": 0.9898,
+   "n_pos": 120,
+   "n_neg": 120,
+   "called": 0.9583,
+   "executed": 0.95,
+   "used": 0.875,
+   "use_ci": [
+    0.804,
+    0.9228
+   ],
+   "frozen_from": "best of 4 on dev, E003"
+  },
+  "TFTV rank-one (L34, a=.05)": {
+   "tpr": 0.025,
+   "tpr_ci": [
+    0.0085,
+    0.0709
+   ],
+   "fpr": 0.0,
+   "fpr_ci": [
+    -0.0,
+    0.031
+   ],
+   "auroc": 0.9852,
+   "n_pos": 120,
+   "n_neg": 120,
+   "called": 0.525,
+   "executed": 0.225,
+   "used": 0.1667,
+   "use_ci": [
+    0.1106,
+    0.2435
+   ],
+   "frozen_from": "E005 dev selection"
+  },
+  "Steer2Edit rank-one (L25, a=-32)": {
+   "tpr": 0.9333,
+   "tpr_ci": [
+    0.8739,
+    0.9658
+   ],
+   "fpr": 0.175,
+   "fpr_ci": [
+    0.1174,
+    0.2528
+   ],
+   "auroc": 0.9697,
+   "n_pos": 120,
+   "n_neg": 120,
+   "called": 0.95,
+   "executed": 0.9417,
+   "used": 0.8583,
+   "use_ci": [
+    0.7848,
+    0.9096
+   ],
+   "frozen_from": "E005 dev selection"
+  },
+  "gated rank-one (L34, a=1)": {
+   "tpr": 0.9333,
+   "tpr_ci": [
+    0.8739,
+    0.9658
+   ],
+   "fpr": 0.0083,
+   "fpr_ci": [
+    0.0015,
+    0.0457
+   ],
+   "auroc": 0.9781,
+   "n_pos": 120,
+   "n_neg": 120,
+   "called": 0.95,
+   "executed": 0.8917,
+   "used": 0.5083,
+   "use_ci": [
+    0.42,
+    0.5961
+   ],
+   "frozen_from": "E002 dev selection"
+  },
+  "closed-form LoRA, no labels (r16, L21)": {
+   "tpr": 0.95,
+   "tpr_ci": [
+    0.8952,
+    0.9769
+   ],
+   "fpr": 0.0,
+   "fpr_ci": [
+    -0.0,
+    0.031
+   ],
+   "auroc": 0.9887,
+   "n_pos": 120,
+   "n_neg": 120,
+   "called": 0.95,
+   "executed": 0.95,
+   "used": 0.8583,
+   "use_ci": [
+    0.7848,
+    0.9096
+   ],
+   "frozen_from": "E010 holdout-R2 selection"
+  },
+  "reduced-rank map at decision token, hook (r4, L34)": {
+   "tpr": 0.9167,
+   "tpr_ci": [
+    0.8534,
+    0.9541
+   ],
+   "fpr": 0.0083,
+   "fpr_ci": [
+    0.0015,
+    0.0457
+   ],
+   "auroc": 0.991,
+   "n_pos": 120,
+   "n_neg": 120,
+   "called": 0.95,
+   "executed": 0.95,
+   "used": 0.8667,
+   "use_ci": [
+    0.7944,
+    0.9162
+   ],
+   "frozen_from": "E007 config"
+  },
+  "TF-IDF classifier (decision only, separate model)": {
+   "tpr": 0.8917,
+   "tpr_ci": [
+    0.8234,
+    0.9356
+   ],
+   "fpr": 0.05,
+   "fpr_ci": [
+    0.0231,
+    0.1048
+   ],
+   "auroc": 0.9792,
+   "n_pos": 120,
+   "n_neg": 120,
+   "frozen_from": "E003 config, fit on train"
+  }
+ }
+}

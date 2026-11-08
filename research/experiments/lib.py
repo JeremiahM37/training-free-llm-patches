@@ -55,7 +55,7 @@ def batches(xs, n):
     for i in range(0, len(xs), n): yield xs[i:i + n]
 
 @torch.no_grad()
-def decide(model, tok, texts, bs=32):
+def decide(model, tok, texts, bs=int(os.environ.get("DECIDE_BS", 32))):
     """Returns first-token log-odds of <tool_call> versus the best other token, per prompt."""
     tc = tok.convert_tokens_to_ids("<tool_call>")
     out = []
@@ -67,7 +67,7 @@ def decide(model, tok, texts, bs=32):
     return torch.cat(out).numpy()
 
 @torch.no_grad()
-def generate(model, tok, texts, max_new=48, bs=16):
+def generate(model, tok, texts, max_new=48, bs=int(os.environ.get("GEN_BS", 16))):
     res = []
     for b in batches(texts, bs):
         enc = tok(b, return_tensors="pt", padding=True, pad_to_multiple_of=PAD).to(model.device)
