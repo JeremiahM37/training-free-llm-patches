@@ -42,13 +42,13 @@ def render(tok, prompt, system=DEFAULT_SYS, extra=()):
     msgs = [{"role": "system", "content": system}, *extra, {"role": "user", "content": prompt}]
     return tok.apply_chat_template(msgs, tools=[TOOL], tokenize=False, add_generation_prompt=True, enable_thinking=False)
 
-def render_cond(tok, prompt, cond):
-    if cond == "schema": return render(tok, prompt)
-    if cond == "instruction": return render(tok, prompt, DEFAULT_SYS + " " + INSTRUCTION)
+def render_cond(tok, prompt, cond, extra=()):
+    if cond == "schema": return render(tok, prompt, extra=extra)
+    if cond == "instruction": return render(tok, prompt, DEFAULT_SYS + " " + INSTRUCTION, extra)
     if cond == "fewshot":
         sys = DEFAULT_SYS + " " + INSTRUCTION + "\n\nExamples:\n" + "\n".join(
             f"User: {q}\nAction: {'call recall_memory' if m else 'answer directly'}" for q, m in SHOTS)
-        return render(tok, prompt, sys)
+        return render(tok, prompt, sys, extra)
     raise ValueError(cond)
 
 def batches(xs, n):
@@ -84,16 +84,17 @@ def parse_call(text):
     except Exception:
         return {"malformed": True}
 
-def followup(tok, prompt, q, call_text, record, system=DEFAULT_SYS):
+def followup(tok, prompt, q, call_text, record, system=DEFAULT_SYS, extra=()):
     """Render the turn after a tool call. Uses the template's tool_calls support; if the template silently drops tool_calls
     (SmolLM3 does), the assistant turn carries the model's own emitted call text and the result is wrapped in <tool_response>."""
-    msgs = [{"role": "system", "content": system}, {"role": "user", "content": prompt},
+    msgs = [{"role": "system", "content": system}, *extra, {"role": "user", "content": prompt},
             {"role": "assistant", "content": "", "tool_calls": [{"type": "function", "function": {"name": "recall_memory", "arguments": {"query": q}}}]},
             {"role": "tool", "content": record}]
     s = tok.apply_chat_template(msgs, tools=[TOOL], tokenize=False, add_generation_prompt=True, enable_thinking=False)
     if q in s: return s
-    msgs[2] = {"role": "assistant", "content": call_text.split("</tool_call>")[0].strip() + "\n</tool_call>"}
-    msgs[3] = {"role": "tool", "content": f"<tool_response>\n{record}\n</tool_response>"}
+    i = len(msgs) - 2
+    msgs[i] = {"role": "assistant", "content": call_text.split("</tool_call>")[0].strip() + "\n</tool_call>"}
+    msgs[i + 1] = {"role": "tool", "content": f"<tool_response>\n{record}\n</tool_response>"}
     return tok.apply_chat_template(msgs, tools=[TOOL], tokenize=False, add_generation_prompt=True, enable_thinking=False)
 
 def wilson(k, n, z=1.96):

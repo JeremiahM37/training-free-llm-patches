@@ -1,0 +1,3924 @@
+{
+ "meta": {
+  "time": "2026-11-09T00:02:36",
+  "model": "HuggingFaceTB/SmolLM3-3B",
+  "revision": "a07cc9a04f16550a088caea529712d1d335b0ac1",
+  "host": "cachyos-x8664",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "torch": "2.15.0+cu132",
+  "data_sha": "8b20dadd349297ea",
+  "config": {
+   "exp": "E015",
+   "grid_layers": [
+    12,
+    18,
+    24,
+    30,
+    34
+   ],
+   "probe_layers": [
+    2,
+    5,
+    8,
+    11,
+    14,
+    17,
+    20,
+    23,
+    26,
+    29,
+    32,
+    35
+   ],
+   "selection": "dev J = TPR - FPR at 0"
+  }
+ },
+ "probe": {
+  "2": {
+   "dev": 0.9786,
+   "adversarial": 0.764,
+   "contrast": 0.9622
+  },
+  "5": {
+   "dev": 0.9825,
+   "adversarial": 0.7703,
+   "contrast": 0.9492
+  },
+  "8": {
+   "dev": 0.9847,
+   "adversarial": 0.828,
+   "contrast": 0.9714
+  },
+  "11": {
+   "dev": 0.9978,
+   "adversarial": 0.82,
+   "contrast": 0.9678
+  },
+  "14": {
+   "dev": 0.9997,
+   "adversarial": 0.8409,
+   "contrast": 0.9794
+  },
+  "17": {
+   "dev": 1.0,
+   "adversarial": 0.8434,
+   "contrast": 0.9894
+  },
+  "20": {
+   "dev": 1.0,
+   "adversarial": 0.8809,
+   "contrast": 0.9894
+  },
+  "23": {
+   "dev": 1.0,
+   "adversarial": 0.8754,
+   "contrast": 0.9839
+  },
+  "26": {
+   "dev": 1.0,
+   "adversarial": 0.86,
+   "contrast": 0.9692
+  },
+  "29": {
+   "dev": 1.0,
+   "adversarial": 0.8617,
+   "contrast": 0.97
+  },
+  "32": {
+   "dev": 1.0,
+   "adversarial": 0.8786,
+   "contrast": 0.9767
+  },
+  "35": {
+   "dev": 1.0,
+   "adversarial": 0.8717,
+   "contrast": 0.9694
+  }
+ },
+ "prompts": {
+  "none": {
+   "tpr": 0.85,
+   "tpr_ci": [
+    0.7389,
+    0.919
+   ],
+   "fpr": 1.0,
+   "fpr_ci": [
+    0.9398,
+    1.0
+   ],
+   "auroc": 0.2882,
+   "n_pos": 60,
+   "n_neg": 60,
+   "J": -0.15
+  },
+  "instruction": {
+   "tpr": 0.0,
+   "tpr_ci": [
+    -0.0,
+    0.0602
+   ],
+   "fpr": 0.1833,
+   "fpr_ci": [
+    0.1056,
+    0.2992
+   ],
+   "auroc": 0.1678,
+   "n_pos": 60,
+   "n_neg": 60,
+   "J": -0.1833
+  },
+  "fewshot": {
+   "tpr": 0.2167,
+   "tpr_ci": [
+    0.1312,
+    0.3362
+   ],
+   "fpr": 0.5,
+   "fpr_ci": [
+    0.3773,
+    0.6227
+   ],
+   "auroc": 0.2769,
+   "n_pos": 60,
+   "n_neg": 60,
+   "J": -0.2833
+  },
+  "rules": {
+   "tpr": 0.95,
+   "tpr_ci": [
+    0.863,
+    0.9829
+   ],
+   "fpr": 1.0,
+   "fpr_ci": [
+    0.9398,
+    1.0
+   ],
+   "auroc": 0.3036,
+   "n_pos": 60,
+   "n_neg": 60,
+   "J": -0.05
+  }
+ },
+ "sweeps": {
+  "tftv L12 a-1": {
+   "method": "TFTV rank-one",
+   "l": 12,
+   "a": -1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.3181
+  },
+  "tftv L12 a-0.5": {
+   "method": "TFTV rank-one",
+   "l": 12,
+   "a": -0.5,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.2481
+  },
+  "tftv L12 a-0.2": {
+   "method": "TFTV rank-one",
+   "l": 12,
+   "a": -0.2,
+   "J": -0.5,
+   "tpr": 0.0,
+   "fpr": 0.5,
+   "auroc": 0.181
+  },
+  "tftv L12 a-0.1": {
+   "method": "TFTV rank-one",
+   "l": 12,
+   "a": -0.1,
+   "J": -0.0167,
+   "tpr": 0.9833,
+   "fpr": 1.0,
+   "auroc": 0.4629
+  },
+  "tftv L12 a-0.05": {
+   "method": "TFTV rank-one",
+   "l": 12,
+   "a": -0.05,
+   "J": -0.1167,
+   "tpr": 0.8833,
+   "fpr": 1.0,
+   "auroc": 0.4819
+  },
+  "tftv L12 a0.05": {
+   "method": "TFTV rank-one",
+   "l": 12,
+   "a": 0.05,
+   "J": -0.1,
+   "tpr": 0.8,
+   "fpr": 0.9,
+   "auroc": 0.3947
+  },
+  "tftv L12 a0.1": {
+   "method": "TFTV rank-one",
+   "l": 12,
+   "a": 0.1,
+   "J": -0.3667,
+   "tpr": 0.1,
+   "fpr": 0.4667,
+   "auroc": 0.2735
+  },
+  "tftv L12 a0.2": {
+   "method": "TFTV rank-one",
+   "l": 12,
+   "a": 0.2,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.1504
+  },
+  "tftv L12 a0.5": {
+   "method": "TFTV rank-one",
+   "l": 12,
+   "a": 0.5,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.1099
+  },
+  "tftv L12 a1": {
+   "method": "TFTV rank-one",
+   "l": 12,
+   "a": 1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.2646
+  },
+  "s2e L12 a-256": {
+   "method": "Steer2Edit rank-one",
+   "l": 12,
+   "a": -256,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.1169
+  },
+  "s2e L12 a-128": {
+   "method": "Steer2Edit rank-one",
+   "l": 12,
+   "a": -128,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.104
+  },
+  "s2e L12 a-64": {
+   "method": "Steer2Edit rank-one",
+   "l": 12,
+   "a": -64,
+   "J": -0.0667,
+   "tpr": 0.0,
+   "fpr": 0.0667,
+   "auroc": 0.1901
+  },
+  "s2e L12 a-32": {
+   "method": "Steer2Edit rank-one",
+   "l": 12,
+   "a": -32,
+   "J": -0.25,
+   "tpr": 0.65,
+   "fpr": 0.9,
+   "auroc": 0.2283
+  },
+  "s2e L12 a-16": {
+   "method": "Steer2Edit rank-one",
+   "l": 12,
+   "a": -16,
+   "J": -0.1167,
+   "tpr": 0.8833,
+   "fpr": 1.0,
+   "auroc": 0.2661
+  },
+  "s2e L12 a-8": {
+   "method": "Steer2Edit rank-one",
+   "l": 12,
+   "a": -8,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.271
+  },
+  "s2e L12 a8": {
+   "method": "Steer2Edit rank-one",
+   "l": 12,
+   "a": 8,
+   "J": -0.1833,
+   "tpr": 0.8167,
+   "fpr": 1.0,
+   "auroc": 0.3094
+  },
+  "s2e L12 a16": {
+   "method": "Steer2Edit rank-one",
+   "l": 12,
+   "a": 16,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.3339
+  },
+  "s2e L12 a32": {
+   "method": "Steer2Edit rank-one",
+   "l": 12,
+   "a": 32,
+   "J": -0.0333,
+   "tpr": 0.9167,
+   "fpr": 0.95,
+   "auroc": 0.4112
+  },
+  "s2e L12 a64": {
+   "method": "Steer2Edit rank-one",
+   "l": 12,
+   "a": 64,
+   "J": 0.2667,
+   "tpr": 0.9167,
+   "fpr": 0.65,
+   "auroc": 0.6215
+  },
+  "gate+ L12 a0.25": {
+   "method": "gated rank-one",
+   "l": 12,
+   "a": 0.25,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.55,
+   "tpr": 0.5667,
+   "fpr": 0.0167,
+   "auroc": 0.9744
+  },
+  "gate- L12 a0.25": {
+   "method": "gated rank-one",
+   "l": 12,
+   "a": 0.25,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.1667,
+   "tpr": 0.8333,
+   "fpr": 1.0,
+   "auroc": 0.2156
+  },
+  "gate+ L12 a0.5": {
+   "method": "gated rank-one",
+   "l": 12,
+   "a": 0.5,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.35,
+   "tpr": 0.35,
+   "fpr": 0.0,
+   "auroc": 0.9307
+  },
+  "gate- L12 a0.5": {
+   "method": "gated rank-one",
+   "l": 12,
+   "a": 0.5,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.1667,
+   "tpr": 0.8333,
+   "fpr": 1.0,
+   "auroc": 0.1988
+  },
+  "gate+ L12 a1": {
+   "method": "gated rank-one",
+   "l": 12,
+   "a": 1,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.1333,
+   "tpr": 0.1333,
+   "fpr": 0.0,
+   "auroc": 0.9275
+  },
+  "gate- L12 a1": {
+   "method": "gated rank-one",
+   "l": 12,
+   "a": 1,
+   "gate": "fires on negatives, pushes away from call",
+   "J": 0.0333,
+   "tpr": 0.8833,
+   "fpr": 0.85,
+   "auroc": 0.3162
+  },
+  "gate+ L12 a2": {
+   "method": "gated rank-one",
+   "l": 12,
+   "a": 2,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.0333,
+   "tpr": 0.0333,
+   "fpr": 0.0,
+   "auroc": 0.951
+  },
+  "gate- L12 a2": {
+   "method": "gated rank-one",
+   "l": 12,
+   "a": 2,
+   "gate": "fires on negatives, pushes away from call",
+   "J": 0.4,
+   "tpr": 0.8833,
+   "fpr": 0.4833,
+   "auroc": 0.6839
+  },
+  "gate+ L12 a4": {
+   "method": "gated rank-one",
+   "l": 12,
+   "a": 4,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.0167,
+   "tpr": 0.0167,
+   "fpr": 0.0,
+   "auroc": 0.9649
+  },
+  "gate- L12 a4": {
+   "method": "gated rank-one",
+   "l": 12,
+   "a": 4,
+   "gate": "fires on negatives, pushes away from call",
+   "J": 0.7333,
+   "tpr": 0.8167,
+   "fpr": 0.0833,
+   "auroc": 0.9276
+  },
+  "rrm instruction L12 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.3035
+  },
+  "rrm instruction L12 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.2957
+  },
+  "rrm instruction L12 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.3013
+  },
+  "rrm instruction L12 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.3003
+  },
+  "rrm instruction L12 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.3015
+  },
+  "rrm instruction L12 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.3054
+  },
+  "rrm instruction L12 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.3003
+  },
+  "rrm instruction L12 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.2942
+  },
+  "rrm instruction L12 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.3017
+  },
+  "rrm fewshot L12 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.2988
+  },
+  "rrm fewshot L12 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.1333,
+   "tpr": 0.8667,
+   "fpr": 1.0,
+   "auroc": 0.2968
+  },
+  "rrm fewshot L12 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.1333,
+   "tpr": 0.8667,
+   "fpr": 1.0,
+   "auroc": 0.2811
+  },
+  "rrm fewshot L12 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.1333,
+   "tpr": 0.8667,
+   "fpr": 1.0,
+   "auroc": 0.2939
+  },
+  "rrm fewshot L12 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.2939
+  },
+  "rrm fewshot L12 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.2818
+  },
+  "rrm fewshot L12 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.1333,
+   "tpr": 0.8667,
+   "fpr": 1.0,
+   "auroc": 0.2978
+  },
+  "rrm fewshot L12 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.1333,
+   "tpr": 0.8667,
+   "fpr": 1.0,
+   "auroc": 0.3033
+  },
+  "rrm fewshot L12 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.2868
+  },
+  "rrm rules L12 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.2756
+  },
+  "rrm rules L12 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.1667,
+   "tpr": 0.8333,
+   "fpr": 1.0,
+   "auroc": 0.2775
+  },
+  "rrm rules L12 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.1667,
+   "tpr": 0.8333,
+   "fpr": 1.0,
+   "auroc": 0.2821
+  },
+  "rrm rules L12 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.1667,
+   "tpr": 0.8333,
+   "fpr": 1.0,
+   "auroc": 0.2769
+  },
+  "rrm rules L12 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.1667,
+   "tpr": 0.8333,
+   "fpr": 1.0,
+   "auroc": 0.2771
+  },
+  "rrm rules L12 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.1667,
+   "tpr": 0.8333,
+   "fpr": 1.0,
+   "auroc": 0.2768
+  },
+  "rrm rules L12 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.2774
+  },
+  "rrm rules L12 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.2808
+  },
+  "rrm rules L12 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 12,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.1667,
+   "tpr": 0.8333,
+   "fpr": 1.0,
+   "auroc": 0.2842
+  },
+  "tftv L18 a-1": {
+   "method": "TFTV rank-one",
+   "l": 18,
+   "a": -1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.6935
+  },
+  "tftv L18 a-0.5": {
+   "method": "TFTV rank-one",
+   "l": 18,
+   "a": -0.5,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.3799
+  },
+  "tftv L18 a-0.2": {
+   "method": "TFTV rank-one",
+   "l": 18,
+   "a": -0.2,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.1221
+  },
+  "tftv L18 a-0.1": {
+   "method": "TFTV rank-one",
+   "l": 18,
+   "a": -0.1,
+   "J": -0.05,
+   "tpr": 0.95,
+   "fpr": 1.0,
+   "auroc": 0.165
+  },
+  "tftv L18 a-0.05": {
+   "method": "TFTV rank-one",
+   "l": 18,
+   "a": -0.05,
+   "J": -0.0167,
+   "tpr": 0.9833,
+   "fpr": 1.0,
+   "auroc": 0.0308
+  },
+  "tftv L18 a0.05": {
+   "method": "TFTV rank-one",
+   "l": 18,
+   "a": 0.05,
+   "J": -0.0833,
+   "tpr": 0.0,
+   "fpr": 0.0833,
+   "auroc": 0.2629
+  },
+  "tftv L18 a0.1": {
+   "method": "TFTV rank-one",
+   "l": 18,
+   "a": 0.1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.1711
+  },
+  "tftv L18 a0.2": {
+   "method": "TFTV rank-one",
+   "l": 18,
+   "a": 0.2,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.6144
+  },
+  "tftv L18 a0.5": {
+   "method": "TFTV rank-one",
+   "l": 18,
+   "a": 0.5,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.3257
+  },
+  "tftv L18 a1": {
+   "method": "TFTV rank-one",
+   "l": 18,
+   "a": 1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.0935
+  },
+  "s2e L18 a-256": {
+   "method": "Steer2Edit rank-one",
+   "l": 18,
+   "a": -256,
+   "J": -0.2833,
+   "tpr": 0.0,
+   "fpr": 0.2833,
+   "auroc": 0.1031
+  },
+  "s2e L18 a-128": {
+   "method": "Steer2Edit rank-one",
+   "l": 18,
+   "a": -128,
+   "J": -0.4333,
+   "tpr": 0.0667,
+   "fpr": 0.5,
+   "auroc": 0.1004
+  },
+  "s2e L18 a-64": {
+   "method": "Steer2Edit rank-one",
+   "l": 18,
+   "a": -64,
+   "J": -0.5667,
+   "tpr": 0.0333,
+   "fpr": 0.6,
+   "auroc": 0.104
+  },
+  "s2e L18 a-32": {
+   "method": "Steer2Edit rank-one",
+   "l": 18,
+   "a": -32,
+   "J": -0.5833,
+   "tpr": 0.3,
+   "fpr": 0.8833,
+   "auroc": 0.1256
+  },
+  "s2e L18 a-16": {
+   "method": "Steer2Edit rank-one",
+   "l": 18,
+   "a": -16,
+   "J": -0.2333,
+   "tpr": 0.75,
+   "fpr": 0.9833,
+   "auroc": 0.2068
+  },
+  "s2e L18 a-8": {
+   "method": "Steer2Edit rank-one",
+   "l": 18,
+   "a": -8,
+   "J": -0.1833,
+   "tpr": 0.8167,
+   "fpr": 1.0,
+   "auroc": 0.2519
+  },
+  "s2e L18 a8": {
+   "method": "Steer2Edit rank-one",
+   "l": 18,
+   "a": 8,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.3154
+  },
+  "s2e L18 a16": {
+   "method": "Steer2Edit rank-one",
+   "l": 18,
+   "a": 16,
+   "J": -0.1667,
+   "tpr": 0.8167,
+   "fpr": 0.9833,
+   "auroc": 0.3444
+  },
+  "s2e L18 a32": {
+   "method": "Steer2Edit rank-one",
+   "l": 18,
+   "a": 32,
+   "J": -0.2167,
+   "tpr": 0.6167,
+   "fpr": 0.8333,
+   "auroc": 0.4054
+  },
+  "s2e L18 a64": {
+   "method": "Steer2Edit rank-one",
+   "l": 18,
+   "a": 64,
+   "J": 0.0333,
+   "tpr": 0.55,
+   "fpr": 0.5167,
+   "auroc": 0.5343
+  },
+  "gate+ L18 a0.25": {
+   "method": "gated rank-one",
+   "l": 18,
+   "a": 0.25,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.15,
+   "tpr": 0.25,
+   "fpr": 0.1,
+   "auroc": 0.855
+  },
+  "gate- L18 a0.25": {
+   "method": "gated rank-one",
+   "l": 18,
+   "a": 0.25,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.1833,
+   "tpr": 0.8,
+   "fpr": 0.9833,
+   "auroc": 0.2801
+  },
+  "gate+ L18 a0.5": {
+   "method": "gated rank-one",
+   "l": 18,
+   "a": 0.5,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.1667,
+   "tpr": 0.1667,
+   "fpr": 0.0,
+   "auroc": 0.8529
+  },
+  "gate- L18 a0.5": {
+   "method": "gated rank-one",
+   "l": 18,
+   "a": 0.5,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.2333,
+   "tpr": 0.7,
+   "fpr": 0.9333,
+   "auroc": 0.2814
+  },
+  "gate+ L18 a1": {
+   "method": "gated rank-one",
+   "l": 18,
+   "a": 1,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.0667,
+   "tpr": 0.0667,
+   "fpr": 0.0,
+   "auroc": 0.8432
+  },
+  "gate- L18 a1": {
+   "method": "gated rank-one",
+   "l": 18,
+   "a": 1,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.2333,
+   "tpr": 0.5667,
+   "fpr": 0.8,
+   "auroc": 0.3569
+  },
+  "gate+ L18 a2": {
+   "method": "gated rank-one",
+   "l": 18,
+   "a": 2,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.0333,
+   "tpr": 0.0333,
+   "fpr": 0.0,
+   "auroc": 0.9661
+  },
+  "gate- L18 a2": {
+   "method": "gated rank-one",
+   "l": 18,
+   "a": 2,
+   "gate": "fires on negatives, pushes away from call",
+   "J": 0.0667,
+   "tpr": 0.3667,
+   "fpr": 0.3,
+   "auroc": 0.5924
+  },
+  "gate+ L18 a4": {
+   "method": "gated rank-one",
+   "l": 18,
+   "a": 4,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.0167,
+   "tpr": 0.0167,
+   "fpr": 0.0,
+   "auroc": 0.9819
+  },
+  "gate- L18 a4": {
+   "method": "gated rank-one",
+   "l": 18,
+   "a": 4,
+   "gate": "fires on negatives, pushes away from call",
+   "J": 0.15,
+   "tpr": 0.25,
+   "fpr": 0.1,
+   "auroc": 0.854
+  },
+  "rrm instruction L18 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.3667,
+   "tpr": 0.4833,
+   "fpr": 0.85,
+   "auroc": 0.2119
+  },
+  "rrm instruction L18 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.3333,
+   "tpr": 0.4667,
+   "fpr": 0.8,
+   "auroc": 0.234
+  },
+  "rrm instruction L18 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.4333,
+   "tpr": 0.4,
+   "fpr": 0.8333,
+   "auroc": 0.2361
+  },
+  "rrm instruction L18 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.4167,
+   "tpr": 0.4833,
+   "fpr": 0.9,
+   "auroc": 0.216
+  },
+  "rrm instruction L18 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.3167,
+   "tpr": 0.4833,
+   "fpr": 0.8,
+   "auroc": 0.2314
+  },
+  "rrm instruction L18 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.4167,
+   "tpr": 0.4,
+   "fpr": 0.8167,
+   "auroc": 0.2418
+  },
+  "rrm instruction L18 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.3667,
+   "tpr": 0.5,
+   "fpr": 0.8667,
+   "auroc": 0.2168
+  },
+  "rrm instruction L18 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.3167,
+   "tpr": 0.4833,
+   "fpr": 0.8,
+   "auroc": 0.2336
+  },
+  "rrm instruction L18 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.4333,
+   "tpr": 0.4,
+   "fpr": 0.8333,
+   "auroc": 0.2385
+  },
+  "rrm fewshot L18 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.1333,
+   "tpr": 0.8,
+   "fpr": 0.9333,
+   "auroc": 0.4599
+  },
+  "rrm fewshot L18 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.25,
+   "tpr": 0.65,
+   "fpr": 0.9,
+   "auroc": 0.3176
+  },
+  "rrm fewshot L18 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.2833,
+   "tpr": 0.6333,
+   "fpr": 0.9167,
+   "auroc": 0.3092
+  },
+  "rrm fewshot L18 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.1167,
+   "tpr": 0.8167,
+   "fpr": 0.9333,
+   "auroc": 0.4436
+  },
+  "rrm fewshot L18 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.2,
+   "tpr": 0.7,
+   "fpr": 0.9,
+   "auroc": 0.3322
+  },
+  "rrm fewshot L18 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.2333,
+   "tpr": 0.7,
+   "fpr": 0.9333,
+   "auroc": 0.3074
+  },
+  "rrm fewshot L18 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.1667,
+   "tpr": 0.8,
+   "fpr": 0.9667,
+   "auroc": 0.4328
+  },
+  "rrm fewshot L18 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.2,
+   "tpr": 0.6833,
+   "fpr": 0.8833,
+   "auroc": 0.3626
+  },
+  "rrm fewshot L18 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.2167,
+   "tpr": 0.7,
+   "fpr": 0.9167,
+   "auroc": 0.3208
+  },
+  "rrm rules L18 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.0667,
+   "tpr": 0.9333,
+   "fpr": 1.0,
+   "auroc": 0.5311
+  },
+  "rrm rules L18 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.0167,
+   "tpr": 0.9833,
+   "fpr": 1.0,
+   "auroc": 0.4728
+  },
+  "rrm rules L18 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 16,
+   "J": 0.0,
+   "tpr": 1.0,
+   "fpr": 1.0,
+   "auroc": 0.4524
+  },
+  "rrm rules L18 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.0667,
+   "tpr": 0.9333,
+   "fpr": 1.0,
+   "auroc": 0.5436
+  },
+  "rrm rules L18 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 4,
+   "J": 0.0,
+   "tpr": 1.0,
+   "fpr": 1.0,
+   "auroc": 0.4776
+  },
+  "rrm rules L18 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 16,
+   "J": 0.0,
+   "tpr": 1.0,
+   "fpr": 1.0,
+   "auroc": 0.4446
+  },
+  "rrm rules L18 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.0667,
+   "tpr": 0.9333,
+   "fpr": 1.0,
+   "auroc": 0.5182
+  },
+  "rrm rules L18 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.0167,
+   "tpr": 0.9833,
+   "fpr": 1.0,
+   "auroc": 0.4629
+  },
+  "rrm rules L18 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 18,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 16,
+   "J": 0.0,
+   "tpr": 1.0,
+   "fpr": 1.0,
+   "auroc": 0.4689
+  },
+  "tftv L24 a-1": {
+   "method": "TFTV rank-one",
+   "l": 24,
+   "a": -1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.0451
+  },
+  "tftv L24 a-0.5": {
+   "method": "TFTV rank-one",
+   "l": 24,
+   "a": -0.5,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.0665
+  },
+  "tftv L24 a-0.2": {
+   "method": "TFTV rank-one",
+   "l": 24,
+   "a": -0.2,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.0375
+  },
+  "tftv L24 a-0.1": {
+   "method": "TFTV rank-one",
+   "l": 24,
+   "a": -0.1,
+   "J": -0.5667,
+   "tpr": 0.4333,
+   "fpr": 1.0,
+   "auroc": 0.0435
+  },
+  "tftv L24 a-0.05": {
+   "method": "TFTV rank-one",
+   "l": 24,
+   "a": -0.05,
+   "J": 0.0,
+   "tpr": 1.0,
+   "fpr": 1.0,
+   "auroc": 0.2067
+  },
+  "tftv L24 a0.05": {
+   "method": "TFTV rank-one",
+   "l": 24,
+   "a": 0.05,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.0826
+  },
+  "tftv L24 a0.1": {
+   "method": "TFTV rank-one",
+   "l": 24,
+   "a": 0.1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.1071
+  },
+  "tftv L24 a0.2": {
+   "method": "TFTV rank-one",
+   "l": 24,
+   "a": 0.2,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.0471
+  },
+  "tftv L24 a0.5": {
+   "method": "TFTV rank-one",
+   "l": 24,
+   "a": 0.5,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.0818
+  },
+  "tftv L24 a1": {
+   "method": "TFTV rank-one",
+   "l": 24,
+   "a": 1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.1483
+  },
+  "s2e L24 a-256": {
+   "method": "Steer2Edit rank-one",
+   "l": 24,
+   "a": -256,
+   "J": 0.0167,
+   "tpr": 0.05,
+   "fpr": 0.0333,
+   "auroc": 0.5236
+  },
+  "s2e L24 a-128": {
+   "method": "Steer2Edit rank-one",
+   "l": 24,
+   "a": -128,
+   "J": 0.1833,
+   "tpr": 0.4,
+   "fpr": 0.2167,
+   "auroc": 0.5454
+  },
+  "s2e L24 a-64": {
+   "method": "Steer2Edit rank-one",
+   "l": 24,
+   "a": -64,
+   "J": 0.1167,
+   "tpr": 0.5667,
+   "fpr": 0.45,
+   "auroc": 0.5789
+  },
+  "s2e L24 a-32": {
+   "method": "Steer2Edit rank-one",
+   "l": 24,
+   "a": -32,
+   "J": 0.0,
+   "tpr": 0.7667,
+   "fpr": 0.7667,
+   "auroc": 0.5926
+  },
+  "s2e L24 a-16": {
+   "method": "Steer2Edit rank-one",
+   "l": 24,
+   "a": -16,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.4535
+  },
+  "s2e L24 a-8": {
+   "method": "Steer2Edit rank-one",
+   "l": 24,
+   "a": -8,
+   "J": -0.05,
+   "tpr": 0.95,
+   "fpr": 1.0,
+   "auroc": 0.2951
+  },
+  "s2e L24 a8": {
+   "method": "Steer2Edit rank-one",
+   "l": 24,
+   "a": 8,
+   "J": -0.2833,
+   "tpr": 0.7167,
+   "fpr": 1.0,
+   "auroc": 0.2999
+  },
+  "s2e L24 a16": {
+   "method": "Steer2Edit rank-one",
+   "l": 24,
+   "a": 16,
+   "J": -0.3333,
+   "tpr": 0.6333,
+   "fpr": 0.9667,
+   "auroc": 0.3214
+  },
+  "s2e L24 a32": {
+   "method": "Steer2Edit rank-one",
+   "l": 24,
+   "a": 32,
+   "J": -0.35,
+   "tpr": 0.6,
+   "fpr": 0.95,
+   "auroc": 0.3571
+  },
+  "s2e L24 a64": {
+   "method": "Steer2Edit rank-one",
+   "l": 24,
+   "a": 64,
+   "J": -0.25,
+   "tpr": 0.5833,
+   "fpr": 0.8333,
+   "auroc": 0.3642
+  },
+  "gate+ L24 a0.25": {
+   "method": "gated rank-one",
+   "l": 24,
+   "a": 0.25,
+   "gate": "fires on positives, pushes toward call",
+   "J": -0.4333,
+   "tpr": 0.3667,
+   "fpr": 0.8,
+   "auroc": 0.2535
+  },
+  "gate- L24 a0.25": {
+   "method": "gated rank-one",
+   "l": 24,
+   "a": 0.25,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.25,
+   "tpr": 0.75,
+   "fpr": 1.0,
+   "auroc": 0.164
+  },
+  "gate+ L24 a0.5": {
+   "method": "gated rank-one",
+   "l": 24,
+   "a": 0.5,
+   "gate": "fires on positives, pushes toward call",
+   "J": -0.15,
+   "tpr": 0.2833,
+   "fpr": 0.4333,
+   "auroc": 0.3733
+  },
+  "gate- L24 a0.5": {
+   "method": "gated rank-one",
+   "l": 24,
+   "a": 0.5,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.4,
+   "tpr": 0.6,
+   "fpr": 1.0,
+   "auroc": 0.1465
+  },
+  "gate+ L24 a1": {
+   "method": "gated rank-one",
+   "l": 24,
+   "a": 1,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.0833,
+   "tpr": 0.1667,
+   "fpr": 0.0833,
+   "auroc": 0.4215
+  },
+  "gate- L24 a1": {
+   "method": "gated rank-one",
+   "l": 24,
+   "a": 1,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.4333,
+   "tpr": 0.4333,
+   "fpr": 0.8667,
+   "auroc": 0.1979
+  },
+  "gate+ L24 a2": {
+   "method": "gated rank-one",
+   "l": 24,
+   "a": 2,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.1333,
+   "tpr": 0.1333,
+   "fpr": 0.0,
+   "auroc": 0.5471
+  },
+  "gate- L24 a2": {
+   "method": "gated rank-one",
+   "l": 24,
+   "a": 2,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.3167,
+   "tpr": 0.3,
+   "fpr": 0.6167,
+   "auroc": 0.3251
+  },
+  "gate+ L24 a4": {
+   "method": "gated rank-one",
+   "l": 24,
+   "a": 4,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.1167,
+   "tpr": 0.1167,
+   "fpr": 0.0,
+   "auroc": 0.4004
+  },
+  "gate- L24 a4": {
+   "method": "gated rank-one",
+   "l": 24,
+   "a": 4,
+   "gate": "fires on negatives, pushes away from call",
+   "J": 0.0333,
+   "tpr": 0.2,
+   "fpr": 0.1667,
+   "auroc": 0.406
+  },
+  "rrm instruction L24 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.2333,
+   "tpr": 0.0,
+   "fpr": 0.2333,
+   "auroc": 0.0532
+  },
+  "rrm instruction L24 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.2,
+   "tpr": 0.0,
+   "fpr": 0.2,
+   "auroc": 0.1107
+  },
+  "rrm instruction L24 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.15,
+   "tpr": 0.0,
+   "fpr": 0.15,
+   "auroc": 0.1587
+  },
+  "rrm instruction L24 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.2333,
+   "tpr": 0.0,
+   "fpr": 0.2333,
+   "auroc": 0.0569
+  },
+  "rrm instruction L24 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.1833,
+   "tpr": 0.0,
+   "fpr": 0.1833,
+   "auroc": 0.1063
+  },
+  "rrm instruction L24 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.15,
+   "tpr": 0.0,
+   "fpr": 0.15,
+   "auroc": 0.1556
+  },
+  "rrm instruction L24 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.2333,
+   "tpr": 0.0,
+   "fpr": 0.2333,
+   "auroc": 0.0608
+  },
+  "rrm instruction L24 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.1833,
+   "tpr": 0.0,
+   "fpr": 0.1833,
+   "auroc": 0.1143
+  },
+  "rrm instruction L24 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.15,
+   "tpr": 0.0,
+   "fpr": 0.15,
+   "auroc": 0.154
+  },
+  "rrm fewshot L24 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.0167,
+   "tpr": 0.6,
+   "fpr": 0.6167,
+   "auroc": 0.4356
+  },
+  "rrm fewshot L24 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.3667,
+   "tpr": 0.3667,
+   "fpr": 0.7333,
+   "auroc": 0.3029
+  },
+  "rrm fewshot L24 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.3667,
+   "tpr": 0.3667,
+   "fpr": 0.7333,
+   "auroc": 0.2967
+  },
+  "rrm fewshot L24 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.0667,
+   "tpr": 0.6,
+   "fpr": 0.6667,
+   "auroc": 0.4151
+  },
+  "rrm fewshot L24 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.3667,
+   "tpr": 0.3667,
+   "fpr": 0.7333,
+   "auroc": 0.3046
+  },
+  "rrm fewshot L24 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.3667,
+   "tpr": 0.35,
+   "fpr": 0.7167,
+   "auroc": 0.295
+  },
+  "rrm fewshot L24 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.0833,
+   "tpr": 0.6,
+   "fpr": 0.6833,
+   "auroc": 0.3982
+  },
+  "rrm fewshot L24 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.35,
+   "tpr": 0.3667,
+   "fpr": 0.7167,
+   "auroc": 0.3081
+  },
+  "rrm fewshot L24 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.35,
+   "tpr": 0.35,
+   "fpr": 0.7,
+   "auroc": 0.3017
+  },
+  "rrm rules L24 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.0667,
+   "tpr": 0.9333,
+   "fpr": 1.0,
+   "auroc": 0.4024
+  },
+  "rrm rules L24 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.2569
+  },
+  "rrm rules L24 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.0667,
+   "tpr": 0.9333,
+   "fpr": 1.0,
+   "auroc": 0.3179
+  },
+  "rrm rules L24 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.0833,
+   "tpr": 0.9167,
+   "fpr": 1.0,
+   "auroc": 0.4008
+  },
+  "rrm rules L24 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.2596
+  },
+  "rrm rules L24 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.05,
+   "tpr": 0.95,
+   "fpr": 1.0,
+   "auroc": 0.3065
+  },
+  "rrm rules L24 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.0667,
+   "tpr": 0.9333,
+   "fpr": 1.0,
+   "auroc": 0.3835
+  },
+  "rrm rules L24 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.05,
+   "tpr": 0.95,
+   "fpr": 1.0,
+   "auroc": 0.266
+  },
+  "rrm rules L24 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 24,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.2997
+  },
+  "tftv L30 a-1": {
+   "method": "TFTV rank-one",
+   "l": 30,
+   "a": -1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.5987
+  },
+  "tftv L30 a-0.5": {
+   "method": "TFTV rank-one",
+   "l": 30,
+   "a": -0.5,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.5676
+  },
+  "tftv L30 a-0.2": {
+   "method": "TFTV rank-one",
+   "l": 30,
+   "a": -0.2,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.456
+  },
+  "tftv L30 a-0.1": {
+   "method": "TFTV rank-one",
+   "l": 30,
+   "a": -0.1,
+   "J": 0.2167,
+   "tpr": 1.0,
+   "fpr": 0.7833,
+   "auroc": 0.6965
+  },
+  "tftv L30 a-0.05": {
+   "method": "TFTV rank-one",
+   "l": 30,
+   "a": -0.05,
+   "J": 0.0,
+   "tpr": 1.0,
+   "fpr": 1.0,
+   "auroc": 0.64
+  },
+  "tftv L30 a0.05": {
+   "method": "TFTV rank-one",
+   "l": 30,
+   "a": 0.05,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.1992
+  },
+  "tftv L30 a0.1": {
+   "method": "TFTV rank-one",
+   "l": 30,
+   "a": 0.1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.2093
+  },
+  "tftv L30 a0.2": {
+   "method": "TFTV rank-one",
+   "l": 30,
+   "a": 0.2,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.2421
+  },
+  "tftv L30 a0.5": {
+   "method": "TFTV rank-one",
+   "l": 30,
+   "a": 0.5,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.2717
+  },
+  "tftv L30 a1": {
+   "method": "TFTV rank-one",
+   "l": 30,
+   "a": 1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.1514
+  },
+  "s2e L30 a-256": {
+   "method": "Steer2Edit rank-one",
+   "l": 30,
+   "a": -256,
+   "J": 0.0333,
+   "tpr": 0.0333,
+   "fpr": 0.0,
+   "auroc": 0.5618
+  },
+  "s2e L30 a-128": {
+   "method": "Steer2Edit rank-one",
+   "l": 30,
+   "a": -128,
+   "J": 0.0833,
+   "tpr": 0.0833,
+   "fpr": 0.0,
+   "auroc": 0.5714
+  },
+  "s2e L30 a-64": {
+   "method": "Steer2Edit rank-one",
+   "l": 30,
+   "a": -64,
+   "J": 0.0833,
+   "tpr": 0.0833,
+   "fpr": 0.0,
+   "auroc": 0.5753
+  },
+  "s2e L30 a-32": {
+   "method": "Steer2Edit rank-one",
+   "l": 30,
+   "a": -32,
+   "J": 0.0667,
+   "tpr": 0.0667,
+   "fpr": 0.0,
+   "auroc": 0.4415
+  },
+  "s2e L30 a-16": {
+   "method": "Steer2Edit rank-one",
+   "l": 30,
+   "a": -16,
+   "J": -0.55,
+   "tpr": 0.0833,
+   "fpr": 0.6333,
+   "auroc": 0.149
+  },
+  "s2e L30 a-8": {
+   "method": "Steer2Edit rank-one",
+   "l": 30,
+   "a": -8,
+   "J": -0.35,
+   "tpr": 0.65,
+   "fpr": 1.0,
+   "auroc": 0.2124
+  },
+  "s2e L30 a8": {
+   "method": "Steer2Edit rank-one",
+   "l": 30,
+   "a": 8,
+   "J": -0.1333,
+   "tpr": 0.8667,
+   "fpr": 1.0,
+   "auroc": 0.3664
+  },
+  "s2e L30 a16": {
+   "method": "Steer2Edit rank-one",
+   "l": 30,
+   "a": 16,
+   "J": -0.1333,
+   "tpr": 0.8667,
+   "fpr": 1.0,
+   "auroc": 0.4085
+  },
+  "s2e L30 a32": {
+   "method": "Steer2Edit rank-one",
+   "l": 30,
+   "a": 32,
+   "J": -0.1333,
+   "tpr": 0.8667,
+   "fpr": 1.0,
+   "auroc": 0.4458
+  },
+  "s2e L30 a64": {
+   "method": "Steer2Edit rank-one",
+   "l": 30,
+   "a": 64,
+   "J": -0.1667,
+   "tpr": 0.8333,
+   "fpr": 1.0,
+   "auroc": 0.5007
+  },
+  "gate+ L30 a0.25": {
+   "method": "gated rank-one",
+   "l": 30,
+   "a": 0.25,
+   "gate": "fires on positives, pushes toward call",
+   "J": -0.2333,
+   "tpr": 0.3167,
+   "fpr": 0.55,
+   "auroc": 0.3817
+  },
+  "gate- L30 a0.25": {
+   "method": "gated rank-one",
+   "l": 30,
+   "a": 0.25,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.35,
+   "tpr": 0.65,
+   "fpr": 1.0,
+   "auroc": 0.1796
+  },
+  "gate+ L30 a0.5": {
+   "method": "gated rank-one",
+   "l": 30,
+   "a": 0.5,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.05,
+   "tpr": 0.2,
+   "fpr": 0.15,
+   "auroc": 0.5546
+  },
+  "gate- L30 a0.5": {
+   "method": "gated rank-one",
+   "l": 30,
+   "a": 0.5,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.3833,
+   "tpr": 0.5167,
+   "fpr": 0.9,
+   "auroc": 0.2138
+  },
+  "gate+ L30 a1": {
+   "method": "gated rank-one",
+   "l": 30,
+   "a": 1,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.1,
+   "tpr": 0.1167,
+   "fpr": 0.0167,
+   "auroc": 0.6956
+  },
+  "gate- L30 a1": {
+   "method": "gated rank-one",
+   "l": 30,
+   "a": 1,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.2167,
+   "tpr": 0.4333,
+   "fpr": 0.65,
+   "auroc": 0.34
+  },
+  "gate+ L30 a2": {
+   "method": "gated rank-one",
+   "l": 30,
+   "a": 2,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.1,
+   "tpr": 0.1,
+   "fpr": 0.0,
+   "auroc": 0.5989
+  },
+  "gate- L30 a2": {
+   "method": "gated rank-one",
+   "l": 30,
+   "a": 2,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.0333,
+   "tpr": 0.2333,
+   "fpr": 0.2667,
+   "auroc": 0.509
+  },
+  "gate+ L30 a4": {
+   "method": "gated rank-one",
+   "l": 30,
+   "a": 4,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.0667,
+   "tpr": 0.0667,
+   "fpr": 0.0,
+   "auroc": 0.3917
+  },
+  "gate- L30 a4": {
+   "method": "gated rank-one",
+   "l": 30,
+   "a": 4,
+   "gate": "fires on negatives, pushes away from call",
+   "J": 0.0833,
+   "tpr": 0.1167,
+   "fpr": 0.0333,
+   "auroc": 0.6774
+  },
+  "rrm instruction L30 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.3167,
+   "tpr": 0.0,
+   "fpr": 0.3167,
+   "auroc": 0.0468
+  },
+  "rrm instruction L30 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.2667,
+   "tpr": 0.0,
+   "fpr": 0.2667,
+   "auroc": 0.1439
+  },
+  "rrm instruction L30 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.2167,
+   "tpr": 0.0,
+   "fpr": 0.2167,
+   "auroc": 0.1713
+  },
+  "rrm instruction L30 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.3167,
+   "tpr": 0.0,
+   "fpr": 0.3167,
+   "auroc": 0.0464
+  },
+  "rrm instruction L30 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.2667,
+   "tpr": 0.0,
+   "fpr": 0.2667,
+   "auroc": 0.1437
+  },
+  "rrm instruction L30 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.2167,
+   "tpr": 0.0,
+   "fpr": 0.2167,
+   "auroc": 0.17
+  },
+  "rrm instruction L30 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.3,
+   "tpr": 0.0,
+   "fpr": 0.3,
+   "auroc": 0.046
+  },
+  "rrm instruction L30 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.2667,
+   "tpr": 0.0,
+   "fpr": 0.2667,
+   "auroc": 0.1422
+  },
+  "rrm instruction L30 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.2333,
+   "tpr": 0.0,
+   "fpr": 0.2333,
+   "auroc": 0.1653
+  },
+  "rrm fewshot L30 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.5667,
+   "tpr": 0.25,
+   "fpr": 0.8167,
+   "auroc": 0.1329
+  },
+  "rrm fewshot L30 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.3167,
+   "tpr": 0.3167,
+   "fpr": 0.6333,
+   "auroc": 0.2994
+  },
+  "rrm fewshot L30 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.3333,
+   "tpr": 0.3,
+   "fpr": 0.6333,
+   "auroc": 0.3076
+  },
+  "rrm fewshot L30 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.5333,
+   "tpr": 0.2667,
+   "fpr": 0.8,
+   "auroc": 0.1464
+  },
+  "rrm fewshot L30 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.35,
+   "tpr": 0.2667,
+   "fpr": 0.6167,
+   "auroc": 0.2962
+  },
+  "rrm fewshot L30 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.3333,
+   "tpr": 0.3,
+   "fpr": 0.6333,
+   "auroc": 0.3051
+  },
+  "rrm fewshot L30 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.5,
+   "tpr": 0.2833,
+   "fpr": 0.7833,
+   "auroc": 0.1586
+  },
+  "rrm fewshot L30 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.35,
+   "tpr": 0.2833,
+   "fpr": 0.6333,
+   "auroc": 0.2968
+  },
+  "rrm fewshot L30 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.3667,
+   "tpr": 0.2833,
+   "fpr": 0.65,
+   "auroc": 0.3036
+  },
+  "rrm rules L30 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.0833,
+   "tpr": 0.9167,
+   "fpr": 1.0,
+   "auroc": 0.3804
+  },
+  "rrm rules L30 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.0167,
+   "tpr": 0.9833,
+   "fpr": 1.0,
+   "auroc": 0.2707
+  },
+  "rrm rules L30 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.334
+  },
+  "rrm rules L30 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.0833,
+   "tpr": 0.9167,
+   "fpr": 1.0,
+   "auroc": 0.3857
+  },
+  "rrm rules L30 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.0167,
+   "tpr": 0.9833,
+   "fpr": 1.0,
+   "auroc": 0.2749
+  },
+  "rrm rules L30 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.3197
+  },
+  "rrm rules L30 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.0833,
+   "tpr": 0.9167,
+   "fpr": 1.0,
+   "auroc": 0.391
+  },
+  "rrm rules L30 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.0167,
+   "tpr": 0.9833,
+   "fpr": 1.0,
+   "auroc": 0.2837
+  },
+  "rrm rules L30 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 30,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.314
+  },
+  "tftv L34 a-1": {
+   "method": "TFTV rank-one",
+   "l": 34,
+   "a": -1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.5663
+  },
+  "tftv L34 a-0.5": {
+   "method": "TFTV rank-one",
+   "l": 34,
+   "a": -0.5,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.5768
+  },
+  "tftv L34 a-0.2": {
+   "method": "TFTV rank-one",
+   "l": 34,
+   "a": -0.2,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.8921
+  },
+  "tftv L34 a-0.1": {
+   "method": "TFTV rank-one",
+   "l": 34,
+   "a": -0.1,
+   "J": 0.05,
+   "tpr": 0.05,
+   "fpr": 0.0,
+   "auroc": 0.94
+  },
+  "tftv L34 a-0.05": {
+   "method": "TFTV rank-one",
+   "l": 34,
+   "a": -0.05,
+   "J": 0.0,
+   "tpr": 1.0,
+   "fpr": 1.0,
+   "auroc": 0.7419
+  },
+  "tftv L34 a0.05": {
+   "method": "TFTV rank-one",
+   "l": 34,
+   "a": 0.05,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.1874
+  },
+  "tftv L34 a0.1": {
+   "method": "TFTV rank-one",
+   "l": 34,
+   "a": 0.1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.1024
+  },
+  "tftv L34 a0.2": {
+   "method": "TFTV rank-one",
+   "l": 34,
+   "a": 0.2,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.5133
+  },
+  "tftv L34 a0.5": {
+   "method": "TFTV rank-one",
+   "l": 34,
+   "a": 0.5,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.5928
+  },
+  "tftv L34 a1": {
+   "method": "TFTV rank-one",
+   "l": 34,
+   "a": 1,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.5788
+  },
+  "s2e L34 a-256": {
+   "method": "Steer2Edit rank-one",
+   "l": 34,
+   "a": -256,
+   "J": 0.0167,
+   "tpr": 0.0167,
+   "fpr": 0.0,
+   "auroc": 0.5346
+  },
+  "s2e L34 a-128": {
+   "method": "Steer2Edit rank-one",
+   "l": 34,
+   "a": -128,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.5221
+  },
+  "s2e L34 a-64": {
+   "method": "Steer2Edit rank-one",
+   "l": 34,
+   "a": -64,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.4839
+  },
+  "s2e L34 a-32": {
+   "method": "Steer2Edit rank-one",
+   "l": 34,
+   "a": -32,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.3725
+  },
+  "s2e L34 a-16": {
+   "method": "Steer2Edit rank-one",
+   "l": 34,
+   "a": -16,
+   "J": 0.0,
+   "tpr": 0.0,
+   "fpr": 0.0,
+   "auroc": 0.0606
+  },
+  "s2e L34 a-8": {
+   "method": "Steer2Edit rank-one",
+   "l": 34,
+   "a": -8,
+   "J": -0.3667,
+   "tpr": 0.0,
+   "fpr": 0.3667,
+   "auroc": 0.0657
+  },
+  "s2e L34 a8": {
+   "method": "Steer2Edit rank-one",
+   "l": 34,
+   "a": 8,
+   "J": -0.0833,
+   "tpr": 0.9167,
+   "fpr": 1.0,
+   "auroc": 0.4283
+  },
+  "s2e L34 a16": {
+   "method": "Steer2Edit rank-one",
+   "l": 34,
+   "a": 16,
+   "J": -0.0667,
+   "tpr": 0.9333,
+   "fpr": 1.0,
+   "auroc": 0.4128
+  },
+  "s2e L34 a32": {
+   "method": "Steer2Edit rank-one",
+   "l": 34,
+   "a": 32,
+   "J": -0.05,
+   "tpr": 0.85,
+   "fpr": 0.9,
+   "auroc": 0.5232
+  },
+  "s2e L34 a64": {
+   "method": "Steer2Edit rank-one",
+   "l": 34,
+   "a": 64,
+   "J": 0.1,
+   "tpr": 0.1333,
+   "fpr": 0.0333,
+   "auroc": 0.6453
+  },
+  "gate+ L34 a0.25": {
+   "method": "gated rank-one",
+   "l": 34,
+   "a": 0.25,
+   "gate": "fires on positives, pushes toward call",
+   "J": -0.0167,
+   "tpr": 0.3333,
+   "fpr": 0.35,
+   "auroc": 0.506
+  },
+  "gate- L34 a0.25": {
+   "method": "gated rank-one",
+   "l": 34,
+   "a": 0.25,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.35,
+   "tpr": 0.65,
+   "fpr": 1.0,
+   "auroc": 0.1631
+  },
+  "gate+ L34 a0.5": {
+   "method": "gated rank-one",
+   "l": 34,
+   "a": 0.5,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.15,
+   "tpr": 0.2,
+   "fpr": 0.05,
+   "auroc": 0.7153
+  },
+  "gate- L34 a0.5": {
+   "method": "gated rank-one",
+   "l": 34,
+   "a": 0.5,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.3333,
+   "tpr": 0.5333,
+   "fpr": 0.8667,
+   "auroc": 0.2314
+  },
+  "gate+ L34 a1": {
+   "method": "gated rank-one",
+   "l": 34,
+   "a": 1,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.15,
+   "tpr": 0.15,
+   "fpr": 0.0,
+   "auroc": 0.7331
+  },
+  "gate- L34 a1": {
+   "method": "gated rank-one",
+   "l": 34,
+   "a": 1,
+   "gate": "fires on negatives, pushes away from call",
+   "J": -0.1167,
+   "tpr": 0.3667,
+   "fpr": 0.4833,
+   "auroc": 0.4486
+  },
+  "gate+ L34 a2": {
+   "method": "gated rank-one",
+   "l": 34,
+   "a": 2,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.1333,
+   "tpr": 0.1333,
+   "fpr": 0.0,
+   "auroc": 0.4744
+  },
+  "gate- L34 a2": {
+   "method": "gated rank-one",
+   "l": 34,
+   "a": 2,
+   "gate": "fires on negatives, pushes away from call",
+   "J": 0.1667,
+   "tpr": 0.2333,
+   "fpr": 0.0667,
+   "auroc": 0.6833
+  },
+  "gate+ L34 a4": {
+   "method": "gated rank-one",
+   "l": 34,
+   "a": 4,
+   "gate": "fires on positives, pushes toward call",
+   "J": 0.0333,
+   "tpr": 0.0333,
+   "fpr": 0.0,
+   "auroc": 0.2844
+  },
+  "gate- L34 a4": {
+   "method": "gated rank-one",
+   "l": 34,
+   "a": 4,
+   "gate": "fires on negatives, pushes away from call",
+   "J": 0.1667,
+   "tpr": 0.1667,
+   "fpr": 0.0,
+   "auroc": 0.7536
+  },
+  "rrm instruction L34 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.2833,
+   "tpr": 0.0,
+   "fpr": 0.2833,
+   "auroc": 0.0494
+  },
+  "rrm instruction L34 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.2167,
+   "tpr": 0.0,
+   "fpr": 0.2167,
+   "auroc": 0.1301
+  },
+  "rrm instruction L34 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "instruction",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.1667,
+   "tpr": 0.0,
+   "fpr": 0.1667,
+   "auroc": 0.1536
+  },
+  "rrm instruction L34 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.2667,
+   "tpr": 0.0,
+   "fpr": 0.2667,
+   "auroc": 0.049
+  },
+  "rrm instruction L34 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.2333,
+   "tpr": 0.0,
+   "fpr": 0.2333,
+   "auroc": 0.1246
+  },
+  "rrm instruction L34 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "instruction",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.2,
+   "tpr": 0.0,
+   "fpr": 0.2,
+   "auroc": 0.1492
+  },
+  "rrm instruction L34 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.2667,
+   "tpr": 0.0,
+   "fpr": 0.2667,
+   "auroc": 0.0501
+  },
+  "rrm instruction L34 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.2333,
+   "tpr": 0.0,
+   "fpr": 0.2333,
+   "auroc": 0.12
+  },
+  "rrm instruction L34 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "instruction",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.2,
+   "tpr": 0.0,
+   "fpr": 0.2,
+   "auroc": 0.1428
+  },
+  "rrm fewshot L34 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.55,
+   "tpr": 0.15,
+   "fpr": 0.7,
+   "auroc": 0.1331
+  },
+  "rrm fewshot L34 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.3667,
+   "tpr": 0.25,
+   "fpr": 0.6167,
+   "auroc": 0.2557
+  },
+  "rrm fewshot L34 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "fewshot",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.3,
+   "tpr": 0.25,
+   "fpr": 0.55,
+   "auroc": 0.2581
+  },
+  "rrm fewshot L34 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.55,
+   "tpr": 0.1667,
+   "fpr": 0.7167,
+   "auroc": 0.1251
+  },
+  "rrm fewshot L34 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.3667,
+   "tpr": 0.2333,
+   "fpr": 0.6,
+   "auroc": 0.2558
+  },
+  "rrm fewshot L34 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.3167,
+   "tpr": 0.2333,
+   "fpr": 0.55,
+   "auroc": 0.2582
+  },
+  "rrm fewshot L34 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.5833,
+   "tpr": 0.15,
+   "fpr": 0.7333,
+   "auroc": 0.1147
+  },
+  "rrm fewshot L34 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.3333,
+   "tpr": 0.2333,
+   "fpr": 0.5667,
+   "auroc": 0.2569
+  },
+  "rrm fewshot L34 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "fewshot",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.3333,
+   "tpr": 0.2167,
+   "fpr": 0.55,
+   "auroc": 0.2582
+  },
+  "rrm rules L34 lam0.03 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 1,
+   "J": -0.1,
+   "tpr": 0.9,
+   "fpr": 1.0,
+   "auroc": 0.3469
+  },
+  "rrm rules L34 lam0.03 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 4,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.2496
+  },
+  "rrm rules L34 lam0.03 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "rules",
+   "lam": 0.03,
+   "r": 16,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.2939
+  },
+  "rrm rules L34 lam0.1 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 1,
+   "J": -0.0833,
+   "tpr": 0.9167,
+   "fpr": 1.0,
+   "auroc": 0.3679
+  },
+  "rrm rules L34 lam0.1 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.2725
+  },
+  "rrm rules L34 lam0.1 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.304
+  },
+  "rrm rules L34 lam0.3 r1": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 1,
+   "J": -0.0833,
+   "tpr": 0.9167,
+   "fpr": 1.0,
+   "auroc": 0.3979
+  },
+  "rrm rules L34 lam0.3 r4": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 4,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.2749
+  },
+  "rrm rules L34 lam0.3 r16": {
+   "method": "reduced-rank map (hook)",
+   "l": 34,
+   "teacher": "rules",
+   "lam": 0.3,
+   "r": 16,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.3
+  },
+  "cflora fewshot L12 lam0.1 r4": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 12,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.2989
+  },
+  "cflora fewshot L12 lam0.1 r16": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 12,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.1333,
+   "tpr": 0.8667,
+   "fpr": 1.0,
+   "auroc": 0.2847
+  },
+  "cflora fewshot L12 lam1 r4": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 12,
+   "teacher": "fewshot",
+   "lam": 1,
+   "r": 4,
+   "J": -0.1333,
+   "tpr": 0.8667,
+   "fpr": 1.0,
+   "auroc": 0.3076
+  },
+  "cflora fewshot L12 lam1 r16": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 12,
+   "teacher": "fewshot",
+   "lam": 1,
+   "r": 16,
+   "J": -0.15,
+   "tpr": 0.85,
+   "fpr": 1.0,
+   "auroc": 0.2939
+  },
+  "cflora rules L12 lam0.1 r4": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 12,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.2,
+   "tpr": 0.8,
+   "fpr": 1.0,
+   "auroc": 0.2722
+  },
+  "cflora rules L12 lam0.1 r16": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 12,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.1833,
+   "tpr": 0.8167,
+   "fpr": 1.0,
+   "auroc": 0.2861
+  },
+  "cflora rules L12 lam1 r4": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 12,
+   "teacher": "rules",
+   "lam": 1,
+   "r": 4,
+   "J": -0.1667,
+   "tpr": 0.8333,
+   "fpr": 1.0,
+   "auroc": 0.2743
+  },
+  "cflora rules L12 lam1 r16": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 12,
+   "teacher": "rules",
+   "lam": 1,
+   "r": 16,
+   "J": -0.1667,
+   "tpr": 0.8333,
+   "fpr": 1.0,
+   "auroc": 0.2839
+  },
+  "cflora fewshot L18 lam0.1 r4": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 18,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.1333,
+   "tpr": 0.7,
+   "fpr": 0.8333,
+   "auroc": 0.3929
+  },
+  "cflora fewshot L18 lam0.1 r16": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 18,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.2667,
+   "tpr": 0.65,
+   "fpr": 0.9167,
+   "auroc": 0.2986
+  },
+  "cflora fewshot L18 lam1 r4": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 18,
+   "teacher": "fewshot",
+   "lam": 1,
+   "r": 4,
+   "J": -0.1833,
+   "tpr": 0.7167,
+   "fpr": 0.9,
+   "auroc": 0.4004
+  },
+  "cflora fewshot L18 lam1 r16": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 18,
+   "teacher": "fewshot",
+   "lam": 1,
+   "r": 16,
+   "J": -0.2333,
+   "tpr": 0.7,
+   "fpr": 0.9333,
+   "auroc": 0.3008
+  },
+  "cflora rules L18 lam0.1 r4": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 18,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.0167,
+   "tpr": 0.9833,
+   "fpr": 1.0,
+   "auroc": 0.5064
+  },
+  "cflora rules L18 lam0.1 r16": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 18,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 16,
+   "J": 0.0,
+   "tpr": 1.0,
+   "fpr": 1.0,
+   "auroc": 0.4417
+  },
+  "cflora rules L18 lam1 r4": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 18,
+   "teacher": "rules",
+   "lam": 1,
+   "r": 4,
+   "J": -0.05,
+   "tpr": 0.95,
+   "fpr": 1.0,
+   "auroc": 0.4925
+  },
+  "cflora rules L18 lam1 r16": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 18,
+   "teacher": "rules",
+   "lam": 1,
+   "r": 16,
+   "J": 0.0,
+   "tpr": 1.0,
+   "fpr": 1.0,
+   "auroc": 0.4739
+  },
+  "cflora fewshot L24 lam0.1 r4": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 24,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.4,
+   "tpr": 0.3333,
+   "fpr": 0.7333,
+   "auroc": 0.3043
+  },
+  "cflora fewshot L24 lam0.1 r16": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 24,
+   "teacher": "fewshot",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.3667,
+   "tpr": 0.3667,
+   "fpr": 0.7333,
+   "auroc": 0.2929
+  },
+  "cflora fewshot L24 lam1 r4": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 24,
+   "teacher": "fewshot",
+   "lam": 1,
+   "r": 4,
+   "J": -0.3333,
+   "tpr": 0.3667,
+   "fpr": 0.7,
+   "auroc": 0.3074
+  },
+  "cflora fewshot L24 lam1 r16": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 24,
+   "teacher": "fewshot",
+   "lam": 1,
+   "r": 16,
+   "J": -0.3333,
+   "tpr": 0.3833,
+   "fpr": 0.7167,
+   "auroc": 0.299
+  },
+  "cflora rules L24 lam0.1 r4": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 24,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 4,
+   "J": -0.0333,
+   "tpr": 0.9667,
+   "fpr": 1.0,
+   "auroc": 0.2482
+  },
+  "cflora rules L24 lam0.1 r16": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 24,
+   "teacher": "rules",
+   "lam": 0.1,
+   "r": 16,
+   "J": -0.05,
+   "tpr": 0.95,
+   "fpr": 1.0,
+   "auroc": 0.3069
+  },
+  "cflora rules L24 lam1 r4": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 24,
+   "teacher": "rules",
+   "lam": 1,
+   "r": 4,
+   "J": -0.05,
+   "tpr": 0.95,
+   "fpr": 1.0,
+   "auroc": 0.2776
+  },
+  "cflora rules L24 lam1 r16": {
+   "method": "closed-form LoRA (no labels)",
+   "l": 24,
+   "teacher": "rules",
+   "lam": 1,
+   "r": 16,
+   "J": -0.05,
+   "tpr": 0.95,
+   "fpr": 1.0,
+   "auroc": 0.3
+  }
+ },
+ "selected": {
+  "no patch": {
+   "config": null,
+   "dev": {
+    "tpr": 0.85,
+    "tpr_ci": [
+     0.7389,
+     0.919
+    ],
+    "fpr": 1.0,
+    "fpr_ci": [
+     0.9398,
+     1.0
+    ],
+    "auroc": 0.2882,
+    "n_pos": 60,
+    "n_neg": 60,
+    "J": -0.15
+   },
+   "adversarial": {
+    "tpr": 0.54,
+    "tpr_ci": [
+     0.404,
+     0.6703
+    ],
+    "fpr": 0.9143,
+    "fpr_ci": [
+     0.8253,
+     0.9601
+    ],
+    "auroc": 0.1541,
+    "n_pos": 50,
+    "n_neg": 70
+   },
+   "contrast": {
+    "tpr": 0.3833,
+    "tpr_ci": [
+     0.2709,
+     0.5098
+    ],
+    "fpr": 0.75,
+    "fpr_ci": [
+     0.6277,
+     0.8422
+    ],
+    "auroc": 0.2025,
+    "n_pos": 60,
+    "n_neg": 60
+   },
+   "style2": {
+    "tpr": 0.775,
+    "tpr_ci": [
+     0.625,
+     0.8768
+    ],
+    "fpr": 0.95,
+    "fpr_ci": [
+     0.835,
+     0.9862
+    ],
+    "auroc": 0.385,
+    "n_pos": 40,
+    "n_neg": 40
+   },
+   "test": {
+    "tpr": 0.75,
+    "tpr_ci": [
+     0.6656,
+     0.8189
+    ],
+    "fpr": 0.9667,
+    "fpr_ci": [
+     0.9174,
+     0.987
+    ],
+    "auroc": 0.3323,
+    "n_pos": 120,
+    "n_neg": 120
+   },
+   "cantanswer": {
+    "fpr": 0.18,
+    "n": 100
+   },
+   "test_e2e": {
+    "called": 0.7583,
+    "used": 0.5917,
+    "used_ci": [
+     0.5022,
+     0.6754
+    ]
+   }
+  },
+  "best prompt on dev (rules)": {
+   "config": null,
+   "dev": {
+    "tpr": 0.95,
+    "tpr_ci": [
+     0.863,
+     0.9829
+    ],
+    "fpr": 1.0,
+    "fpr_ci": [
+     0.9398,
+     1.0
+    ],
+    "auroc": 0.3036,
+    "n_pos": 60,
+    "n_neg": 60,
+    "J": -0.05
+   },
+   "adversarial": {
+    "tpr": 0.68,
+    "tpr_ci": [
+     0.5419,
+     0.7924
+    ],
+    "fpr": 1.0,
+    "fpr_ci": [
+     0.948,
+     1.0
+    ],
+    "auroc": 0.0866,
+    "n_pos": 50,
+    "n_neg": 70
+   },
+   "contrast": {
+    "tpr": 0.5333,
+    "tpr_ci": [
+     0.4089,
+     0.6537
+    ],
+    "fpr": 0.9667,
+    "fpr_ci": [
+     0.8864,
+     0.9908
+    ],
+    "auroc": 0.1419,
+    "n_pos": 60,
+    "n_neg": 60
+   },
+   "style2": {
+    "tpr": 0.85,
+    "tpr_ci": [
+     0.7093,
+     0.9294
+    ],
+    "fpr": 1.0,
+    "fpr_ci": [
+     0.9124,
+     1.0
+    ],
+    "auroc": 0.4122,
+    "n_pos": 40,
+    "n_neg": 40
+   },
+   "test": {
+    "tpr": 0.8417,
+    "tpr_ci": [
+     0.7659,
+     0.8962
+    ],
+    "fpr": 1.0,
+    "fpr_ci": [
+     0.969,
+     1.0
+    ],
+    "auroc": 0.3832,
+    "n_pos": 120,
+    "n_neg": 120
+   },
+   "cantanswer": {
+    "fpr": 0.42,
+    "n": 100
+   },
+   "test_e2e": {
+    "called": 0.9,
+    "used": 0.675,
+    "used_ci": [
+     0.5869,
+     0.7522
+    ]
+   }
+  },
+  "TFTV rank-one [tftv L30 a-0.1]": {
+   "config": "tftv L30 a-0.1",
+   "dev": {
+    "method": "TFTV rank-one",
+    "l": 30,
+    "a": -0.1,
+    "J": 0.2167,
+    "tpr": 1.0,
+    "fpr": 0.7833,
+    "auroc": 0.6965
+   },
+   "adversarial": {
+    "tpr": 1.0,
+    "tpr_ci": [
+     0.9286,
+     1.0
+    ],
+    "fpr": 0.9143,
+    "fpr_ci": [
+     0.8253,
+     0.9601
+    ],
+    "auroc": 0.634,
+    "n_pos": 50,
+    "n_neg": 70
+   },
+   "contrast": {
+    "tpr": 1.0,
+    "tpr_ci": [
+     0.9398,
+     1.0
+    ],
+    "fpr": 1.0,
+    "fpr_ci": [
+     0.9398,
+     1.0
+    ],
+    "auroc": 0.5111,
+    "n_pos": 60,
+    "n_neg": 60
+   },
+   "style2": {
+    "tpr": 0.9,
+    "tpr_ci": [
+     0.7695,
+     0.9604
+    ],
+    "fpr": 0.9,
+    "fpr_ci": [
+     0.7695,
+     0.9604
+    ],
+    "auroc": 0.4663,
+    "n_pos": 40,
+    "n_neg": 40
+   },
+   "test": {
+    "tpr": 1.0,
+    "tpr_ci": [
+     0.969,
+     1.0
+    ],
+    "fpr": 0.7833,
+    "fpr_ci": [
+     0.7015,
+     0.8476
+    ],
+    "auroc": 0.6574,
+    "n_pos": 120,
+    "n_neg": 120
+   },
+   "cantanswer": {
+    "fpr": 0.98,
+    "n": 100
+   },
+   "test_e2e": {
+    "called": 1.0,
+    "used": 0.7833,
+    "used_ci": [
+     0.7015,
+     0.8476
+    ]
+   }
+  },
+  "Steer2Edit rank-one [s2e L12 a64]": {
+   "config": "s2e L12 a64",
+   "dev": {
+    "method": "Steer2Edit rank-one",
+    "l": 12,
+    "a": 64,
+    "J": 0.2667,
+    "tpr": 0.9167,
+    "fpr": 0.65,
+    "auroc": 0.6215
+   },
+   "adversarial": {
+    "tpr": 0.58,
+    "tpr_ci": [
+     0.4423,
+     0.7063
+    ],
+    "fpr": 0.4571,
+    "fpr_ci": [
+     0.3457,
+     0.573
+    ],
+    "auroc": 0.6426,
+    "n_pos": 50,
+    "n_neg": 70
+   },
+   "contrast": {
+    "tpr": 0.8167,
+    "tpr_ci": [
+     0.7008,
+     0.8944
+    ],
+    "fpr": 0.5333,
+    "fpr_ci": [
+     0.4089,
+     0.6537
+    ],
+    "auroc": 0.6283,
+    "n_pos": 60,
+    "n_neg": 60
+   },
+   "style2": {
+    "tpr": 0.825,
+    "tpr_ci": [
+     0.6805,
+     0.9125
+    ],
+    "fpr": 0.6,
+    "fpr_ci": [
+     0.446,
+     0.7365
+    ],
+    "auroc": 0.6322,
+    "n_pos": 40,
+    "n_neg": 40
+   },
+   "test": {
+    "tpr": 0.8,
+    "tpr_ci": [
+     0.7196,
+     0.8618
+    ],
+    "fpr": 0.6333,
+    "fpr_ci": [
+     0.5442,
+     0.7142
+    ],
+    "auroc": 0.6017,
+    "n_pos": 120,
+    "n_neg": 120
+   },
+   "cantanswer": {
+    "fpr": 0.55,
+    "n": 100
+   },
+   "test_e2e": {
+    "called": 0.825,
+    "used": 0.5917,
+    "used_ci": [
+     0.5022,
+     0.6754
+    ]
+   }
+  },
+  "gated rank-one [gate- L12 a4]": {
+   "config": "gate- L12 a4",
+   "dev": {
+    "method": "gated rank-one",
+    "l": 12,
+    "a": 4,
+    "gate": "fires on negatives, pushes away from call",
+    "J": 0.7333,
+    "tpr": 0.8167,
+    "fpr": 0.0833,
+    "auroc": 0.9276
+   },
+   "adversarial": {
+    "tpr": 0.3,
+    "tpr_ci": [
+     0.191,
+     0.4375
+    ],
+    "fpr": 0.4,
+    "fpr_ci": [
+     0.2933,
+     0.5171
+    ],
+    "auroc": 0.4744,
+    "n_pos": 50,
+    "n_neg": 70
+   },
+   "contrast": {
+    "tpr": 0.35,
+    "tpr_ci": [
+     0.2417,
+     0.4764
+    ],
+    "fpr": 0.25,
+    "fpr_ci": [
+     0.1578,
+     0.3723
+    ],
+    "auroc": 0.6989,
+    "n_pos": 60,
+    "n_neg": 60
+   },
+   "style2": {
+    "tpr": 0.775,
+    "tpr_ci": [
+     0.625,
+     0.8768
+    ],
+    "fpr": 0.1,
+    "fpr_ci": [
+     0.0396,
+     0.2305
+    ],
+    "auroc": 0.8856,
+    "n_pos": 40,
+    "n_neg": 40
+   },
+   "test": {
+    "tpr": 0.7833,
+    "tpr_ci": [
+     0.7015,
+     0.8476
+    ],
+    "fpr": 0.175,
+    "fpr_ci": [
+     0.1174,
+     0.2528
+    ],
+    "auroc": 0.8746,
+    "n_pos": 120,
+    "n_neg": 120
+   },
+   "cantanswer": {
+    "fpr": 0.28,
+    "n": 100
+   },
+   "test_e2e": {
+    "called": 0.8,
+    "used": 0.5917,
+    "used_ci": [
+     0.5022,
+     0.6754
+    ]
+   }
+  },
+  "reduced-rank map (hook) [rrm rules L18 lam0.03 r16]": {
+   "config": "rrm rules L18 lam0.03 r16",
+   "dev": {
+    "method": "reduced-rank map (hook)",
+    "l": 18,
+    "teacher": "rules",
+    "lam": 0.03,
+    "r": 16,
+    "J": 0.0,
+    "tpr": 1.0,
+    "fpr": 1.0,
+    "auroc": 0.4524
+   },
+   "adversarial": {
+    "tpr": 0.94,
+    "tpr_ci": [
+     0.8378,
+     0.9794
+    ],
+    "fpr": 1.0,
+    "fpr_ci": [
+     0.948,
+     1.0
+    ],
+    "auroc": 0.1693,
+    "n_pos": 50,
+    "n_neg": 70
+   },
+   "contrast": {
+    "tpr": 0.8833,
+    "tpr_ci": [
+     0.7782,
+     0.9423
+    ],
+    "fpr": 0.9667,
+    "fpr_ci": [
+     0.8864,
+     0.9908
+    ],
+    "auroc": 0.3779,
+    "n_pos": 60,
+    "n_neg": 60
+   },
+   "style2": {
+    "tpr": 0.95,
+    "tpr_ci": [
+     0.835,
+     0.9862
+    ],
+    "fpr": 1.0,
+    "fpr_ci": [
+     0.9124,
+     1.0
+    ],
+    "auroc": 0.55,
+    "n_pos": 40,
+    "n_neg": 40
+   },
+   "test": {
+    "tpr": 0.9833,
+    "tpr_ci": [
+     0.9413,
+     0.9954
+    ],
+    "fpr": 1.0,
+    "fpr_ci": [
+     0.969,
+     1.0
+    ],
+    "auroc": 0.4861,
+    "n_pos": 120,
+    "n_neg": 120
+   },
+   "cantanswer": {
+    "fpr": 0.69,
+    "n": 100
+   },
+   "test_e2e": {
+    "called": 0.9917,
+    "used": 0.8083,
+    "used_ci": [
+     0.7288,
+     0.8688
+    ]
+   }
+  },
+  "closed-form LoRA (no labels) [cflora rules L18 lam0.1 r16]": {
+   "config": "cflora rules L18 lam0.1 r16",
+   "dev": {
+    "method": "closed-form LoRA (no labels)",
+    "l": 18,
+    "teacher": "rules",
+    "lam": 0.1,
+    "r": 16,
+    "J": 0.0,
+    "tpr": 1.0,
+    "fpr": 1.0,
+    "auroc": 0.4417
+   },
+   "adversarial": {
+    "tpr": 0.92,
+    "tpr_ci": [
+     0.8116,
+     0.9685
+    ],
+    "fpr": 1.0,
+    "fpr_ci": [
+     0.948,
+     1.0
+    ],
+    "auroc": 0.1657,
+    "n_pos": 50,
+    "n_neg": 70
+   },
+   "contrast": {
+    "tpr": 0.8833,
+    "tpr_ci": [
+     0.7782,
+     0.9423
+    ],
+    "fpr": 0.9833,
+    "fpr_ci": [
+     0.9114,
+     0.9971
+    ],
+    "auroc": 0.3694,
+    "n_pos": 60,
+    "n_neg": 60
+   },
+   "style2": {
+    "tpr": 0.95,
+    "tpr_ci": [
+     0.835,
+     0.9862
+    ],
+    "fpr": 1.0,
+    "fpr_ci": [
+     0.9124,
+     1.0
+    ],
+    "auroc": 0.5403,
+    "n_pos": 40,
+    "n_neg": 40
+   },
+   "test": {
+    "tpr": 0.9833,
+    "tpr_ci": [
+     0.9413,
+     0.9954
+    ],
+    "fpr": 1.0,
+    "fpr_ci": [
+     0.969,
+     1.0
+    ],
+    "auroc": 0.4851,
+    "n_pos": 120,
+    "n_neg": 120
+   },
+   "cantanswer": {
+    "fpr": 0.71,
+    "n": 100
+   },
+   "test_e2e": {
+    "called": 0.9833,
+    "used": 0.7583,
+    "used_ci": [
+     0.6745,
+     0.8261
+    ]
+   }
+  }
+ }
+}

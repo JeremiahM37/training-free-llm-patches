@@ -1,8 +1,8 @@
-# Next actions (updated 2026-11-08)
+# Next actions (updated 2026-11-09)
 
 In order of value per cost:
-1. **A harder held-out split** (adversarial-style, new domains, written fresh): the test split is spent and too easy for Qwen3-8B (unpatched used .87). Needed to separate methods at 8B.
-2. **Per-model selection on SmolLM3** (dev-only sweep of layer, rank, λ, α): E012 shows frozen recipes fail there; the open question is whether selection fixes it or the model's decision is simply not linearly accessible at the first token.
+1. **E016 on hard2 (written, running)**: write up; then E015-style selection for Qwen3-8B if hard2 separates methods. Old item: **a harder held-out split** (adversarial-style, new domains, written fresh): the test split is spent and too easy for Qwen3-8B (unpatched used .87). Needed to separate methods at 8B.
+2. **Done (E015).** Per-model selection on SmolLM3 (dev-only sweep of layer, rank, λ, α): E012 shows frozen recipes fail there; the open question is whether selection fixes it or the model's decision is simply not linearly accessible at the first token.
 3. Second reading wave: ~150 papers from `literature/reading_queue_index.jsonl.gz` and the citation-graph forward list (no hardware).
 4. RRM hook latency measurement; CF-LoRA vs RRM gap (hook-free distillation is the obvious next method).
 5. Fix the E005 grid-edge alphas — done in E013 (same α, interior); drop.

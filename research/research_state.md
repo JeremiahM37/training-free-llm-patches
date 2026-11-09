@@ -1,4 +1,4 @@
-# Research state (2026-11-08, evening)
+# Research state (2026-11-09)
 
 **Status:** ongoing. The first draft exists (`reports/final/draft.md`); the scaling phase and a second reading wave are still open. Nothing runs between sessions; no scheduler is configured.
 
@@ -9,7 +9,10 @@
 - Experiments E001-E011 on Qwen2.5-0.5B/1.5B/3B and Qwen3-4B, all recorded in `results/interpretations/log.md`. E011 is the single use of the sealed test split.
 - Reviewer reproduction: `repro/tables.py` (no packages, 1 s) and `repro/quick.py` (laptop CPU, ~14 min, 5.6 GB peak, measured from a fresh pinned install).
 
-**Not done:** a harder held-out split; per-model selection for SmolLM3; anything above 8B; second reading wave (~150 papers).
+- E015: per-model dev selection on SmolLM3: probe AUROC 1.00 but model output .29; a labelled suppressive gated edit cuts test FPR .97 -> .18; label-free imitation is bounded by its teacher.
+- hard2 split (160 items, 80 matched pairs, 4 hard kinds, new domains) written; E016 runs frozen recipes on it for Qwen3-4B and Qwen3-8B.
+
+**Not done:** E016 write-up; anything above 8B; second reading wave (~150 papers).
 
 **Current understanding (measured, still small models):**
 - On a capable model a short prompt beats every tested zero-token patch for a single behaviour (sealed test: rules prompt 93% end-to-end).
@@ -18,6 +21,6 @@
 - The conditional rank-one edit decides well but breaks the call it then writes (11% used).
 - Many behaviours: prompts collapse as K grows; patches win at K ≤ 4 but a router or probe wins beyond about 16.
 - E013: constant shift and random rank-4 maps of the same spectrum recover ~25% of the prompt's gain, the learned map ~100%; MMLU 0/400 changed.
-- Recipes are model-specific: transfer to Qwen3-8B frozen, fail on SmolLM3-3B.
+- Recipes are model-specific: transfer to Qwen3-8B frozen, fail on SmolLM3-3B. Dev-only selection fixes SmolLM3's over-calling only with a labelled suppressive gate; the decision is linearly present (probe 1.00) but the model's output ignores it.
 - Patches cannot replace the tool schema (0/90 valid calls without it).
 - Conditional closed-form rank-one edits (SteerEdit) and prompt-to-weights ridge compilation (ICC) are prior art.

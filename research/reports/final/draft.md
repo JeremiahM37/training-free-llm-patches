@@ -172,6 +172,32 @@ Same frozen recipes and layer indices, on Qwen3-8B with LLM.int8 weights except 
 
 At 8B the behaviour is nearly saturated on this split; only false positives are left to fix. Within the family the label-free recipes transfer to twice the scale without re-selection: CF-LoRA and RRM bring FPR from .08 to about zero with use unchanged, matching the few-shot prompt at zero tokens. The gated edit again breaks the call it writes, and TFTV's frozen α again shuts calling off. A harder split is needed to separate methods at this scale.
 
+### 5.3d Per-model selection on SmolLM3 (E015)
+
+Is SmolLM3's failure in E012 the recipes' fault or the model's? Two measurements, all selection on dev only (J = TPR − FPR at 0, 309 candidate configurations over layer, α, rank, λ and teacher prompt):
+
+**The information is there; the readout is wrong.** A logistic probe on the last-token residual, fitted on the 80 train labels, separates dev perfectly from layer 17 on (AUROC 1.00; adversarial .88, contrast .99). The model's own first-token decision on the same dev prompts has AUROC .29. Prompts do not repair it: the instruction suppresses calling entirely (TPR 0), the rules prompt calls on everything (FPR 1.00), few-shot sits between (.22 / .50).
+
+Selected configurations, test split (120 + 120), with held-out FPR on the other splits:
+
+| method (dev-selected config) | dev J | test TPR | test FPR [95% CI] | AUROC | adv. FPR | contrast FPR | can't-answer FPR | used [95% CI] |
+|---|---|---|---|---|---|---|---|---|
+| no patch | −.15 | .75 | .97 [.92, .99] | .33 | .91 | .75 | .18 | .59 [.50, .68] |
+| best prompt (rules) | −.05 | .84 | 1.00 | .38 | 1.00 | .97 | .42 | .68 [.59, .75] |
+| TFTV (L30, α −.1) | .22 | 1.00 | .78 | .66 | .91 | 1.00 | .98 | .78 |
+| Steer2Edit (L12, α 64) | .27 | .80 | .63 | .60 | .46 | .53 | .55 | .59 |
+| **gated rank-one, suppressive gate (L12, α 4)** | **.73** | .78 | **.18 [.12, .25]** | **.87** | .40 | .25 | .28 | .59 [.50, .68] |
+| RRM hook (rules teacher, L18, r16) | .00 | .98 | 1.00 | .49 | 1.00 | .97 | .69 | .81 |
+| CF-LoRA (rules teacher, L18, r16) | .00 | .98 | 1.00 | .49 | 1.00 | .98 | .71 | .76 |
+| TF-IDF (E012, decision only) | | .89 | .05 | .98 | | | | |
+
+Three readings:
+- **The label-free methods are bounded by their teacher.** RRM and CF-LoRA imitate a prompt; on SmolLM3 no prompt is a good teacher (best dev J −.05), so the best they can select is "call on everything". Their higher "used" is that, not a better decision.
+- **A labelled, gated edit does fix it.** With the gate fitted to fire on negatives and push away from the call, one rank-one weight edit cuts false calls on test from 97% to 18% at unchanged recall and unchanged end-to-end use, and it holds on adversarial and contrast pairs. It does not break the call it writes here (used .59 = no patch), unlike the call-promoting gate on Qwen.
+- It is still well short of a text classifier (FPR .05), the selected setting is narrow (α 2 at the same layer gives dev J .40), and the can't-answer FPR rises from .18 to .28.
+
+So "training-free" transfers as a procedure (a fixed recipe plus a dev-only sweep, minutes on one GPU), not as a configuration. Which method family wins depends on the model's failure mode: imitation where a prompt already works (Qwen), a labelled suppressive gate where no prompt does (SmolLM3).
+
 ### 5.4 Many behaviours at once (E006, CLINC150)
 
 Each of K intents triggers a distinct code word as the reply's first token. We compare all K rules in the prompt, a router that inserts one rule, K-rank patches, and a linear probe on the same keys.
