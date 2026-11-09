@@ -10,9 +10,9 @@
 - Reviewer reproduction: `repro/tables.py` (no packages, 1 s) and `repro/quick.py` (laptop CPU, ~14 min, 5.6 GB peak, measured from a fresh pinned install).
 
 - E015: per-model dev selection on SmolLM3: probe AUROC 1.00 but model output .29; a labelled suppressive gated edit cuts test FPR .97 -> .18; label-free imitation is bounded by its teacher.
-- hard2 split (160 items, 80 matched pairs, 4 hard kinds, new domains) written; E016 runs frozen recipes on it for Qwen3-4B and Qwen3-8B.
+- E016 on hard2 (fresh, 160 items): RRM matches or beats its few-shot teacher at 4B (.45 vs .39 used) and 8B (.53 vs .45); no method handles the fact already being in the conversation history.
 
-**Not done:** E016 write-up; anything above 8B; second reading wave (~150 papers).
+**Not done:** history-aware fitting (in_context); anything above 8B; second reading wave (~150 papers).
 
 **Current understanding (measured, still small models):**
 - On a capable model a short prompt beats every tested zero-token patch for a single behaviour (sealed test: rules prompt 93% end-to-end).

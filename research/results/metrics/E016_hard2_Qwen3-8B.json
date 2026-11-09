@@ -1,0 +1,783 @@
+{
+ "meta": {
+  "time": "2026-11-09T00:26:12",
+  "model": "Qwen/Qwen3-8B",
+  "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+  "host": "cachyos-x8664",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "torch": "2.15.0+cu132",
+  "data_sha": "495973f52419077d",
+  "config": {
+   "exp": "E016",
+   "split": "hard2",
+   "note": "frozen E011 recipes on the hard2 split; history rendered before the final message",
+   "layer_map": {
+    "21": 21,
+    "25": 25,
+    "34": 34
+   },
+   "load_8bit": true,
+   "keep_bf16_layers": "21,25,34"
+  }
+ },
+ "methods": {
+  "no patch": {
+   "tpr": 0.775,
+   "tpr_ci": [
+    0.6721,
+    0.8527
+   ],
+   "fpr": 0.55,
+   "fpr_ci": [
+    0.4412,
+    0.6542
+   ],
+   "auroc": 0.6873,
+   "n_pos": 80,
+   "n_neg": 80,
+   "by_kind": {
+    "buried": {
+     "tpr": 0.9,
+     "tpr_ci": [
+      0.699,
+      0.9721
+     ],
+     "fpr": 0.6,
+     "fpr_ci": [
+      0.3866,
+      0.7812
+     ],
+     "auroc": 0.7788,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "decoy": {
+     "tpr": 0.55,
+     "tpr_ci": [
+      0.3421,
+      0.7418
+     ],
+     "fpr": 0.7,
+     "fpr_ci": [
+      0.481,
+      0.8545
+     ],
+     "auroc": 0.3313,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "in_context": {
+     "tpr": 0.65,
+     "tpr_ci": [
+      0.4329,
+      0.8188
+     ],
+     "fpr": 0.85,
+     "fpr_ci": [
+      0.6396,
+      0.9476
+     ],
+     "auroc": 0.4013,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "multilingual": {
+     "tpr": 1.0,
+     "tpr_ci": [
+      0.8389,
+      1.0
+     ],
+     "fpr": 0.05,
+     "fpr_ci": [
+      0.0089,
+      0.2361
+     ],
+     "auroc": 0.9975,
+     "n_pos": 20,
+     "n_neg": 20
+    }
+   },
+   "called": 0.825,
+   "executed": 0.575,
+   "used": 0.4375,
+   "use_ci": [
+    0.3341,
+    0.5466
+   ],
+   "frozen_from": "-"
+  },
+  "few-shot prompt": {
+   "tpr": 0.7875,
+   "tpr_ci": [
+    0.6858,
+    0.8629
+   ],
+   "fpr": 0.3375,
+   "fpr_ci": [
+    0.2435,
+    0.4464
+   ],
+   "auroc": 0.8239,
+   "n_pos": 80,
+   "n_neg": 80,
+   "by_kind": {
+    "buried": {
+     "tpr": 0.85,
+     "tpr_ci": [
+      0.6396,
+      0.9476
+     ],
+     "fpr": 0.5,
+     "fpr_ci": [
+      0.2993,
+      0.7007
+     ],
+     "auroc": 0.8263,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "decoy": {
+     "tpr": 0.5,
+     "tpr_ci": [
+      0.2993,
+      0.7007
+     ],
+     "fpr": 0.0,
+     "fpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "auroc": 0.9725,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "in_context": {
+     "tpr": 0.8,
+     "tpr_ci": [
+      0.584,
+      0.9193
+     ],
+     "fpr": 0.85,
+     "fpr_ci": [
+      0.6396,
+      0.9476
+     ],
+     "auroc": 0.5188,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "multilingual": {
+     "tpr": 1.0,
+     "tpr_ci": [
+      0.8389,
+      1.0
+     ],
+     "fpr": 0.0,
+     "fpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "auroc": 1.0,
+     "n_pos": 20,
+     "n_neg": 20
+    }
+   },
+   "called": 0.775,
+   "executed": 0.55,
+   "used": 0.45,
+   "use_ci": [
+    0.3458,
+    0.5588
+   ],
+   "frozen_from": "E001/E007 teacher"
+  },
+  "rules prompt": {
+   "tpr": 0.775,
+   "tpr_ci": [
+    0.6721,
+    0.8527
+   ],
+   "fpr": 0.475,
+   "fpr_ci": [
+    0.3692,
+    0.583
+   ],
+   "auroc": 0.7486,
+   "n_pos": 80,
+   "n_neg": 80,
+   "by_kind": {
+    "buried": {
+     "tpr": 0.95,
+     "tpr_ci": [
+      0.7639,
+      0.9911
+     ],
+     "fpr": 0.75,
+     "fpr_ci": [
+      0.5313,
+      0.8881
+     ],
+     "auroc": 0.8188,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "decoy": {
+     "tpr": 0.3,
+     "tpr_ci": [
+      0.1455,
+      0.519
+     ],
+     "fpr": 0.25,
+     "fpr_ci": [
+      0.1119,
+      0.4687
+     ],
+     "auroc": 0.6087,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "in_context": {
+     "tpr": 0.85,
+     "tpr_ci": [
+      0.6396,
+      0.9476
+     ],
+     "fpr": 0.9,
+     "fpr_ci": [
+      0.699,
+      0.9721
+     ],
+     "auroc": 0.4275,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "multilingual": {
+     "tpr": 1.0,
+     "tpr_ci": [
+      0.8389,
+      1.0
+     ],
+     "fpr": 0.0,
+     "fpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "auroc": 1.0,
+     "n_pos": 20,
+     "n_neg": 20
+    }
+   },
+   "called": 0.7875,
+   "executed": 0.5625,
+   "used": 0.4,
+   "use_ci": [
+    0.2996,
+    0.5095
+   ],
+   "frozen_from": "best of 4 on dev, E003"
+  },
+  "TFTV rank-one (L34, a=.05)": {
+   "tpr": 0.1625,
+   "tpr_ci": [
+    0.0975,
+    0.2584
+   ],
+   "fpr": 0.0125,
+   "fpr_ci": [
+    0.0022,
+    0.0675
+   ],
+   "auroc": 0.7378,
+   "n_pos": 80,
+   "n_neg": 80,
+   "by_kind": {
+    "buried": {
+     "tpr": 0.0,
+     "tpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "fpr": 0.0,
+     "fpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "auroc": 0.8175,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "decoy": {
+     "tpr": 0.0,
+     "tpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "fpr": 0.0,
+     "fpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "auroc": 0.52,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "in_context": {
+     "tpr": 0.0,
+     "tpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "fpr": 0.05,
+     "fpr_ci": [
+      0.0089,
+      0.2361
+     ],
+     "auroc": 0.43,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "multilingual": {
+     "tpr": 0.65,
+     "tpr_ci": [
+      0.4329,
+      0.8188
+     ],
+     "fpr": 0.0,
+     "fpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "auroc": 0.9975,
+     "n_pos": 20,
+     "n_neg": 20
+    }
+   },
+   "called": 0.2125,
+   "executed": 0.0375,
+   "used": 0.125,
+   "use_ci": [
+    0.0693,
+    0.215
+   ],
+   "frozen_from": "E005 dev selection"
+  },
+  "Steer2Edit rank-one (L25, a=-32)": {
+   "tpr": 0.8375,
+   "tpr_ci": [
+    0.7416,
+    0.9025
+   ],
+   "fpr": 0.625,
+   "fpr_ci": [
+    0.5155,
+    0.7231
+   ],
+   "auroc": 0.653,
+   "n_pos": 80,
+   "n_neg": 80,
+   "by_kind": {
+    "buried": {
+     "tpr": 0.9,
+     "tpr_ci": [
+      0.699,
+      0.9721
+     ],
+     "fpr": 0.75,
+     "fpr_ci": [
+      0.5313,
+      0.8881
+     ],
+     "auroc": 0.7175,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "decoy": {
+     "tpr": 0.7,
+     "tpr_ci": [
+      0.481,
+      0.8545
+     ],
+     "fpr": 0.85,
+     "fpr_ci": [
+      0.6396,
+      0.9476
+     ],
+     "auroc": 0.21,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "in_context": {
+     "tpr": 0.75,
+     "tpr_ci": [
+      0.5313,
+      0.8881
+     ],
+     "fpr": 0.85,
+     "fpr_ci": [
+      0.6396,
+      0.9476
+     ],
+     "auroc": 0.38,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "multilingual": {
+     "tpr": 1.0,
+     "tpr_ci": [
+      0.8389,
+      1.0
+     ],
+     "fpr": 0.05,
+     "fpr_ci": [
+      0.0089,
+      0.2361
+     ],
+     "auroc": 0.9975,
+     "n_pos": 20,
+     "n_neg": 20
+    }
+   },
+   "called": 0.85,
+   "executed": 0.6125,
+   "used": 0.4875,
+   "use_ci": [
+    0.3811,
+    0.5951
+   ],
+   "frozen_from": "E005 dev selection"
+  },
+  "gated rank-one (L34, a=1)": {
+   "tpr": 0.25,
+   "tpr_ci": [
+    0.1681,
+    0.3548
+   ],
+   "fpr": 0.0375,
+   "fpr_ci": [
+    0.0128,
+    0.1045
+   ],
+   "auroc": 0.8,
+   "n_pos": 80,
+   "n_neg": 80,
+   "by_kind": {
+    "buried": {
+     "tpr": 0.0,
+     "tpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "fpr": 0.0,
+     "fpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "auroc": 0.8062,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "decoy": {
+     "tpr": 0.15,
+     "tpr_ci": [
+      0.0524,
+      0.3604
+     ],
+     "fpr": 0.0,
+     "fpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "auroc": 0.78,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "in_context": {
+     "tpr": 0.15,
+     "tpr_ci": [
+      0.0524,
+      0.3604
+     ],
+     "fpr": 0.15,
+     "fpr_ci": [
+      0.0524,
+      0.3604
+     ],
+     "auroc": 0.5263,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "multilingual": {
+     "tpr": 0.7,
+     "tpr_ci": [
+      0.481,
+      0.8545
+     ],
+     "fpr": 0.0,
+     "fpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "auroc": 1.0,
+     "n_pos": 20,
+     "n_neg": 20
+    }
+   },
+   "called": 0.725,
+   "executed": 0.1125,
+   "used": 0.0,
+   "use_ci": [
+    0.0,
+    0.0458
+   ],
+   "frozen_from": "E002 dev selection"
+  },
+  "closed-form LoRA, no labels (r16, L21)": {
+   "tpr": 0.7375,
+   "tpr_ci": [
+    0.6318,
+    0.8214
+   ],
+   "fpr": 0.2875,
+   "fpr_ci": [
+    0.1999,
+    0.3946
+   ],
+   "auroc": 0.8149,
+   "n_pos": 80,
+   "n_neg": 80,
+   "by_kind": {
+    "buried": {
+     "tpr": 0.85,
+     "tpr_ci": [
+      0.6396,
+      0.9476
+     ],
+     "fpr": 0.25,
+     "fpr_ci": [
+      0.1119,
+      0.4687
+     ],
+     "auroc": 0.8537,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "decoy": {
+     "tpr": 0.6,
+     "tpr_ci": [
+      0.3866,
+      0.7812
+     ],
+     "fpr": 0.2,
+     "fpr_ci": [
+      0.0807,
+      0.416
+     ],
+     "auroc": 0.7575,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "in_context": {
+     "tpr": 0.5,
+     "tpr_ci": [
+      0.2993,
+      0.7007
+     ],
+     "fpr": 0.7,
+     "fpr_ci": [
+      0.481,
+      0.8545
+     ],
+     "auroc": 0.4525,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "multilingual": {
+     "tpr": 1.0,
+     "tpr_ci": [
+      0.8389,
+      1.0
+     ],
+     "fpr": 0.0,
+     "fpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "auroc": 1.0,
+     "n_pos": 20,
+     "n_neg": 20
+    }
+   },
+   "called": 0.7125,
+   "executed": 0.4875,
+   "used": 0.3875,
+   "use_ci": [
+    0.2882,
+    0.4971
+   ],
+   "frozen_from": "E010 holdout-R2 selection"
+  },
+  "reduced-rank map at decision token, hook (r4, L34)": {
+   "tpr": 0.825,
+   "tpr_ci": [
+    0.7274,
+    0.8928
+   ],
+   "fpr": 0.375,
+   "fpr_ci": [
+    0.2769,
+    0.4845
+   ],
+   "auroc": 0.7969,
+   "n_pos": 80,
+   "n_neg": 80,
+   "by_kind": {
+    "buried": {
+     "tpr": 0.9,
+     "tpr_ci": [
+      0.699,
+      0.9721
+     ],
+     "fpr": 0.55,
+     "fpr_ci": [
+      0.3421,
+      0.7418
+     ],
+     "auroc": 0.8338,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "decoy": {
+     "tpr": 0.65,
+     "tpr_ci": [
+      0.4329,
+      0.8188
+     ],
+     "fpr": 0.2,
+     "fpr_ci": [
+      0.0807,
+      0.416
+     ],
+     "auroc": 0.8338,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "in_context": {
+     "tpr": 0.8,
+     "tpr_ci": [
+      0.584,
+      0.9193
+     ],
+     "fpr": 0.75,
+     "fpr_ci": [
+      0.5313,
+      0.8881
+     ],
+     "auroc": 0.4212,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "multilingual": {
+     "tpr": 0.95,
+     "tpr_ci": [
+      0.7639,
+      0.9911
+     ],
+     "fpr": 0.0,
+     "fpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "auroc": 0.9975,
+     "n_pos": 20,
+     "n_neg": 20
+    }
+   },
+   "called": 0.875,
+   "executed": 0.625,
+   "used": 0.525,
+   "use_ci": [
+    0.417,
+    0.6308
+   ],
+   "frozen_from": "E007 config"
+  },
+  "TF-IDF classifier (decision only, separate model)": {
+   "tpr": 0.7,
+   "tpr_ci": [
+    0.5923,
+    0.7894
+   ],
+   "fpr": 0.4625,
+   "fpr_ci": [
+    0.3575,
+    0.571
+   ],
+   "auroc": 0.7037,
+   "n_pos": 80,
+   "n_neg": 80,
+   "by_kind": {
+    "buried": {
+     "tpr": 0.75,
+     "tpr_ci": [
+      0.5313,
+      0.8881
+     ],
+     "fpr": 0.7,
+     "fpr_ci": [
+      0.481,
+      0.8545
+     ],
+     "auroc": 0.6575,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "decoy": {
+     "tpr": 1.0,
+     "tpr_ci": [
+      0.8389,
+      1.0
+     ],
+     "fpr": 0.15,
+     "fpr_ci": [
+      0.0524,
+      0.3604
+     ],
+     "auroc": 0.9875,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "in_context": {
+     "tpr": 1.0,
+     "tpr_ci": [
+      0.8389,
+      1.0
+     ],
+     "fpr": 1.0,
+     "fpr_ci": [
+      0.8389,
+      1.0
+     ],
+     "auroc": 0.5,
+     "n_pos": 20,
+     "n_neg": 20
+    },
+    "multilingual": {
+     "tpr": 0.05,
+     "tpr_ci": [
+      0.0089,
+      0.2361
+     ],
+     "fpr": 0.0,
+     "fpr_ci": [
+      0.0,
+      0.1611
+     ],
+     "auroc": 0.8125,
+     "n_pos": 20,
+     "n_neg": 20
+    }
+   },
+   "frozen_from": "E003 config, fit on train"
+  }
+ }
+}

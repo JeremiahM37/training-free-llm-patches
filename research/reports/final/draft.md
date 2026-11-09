@@ -198,6 +198,36 @@ Three readings:
 
 So "training-free" transfers as a procedure (a fixed recipe plus a dev-only sweep, minutes on one GPU), not as a configuration. Which method family wins depends on the model's failure mode: imitation where a prompt already works (Qwen), a labelled suppressive gate where no prompt does (SmolLM3).
 
+### 5.3e A harder held-out split (E016, hard2)
+
+The original test split is spent and near ceiling at 8B. `hard2` is a fresh split never used for any selection: 80 matched pairs (160 items) in 15 domains absent from all other splits, of four kinds (20 pairs each):
+- **in_context:** the needed fact is, or is not, already in this conversation's earlier turns;
+- **multilingual:** Spanish, French, German, Portuguese;
+- **buried:** one reference to an earlier conversation inside a 60–120-word message;
+- **decoy:** memory-sounding words with no memory need, against implicit references such as "same as last time".
+
+The decoy negatives are formulaic ("I remember …, right?"). Frozen E011 configurations, history rendered before the final message for every method. TPR / FPR / used, with 95% CIs on used (80 positives):
+
+| method | Qwen3-4B TPR / FPR | used [95% CI] | Qwen3-8B (8-bit) TPR / FPR | used [95% CI] |
+|---|---|---|---|---|
+| no patch | .43 / .23 | .21 [.14, .31] | .78 / .55 | .44 [.33, .55] |
+| few-shot prompt (119 tokens) | .66 / .19 | .39 [.29, .50] | .79 / .34 | .45 [.35, .56] |
+| rules prompt | .80 / .58 | .45 [.35, .56] | .78 / .48 | .40 [.30, .51] |
+| TFTV | .56 / .48 | .29 | .16 / .01 | .13 |
+| Steer2Edit | .81 / .68 | .49 | .84 / .63 | .49 |
+| gated rank-one | .55 / .20 | .03 [.01, .09] | .25 / .04 | .00 [.00, .05] |
+| CF-LoRA r16 | .60 / .38 | .31 [.22, .42] | .74 / .29 | .39 [.29, .50] |
+| **RRM r4 hook (0 tokens)** | .75 / .30 | **.45 [.35, .56]** | .83 / .38 | **.53 [.42, .63]** |
+| TF-IDF (final message only) | .70 / .46 | | .70 / .46 | |
+
+The split works: the text classifier drops from .89/.05 to .70/.46, and both models lose most of their end-to-end success (4B .21, 8B .44 used). Four readings:
+- **The zero-token map again matches or exceeds the few-shot prompt it imitates**, at both scales (.45 vs .39 at 4B, .53 vs .45 at 8B; the intervals overlap, so "matches" is the supported claim). It is the best or tied-best method on "used" at both sizes, with no re-selection.
+- **No method handles in_context.** Every method, prompts included, fires about as often when the fact is already in the conversation as when it is not (e.g. 8B no patch .65 vs .85, RRM .80 vs .75). All patches here act on the final message's decision token and none was fitted with history, so this is a behaviour the current methods do not reach, not one they get wrong in degree.
+- **Multilingual is the easy kind:** fitted on English only, no patch, few-shot, CF-LoRA and RRM keep TPR ≥ .90 at FPR ≤ .05 on both models. The gated edit (TPR .75 / .70) and TFTV at 8B (.65) lose recall; rules and Steer2Edit on 4B raise FPR (.40 / .50).
+- **The known failure modes reproduce on new data:** the gated rank-one edit decides but does not complete the call (used .03 / .00), and TFTV's frozen α suppresses calling at 8B.
+
+The results are summary rates only; per-item outcomes were not saved, so paired tests between methods are not available for E016.
+
 ### 5.4 Many behaviours at once (E006, CLINC150)
 
 Each of K intents triggers a distinct code word as the reply's first token. We compare all K rules in the prompt, a router that inserts one rule, K-rank patches, and a linear probe on the same keys.
