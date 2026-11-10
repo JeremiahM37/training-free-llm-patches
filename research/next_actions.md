@@ -1,9 +1,9 @@
 # Next actions (updated 2026-11-09)
 
 In order of value per cost:
-1. **History:** E018 probe router works on Qwen3-4B (n=20). Replicated on Qwen3-8B (done). Next: a second natural in_context test set (n is small); check it does not hurt no-history items (route only when history exists, which is trivially true now).
+1. **History:** E018 probe router works on Qwen3-4B (n=20). Replicated on Qwen3-8B (done). Next: rerun E018 on `hard3_ic` (40 new natural pairs, written and validated) with `SPLIT=hard3_ic`, Qwen3-4B (COLLECT_BS=4) and Qwen3-8B (8-bit). The run was interrupted when cachy went offline 2026-11-09. Position against Probe&Prefill 2605.09252 (same method), now credited in the draft.
 2. **Done (E015).** Per-model selection on SmolLM3 (dev-only sweep of layer, rank, λ, α): E012 shows frozen recipes fail there; the open question is whether selection fixes it or the model's decision is simply not linearly accessible at the first token.
-3. Second reading wave: ~150 papers from `literature/reading_queue_index.jsonl.gz` and the citation-graph forward list (no hardware).
+3. Reading wave 2 done (C1-C4, 63 papers). Remaining queue is mostly off-topic; read 2602.04935 (ASA) if its arXiv id resolves.
 4. RRM hook latency measurement; CF-LoRA vs RRM gap (hook-free distillation is the obvious next method).
 5. Fix the E005 grid-edge alphas — done in E013 (same α, interior); drop.
 

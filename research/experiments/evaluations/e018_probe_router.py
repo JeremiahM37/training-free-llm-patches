@@ -11,7 +11,7 @@ from sklearn.metrics import roc_auc_score
 NAME = sys.argv[1] if len(sys.argv) > 1 else "Qwen/Qwen3-4B-Instruct-2507"; torch.manual_seed(0)
 model, tok = load(NAME); NL = len(model.model.layers); LS = sorted(set(range(2, NL, 3)) | {NL - 1})
 HF = read("history_fit"); FIT, SEL = [r for r in HF if r["pair"] <= 20], [r for r in HF if r["pair"] > 20]
-HIC = [r for r in read("hard2") if r["kind"] == "in_context"]; ans = {r["pair"]: r["answer_substr"] for r in HIC if r["label"] == 1}
+SPLIT = os.environ.get("SPLIT", "hard2"); HIC = [r for r in read(SPLIT) if r["kind"] == "in_context"]; ans = {r["pair"]: r["answer_substr"] for r in HIC if r["label"] == 1}
 y = lambda rows: np.array([r["label"] for r in rows]); RN = lambda r: render(tok, r["prompt"], extra=r["history"])
 RF = lambda r: render_cond(tok, r["prompt"], "fewshot", r["history"])
 Hf, Hs, Ht = (collect(model, tok, [RN(r) for r in rows], LS)[1] for rows in (FIT, SEL, HIC))
@@ -23,7 +23,7 @@ for l in LS:
     if best is None or a > best[1]: best = (l, a, clf, float(thr))
 L, _, clf, THR = best; print("probe layer", L, "sel AUROC", round(best[1], 4), "thr", round(THR, 3), flush=True)
 ps = clf.decision_function(Ht[L].numpy()); route = ps >= THR
-out["router"] = {"layer": L, "threshold": THR, "hard2_in_context": {**rates(ps - THR, y(HIC)), "per_item": {r["id"]: round(float(x), 3) for r, x in zip(HIC, ps)}}}
+out["router"] = {"layer": L, "threshold": THR, "split": SPLIT, "in_context": {**rates(ps - THR, y(HIC)), "per_item": {r["id"]: round(float(x), 3) for r, x in zip(HIC, ps)}}}
 tc = tok.convert_tokens_to_ids("<tool_call>")
 def run(texts, rows, force):  # force[i]: True -> call forced, False -> call masked, None -> model decides
     gens = []
@@ -42,7 +42,7 @@ def run(texts, rows, force):  # force[i]: True -> call forced, False -> call mas
                 ok = int(r["answer_substr"].lower() in a.lower() and "<tool_call>" not in a)
             res[r["id"]] = {"called": int(c is not None), "used": ok}
         else:
-            res[r["id"]] = {"called": int(c is not None), "answered_from_context": int(c is None and ans[r["pair"]].lower() in t.lower())}
+            res[r["id"]] = {"called": int(c is not None), "answered_from_context": int(c is None and r.get("context_answer", ans[r["pair"]]).lower() in t.lower())}
     return res
 ARMS = {"no patch": ([RN(r) for r in HIC], [None] * len(HIC)), "few-shot prompt": ([RF(r) for r in HIC], [None] * len(HIC)),
         "probe router": ([RN(r) for r in HIC], [bool(x) for x in route])}
@@ -53,4 +53,4 @@ for name, (T, F) in ARMS.items():
             "used": round(np.mean([v["used"] for v in P]), 4), "used_ci": wilson(sum(v["used"] for v in P), len(P)),
             "neg_answered_from_context": round(np.mean([v["answered_from_context"] for v in N]), 4)}
     out["arms"][name] = {**summ, "per_item": res}; print("ARM", f"{name:16s}", summ, flush=True)
-save("E018_router_" + NAME.split("/")[-1], out); print("E018_DONE")
+save("E018_router_" + ("" if SPLIT == "hard2" else SPLIT + "_") + NAME.split("/")[-1], out); print("E018_DONE")

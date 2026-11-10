@@ -13,7 +13,7 @@ Five findings.
 4. **A prompt can be distilled into a zero-token map without labels or gradients.** A rank-4 map fitted only from paired forward passes (the hand-written few-shot prompt is the teacher, so its information enters through the prompt) is statistically indistinguishable from that 119-token prompt at zero prompt tokens: 87% vs 83% end-to-end on 120 test positives (95% CIs [.79, .92] and [.75, .88]). Controls show the gain is the learned map's: a constant shift or random rank-4 maps with the same singular values reach 31%, the learned map 74%, on 150 non-test positives (E013), and no MMLU answer changed. It needs a runtime hook. A hook-free closed-form LoRA recovers less of the gain, and no MMLU drop was detected (400 items; a few-point drop would not be resolvable).
 5. **Patches have hard limits.** A conditional rank-one edit that decides correctly can wreck the call that follows (11% end-to-end). With the value construction tested, no patch produced a valid call without the tool schema (0/90). The recipes transferred to Qwen3-8B without re-selection, but not to a second model family (SmolLM3-3B). With many behaviours at once, patches beat an all-rules prompt at small K but fall behind a linear probe on the same features by K = 16 (ranges overlap at K = 4 and against the router at K = 16).
 
-Conditional closed-form weight edits (SteerEdit) and prompt-to-weights ridge compilation (ICC) are prior art. We do not claim them; our contribution is the controlled comparison, the state-dependence measurement, and the limits.
+Conditional closed-form weight edits (SteerEdit) and prompt-to-weights ridge compilation (ICC) are prior art. We do not claim them; our contribution is the controlled comparison, the state-dependence measurement, and the limits. Probe-gated control of the call decision (Probe&Prefill 2605.09252) and the readable-but-not-acted-on gap (2605.14038) are also prior art. We add the in-conversation case.
 
 ## 1. Question and scope
 
@@ -33,6 +33,12 @@ Methods in scope need no gradient training. All fitting is forward passes plus c
 - **Steering compiled into weights:** Arditi et al. 2406.11717, TFTV 2609.09054 and Steer2Edit 2602.09870 are unconditional. SteerEdit 2604.12359 is trigger-conditional, with null-space constraints, and is used for backdoors.
 - **Prompts compiled into weights:** In-Context Compilation (Findings of EMNLP 2026) uses closed-form ridge on last-token activations into attention output rows. SELF-PARAM 2410.00487 and Doc-to-LoRA 2602.15902 use gradients or meta-trained hypernetworks. PSR 2605.03907 trains a gated rank-1 mimic of a prompt.
 - **Tool use:** PRISMS 2608.00218 detects tool misuse from a few neurons and steers with a separate probe. Heading-specific steering 2607.05790 suppresses tool calls.
+- **Reading and steering the call decision (found in the second reading wave, after E018 was run):**
+  - Probe&Prefill 2605.09252 is the closest prior method to our E018 router. A linear probe on the pre-generation hidden state reads tool necessity (AUROC .89–.96 across six models) and gates a prefilled steering sentence. It cuts calls by 38% at 1.7% accuracy loss.
+  - 2605.14038 reports the knowing-doing gap we see in E017/E017b. Necessity and the call action are both linearly decodable, but their probe directions are nearly orthogonal in late layers at the last token, and most mismatches arise between cognition and action.
+  - 2608.25198 controls the call rate from near 0% to over 90% with a single training-free residual direction, in both directions. 2605.07990 reads and steers which tool is chosen from tool-vector centroids. 2610.09624 traces the call decision to a vector shaped by suppression of a scaffold-set prior.
+  - SAKIKO 2609.36138 audits router-conditioned steering of K-way pre-execution tool decisions. It finds linear decodability does not imply steerability, and on Qwen3-8B an output-score (logit-shift) baseline matches activation steering on net gain.
+  - None of these tests whether the needed fact is already in the conversation. That case is ours (E016–E018).
 
 `reports/progress/landscape.md` gives the map built from 30k harvested records and 128 papers read.
 
@@ -260,7 +266,7 @@ Results on hard2's 20 in_context pairs, never used for any choice:
 
 The router beats no patch (15 items better, 1 worse, exact McNemar p = .0005) and the few-shot prompt (10 better, 2 worse, p = .04) on end-to-end use, with the same false-call rate as few-shot. It adds no prompt tokens: one 2,560-wide logistic probe read at the decision token, plus a constrained first token.
 
-It is a router, not a weight patch, which repeats §5.4: when a signal is linearly present but the patches cannot steer the model with it, reading it out and acting on it directly works. The caveats:
+It is a router, not a weight patch, which repeats §5.4: when a signal is linearly present but the patches cannot steer the model with it, reading it out and acting on it directly works. The method is not new. Probe&Prefill (2605.09252) gates a prefill on a linear probe in the same way, and 2605.14038 describes the same knowing-doing gap. What E017/E018 add is the in-conversation case, a router that acts in both directions (forcing and masking the call), and end-to-end scoring. The caveats:
 - n is small (20 pairs).
 - The probe needs labelled history pairs (40 here).
 - Answering from context when the call is suppressed is no better than without the router (.40 vs .45), so on 4B the router fixes the decision, not the answer.
