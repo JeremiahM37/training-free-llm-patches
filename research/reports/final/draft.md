@@ -243,9 +243,27 @@ With 20 natural pairs the intervals are wide (e.g. RRM TPR .40 [.22, .61]). The 
 - no selected patch beats chance even on the selection pairs (best dev J: gates .05, RRM .00);
 - on hard2 in_context, AUROC is .41–.51 for every patch and .45–.56 for every prompt.
 
-So the limit is not the template: the presence of a fact in the conversation is linearly readable at the decision token, but none of these patches, nor a prompt, makes Qwen3-4B act on it. Promising next steps (not tried):
-- **a probe-gated router** (§5.4 already shows routers winning at many behaviours);
-- **an intervention on the history positions** rather than on the final token.
+So the limit is not the template: the presence of a fact in the conversation is linearly readable at the decision token, but none of these patches, nor a prompt, makes Qwen3-4B act on it. Two directions follow: **a probe-gated router** (tested next, E018) and **an intervention on the history positions** rather than on the final token (not tried).
+
+**E018, a probe-gated router does act on it.** The policy:
+1. A logistic probe on the last-token residual decides. It is fitted on the 20 natural fit pairs, with the layer (L20) and threshold chosen on the other 20.
+2. "Fact absent" means the call is forced: decoding starts with `<tool_call>`.
+3. "Fact present" means the `<tool_call>` token is masked, and the model answers from the conversation.
+
+Results on hard2's 20 in_context pairs, never used for any choice:
+
+| arm | calls when the fact is absent | calls when it is present | used [95% CI] | fact-present items answered from context |
+|---|---|---|---|---|
+| no patch | .05 | .05 | .05 [.01, .24] | .45 |
+| few-shot prompt | .35 | .25 | .35 [.18, .57] | .40 |
+| **probe router** | .75 | .25 | **.75 [.53, .89]** | .40 |
+
+The router beats no patch (15 items better, 1 worse, exact McNemar p = .0005) and the few-shot prompt (10 better, 2 worse, p = .04) on end-to-end use, with the same false-call rate as few-shot. It adds no prompt tokens: one 2,560-wide logistic probe read at the decision token, plus a constrained first token.
+
+It is a router, not a weight patch, which repeats §5.4: when a signal is linearly present but the patches cannot steer the model with it, reading it out and acting on it directly works. The caveats:
+- n is small (20 pairs).
+- The probe needs labelled history pairs (40 here).
+- Answering from context when the call is suppressed is no better than without the router (.40 vs .45), so the router fixes the decision, not the answer.
 
 ### 5.4 Many behaviours at once (E006, CLINC150)
 

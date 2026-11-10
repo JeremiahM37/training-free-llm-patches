@@ -12,9 +12,10 @@
 - E015: per-model dev selection on SmolLM3: probe AUROC 1.00 but model output .29; a labelled suppressive gated edit cuts test FPR .97 -> .18; label-free imitation is bounded by its teacher.
 - E016 on hard2 (fresh, 160 items): RRM matches or beats its few-shot teacher at 4B (.45 vs .39 used) and 8B (.53 vs .45); no method handles the fact already being in the conversation history.
 
-- E017: history-aware fitting on synthetic pairs: learned perfectly (probe 1.00, RRM at teacher) but does not transfer to natural in-context pairs (AUROC ~.5); E017b with natural fit pairs: probe .8 on hard2, yet no patch or prompt acts on it. Negative, reported as a limitation.
+- E017: history-aware fitting on synthetic pairs: learned perfectly (probe 1.00, RRM at teacher) but does not transfer to natural in-context pairs (AUROC ~.5); E017b with natural fit pairs: probe .8 on hard2, yet no patch or prompt acts on it. Negative for patches.
+- E018: a probe-gated router (probe at L20 -> force or mask the call) fixes it: used .75 vs .35 few-shot (McNemar p=.04) and .05 no patch, n=20 pairs.
 
-**Not done:** probe-gated router / history-position interventions for in_context; anything above 8B; second reading wave (~150 papers).
+**Not done:** history-position interventions; router on 8B; anything above 8B; second reading wave (~150 papers).
 
 **Current understanding (measured, still small models):**
 - On a capable model a short prompt beats every tested zero-token patch for a single behaviour (sealed test: rules prompt 93% end-to-end).

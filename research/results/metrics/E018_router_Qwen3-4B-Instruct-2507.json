@@ -1,0 +1,607 @@
+{
+ "meta": {
+  "time": "2026-11-09T17:44:11",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "host": "cachyos-x8664",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "torch": "2.15.0+cu132",
+  "data_sha": "6857203e9b0306b9",
+  "config": {
+   "exp": "E018"
+  }
+ },
+ "probe": {
+  "2": 0.7875,
+  "5": 0.9475,
+  "8": 0.985,
+  "11": 0.9575,
+  "14": 0.9775,
+  "17": 0.9725,
+  "20": 0.9925,
+  "23": 0.945,
+  "26": 0.9,
+  "29": 0.9,
+  "32": 0.915,
+  "35": 0.9275
+ },
+ "router": {
+  "layer": 20,
+  "threshold": 0.25154855847358704,
+  "hard2_in_context": {
+   "tpr": 0.75,
+   "tpr_ci": [
+    0.5313,
+    0.8881
+   ],
+   "fpr": 0.25,
+   "fpr_ci": [
+    0.1119,
+    0.4687
+   ],
+   "auroc": 0.7925,
+   "n_pos": 20,
+   "n_neg": 20,
+   "per_item": {
+    "hard2-incontext-01-m": -5.159,
+    "hard2-incontext-01-n": -12.366,
+    "hard2-incontext-02-m": 3.484,
+    "hard2-incontext-02-n": -5.084,
+    "hard2-incontext-03-m": 3.309,
+    "hard2-incontext-03-n": -1.641,
+    "hard2-incontext-04-m": 3.274,
+    "hard2-incontext-04-n": 0.739,
+    "hard2-incontext-05-m": 5.354,
+    "hard2-incontext-05-n": -2.633,
+    "hard2-incontext-06-m": 2.86,
+    "hard2-incontext-06-n": -0.179,
+    "hard2-incontext-07-m": 3.237,
+    "hard2-incontext-07-n": -5.769,
+    "hard2-incontext-08-m": 6.389,
+    "hard2-incontext-08-n": 3.492,
+    "hard2-incontext-09-m": -0.115,
+    "hard2-incontext-09-n": -1.349,
+    "hard2-incontext-10-m": 2.004,
+    "hard2-incontext-10-n": -0.268,
+    "hard2-incontext-11-m": 4.273,
+    "hard2-incontext-11-n": -2.433,
+    "hard2-incontext-12-m": 1.062,
+    "hard2-incontext-12-n": -0.259,
+    "hard2-incontext-13-m": 0.144,
+    "hard2-incontext-13-n": -2.011,
+    "hard2-incontext-14-m": 0.528,
+    "hard2-incontext-14-n": -4.006,
+    "hard2-incontext-15-m": -1.236,
+    "hard2-incontext-15-n": -6.135,
+    "hard2-incontext-16-m": 1.739,
+    "hard2-incontext-16-n": -3.945,
+    "hard2-incontext-17-m": 4.888,
+    "hard2-incontext-17-n": 2.436,
+    "hard2-incontext-18-m": 4.858,
+    "hard2-incontext-18-n": 3.312,
+    "hard2-incontext-19-m": -4.648,
+    "hard2-incontext-19-n": -6.291,
+    "hard2-incontext-20-m": 7.862,
+    "hard2-incontext-20-n": 5.307
+   }
+  }
+ },
+ "arms": {
+  "no patch": {
+   "tpr_called": 0.05,
+   "fpr_called": 0.05,
+   "used": 0.05,
+   "used_ci": [
+    0.0089,
+    0.2361
+   ],
+   "neg_answered_from_context": 0.45,
+   "per_item": {
+    "hard2-incontext-01-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-01-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-02-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-02-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-03-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-03-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-04-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-04-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-05-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-05-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-06-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-06-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-07-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-07-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-08-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-08-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-09-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-09-n": {
+     "called": 1,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-10-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-10-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-11-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-11-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-12-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-12-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-13-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-13-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-14-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-14-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-15-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-15-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-16-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-16-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-17-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-17-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-18-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-18-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-19-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-19-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-20-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-20-n": {
+     "called": 0,
+     "answered_from_context": 0
+    }
+   }
+  },
+  "few-shot prompt": {
+   "tpr_called": 0.35,
+   "fpr_called": 0.25,
+   "used": 0.35,
+   "used_ci": [
+    0.1812,
+    0.5671
+   ],
+   "neg_answered_from_context": 0.4,
+   "per_item": {
+    "hard2-incontext-01-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-01-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-02-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-02-n": {
+     "called": 1,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-03-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-03-n": {
+     "called": 1,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-04-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-04-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-05-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-05-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-06-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-06-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-07-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-07-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-08-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-08-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-09-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-09-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-10-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-10-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-11-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-11-n": {
+     "called": 1,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-12-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-12-n": {
+     "called": 1,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-13-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-13-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-14-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-14-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-15-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-15-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-16-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-16-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-17-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-17-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-18-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-18-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-19-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-19-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-20-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-20-n": {
+     "called": 1,
+     "answered_from_context": 0
+    }
+   }
+  },
+  "probe router": {
+   "tpr_called": 0.75,
+   "fpr_called": 0.25,
+   "used": 0.75,
+   "used_ci": [
+    0.5313,
+    0.8881
+   ],
+   "neg_answered_from_context": 0.4,
+   "per_item": {
+    "hard2-incontext-01-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-01-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-02-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-02-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-03-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-03-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-04-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-04-n": {
+     "called": 1,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-05-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-05-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-06-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-06-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-07-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-07-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-08-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-08-n": {
+     "called": 1,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-09-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-09-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-10-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-10-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-11-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-11-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-12-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-12-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-13-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-13-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-14-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-14-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-15-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-15-n": {
+     "called": 0,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-16-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-16-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-17-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-17-n": {
+     "called": 1,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-18-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-18-n": {
+     "called": 1,
+     "answered_from_context": 0
+    },
+    "hard2-incontext-19-m": {
+     "called": 0,
+     "used": 0
+    },
+    "hard2-incontext-19-n": {
+     "called": 0,
+     "answered_from_context": 1
+    },
+    "hard2-incontext-20-m": {
+     "called": 1,
+     "used": 1
+    },
+    "hard2-incontext-20-n": {
+     "called": 1,
+     "answered_from_context": 0
+    }
+   }
+  }
+ }
+}
