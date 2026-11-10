@@ -263,7 +263,22 @@ The router beats no patch (15 items better, 1 worse, exact McNemar p = .0005) an
 It is a router, not a weight patch, which repeats §5.4: when a signal is linearly present but the patches cannot steer the model with it, reading it out and acting on it directly works. The caveats:
 - n is small (20 pairs).
 - The probe needs labelled history pairs (40 here).
-- Answering from context when the call is suppressed is no better than without the router (.40 vs .45), so the router fixes the decision, not the answer.
+- Answering from context when the call is suppressed is no better than without the router (.40 vs .45), so on 4B the router fixes the decision, not the answer.
+
+**Replication on Qwen3-8B (8-bit), same protocol.** The probe is at L11 (selection AUROC .99). The 8B model fails the other way: with history it calls even when the fact is already there.
+
+| arm | called (absent) | called (present) | used [95% CI] | present answered from context |
+|---|---|---|---|---|
+| no patch | .70 | .80 | .70 [.48, .85] | .10 |
+| few-shot prompt | .85 | .85 | .85 [.64, .95] | .10 |
+| **probe router** | .95 | **.30** | **.95 [.76, .99]** | **.55** |
+
+Against the few-shot prompt, the router:
+- cuts false calls on fact-present items (12 better, 1 worse, p = .003);
+- raises answers drawn from the conversation from .10 to .55 (9–0, p = .004);
+- keeps use on fact-absent items (.95 vs .85, 3–1, n.s.).
+
+So the same recipe works across a model that under-calls (4B) and one that over-calls (8B), with the probe fitted afresh on each model from the same 40 pairs.
 
 ### 5.4 Many behaviours at once (E006, CLINC150)
 

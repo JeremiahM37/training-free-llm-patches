@@ -1,11 +1,11 @@
 """Closed-form rank-one patch: fit from forward passes only, apply as a real weight edit on down_proj."""
-import time, torch
+import os, time, torch
 from lib import *
 
 def down(model, l): return model.model.layers[l].mlp.down_proj
 
 @torch.no_grad()
-def collect(model, tok, texts, layers, want_all=False, bs=16, max_rows=None):
+def collect(model, tok, texts, layers, want_all=False, bs=int(os.environ.get("COLLECT_BS", 16)), max_rows=None):
     """Per layer: key a and h_out at the last position; optionally a at every non-padding position (randomly capped at max_rows, seed 0)."""
     la, lh, aa = ({l: [] for l in layers} for _ in range(3)); cur = {}; hs = []
     for l in layers:

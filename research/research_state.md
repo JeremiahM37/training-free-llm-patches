@@ -13,9 +13,9 @@
 - E016 on hard2 (fresh, 160 items): RRM matches or beats its few-shot teacher at 4B (.45 vs .39 used) and 8B (.53 vs .45); no method handles the fact already being in the conversation history.
 
 - E017: history-aware fitting on synthetic pairs: learned perfectly (probe 1.00, RRM at teacher) but does not transfer to natural in-context pairs (AUROC ~.5); E017b with natural fit pairs: probe .8 on hard2, yet no patch or prompt acts on it. Negative for patches.
-- E018: a probe-gated router (probe at L20 -> force or mask the call) fixes it: used .75 vs .35 few-shot (McNemar p=.04) and .05 no patch, n=20 pairs.
+- E018: a probe-gated router (probe at L20 -> force or mask the call) fixes it: used .75 vs .35 few-shot (McNemar p=.04) and .05 no patch, n=20 pairs. Replicates on Qwen3-8B, which over-calls instead: false calls .85 -> .30 (p=.003), context answers .10 -> .55, used .95.
 
-**Not done:** history-position interventions; router on 8B; anything above 8B; second reading wave (~150 papers).
+**Not done:** history-position interventions; a second natural in_context test set; anything above 8B; second reading wave (~150 papers).
 
 **Current understanding (measured, still small models):**
 - On a capable model a short prompt beats every tested zero-token patch for a single behaviour (sealed test: rules prompt 93% end-to-end).

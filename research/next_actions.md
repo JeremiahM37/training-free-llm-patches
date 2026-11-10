@@ -1,7 +1,7 @@
 # Next actions (updated 2026-11-09)
 
 In order of value per cost:
-1. **History:** E018 probe router works on Qwen3-4B (n=20). Next: replicate on Qwen3-8B and on a second natural in_context set (n is small); check it does not hurt no-history items (route only when history exists, which is trivially true now).
+1. **History:** E018 probe router works on Qwen3-4B (n=20). Replicated on Qwen3-8B (done). Next: a second natural in_context test set (n is small); check it does not hurt no-history items (route only when history exists, which is trivially true now).
 2. **Done (E015).** Per-model selection on SmolLM3 (dev-only sweep of layer, rank, λ, α): E012 shows frozen recipes fail there; the open question is whether selection fixes it or the model's decision is simply not linearly accessible at the first token.
 3. Second reading wave: ~150 papers from `literature/reading_queue_index.jsonl.gz` and the citation-graph forward list (no hardware).
 4. RRM hook latency measurement; CF-LoRA vs RRM gap (hook-free distillation is the obvious next method).
