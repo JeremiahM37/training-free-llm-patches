@@ -228,6 +228,19 @@ The split works: the text classifier drops from .89/.05 to .70/.46, and both mod
 
 The results are summary rates only; per-item outcomes were not saved, so paired tests between methods are not available for E016.
 
+### 5.3f Fitting on history pairs does not reach natural in-context cases (E017, Qwen3-4B)
+
+Can the in_context failure be patched? Synthetic pairs were built from the train and dev positives: the same final message, with an earlier turn that states either this item's memory record (fact present, label 0) or another item's record (fact absent, label 1). Patches were fitted on the train pairs, selected on the dev pairs (108 configurations) and tested on hard2's 20 naturally written in_context pairs.
+
+- **Presence is perfectly readable in the template and weakly readable in natural text.** A probe fitted on synthetic train pairs reaches AUROC 1.00 on synthetic dev from layer 8 on, but only .66–.77 on the natural pairs.
+- **With any history, Qwen3-4B almost stops calling.** No patch: synthetic dev TPR .07, natural .05. The few-shot prompt restores calling on synthetic pairs (.60 / .02) but not discrimination on natural ones (.35 / .25, AUROC .56).
+- **Patches inherit the same ceiling.** Natural in_context TPR / FPR / AUROC:
+  - RRM fitted on history pairs: selected dev J .62, at its teacher's .58; natural .40 / .30 / .56, used .40. Elsewhere it is unchanged (hard2 all-kinds used .34 vs .39 for few-shot; test FPR .00).
+  - Gated edits in either direction: barely moved synthetic dev (best J .10), and on natural pairs .05–.10 / .00–.10, AUROC .50.
+  - An explicit history rule added to the prompt: suppresses calling on natural in_context (.05 / .15) and raises hard2 FPR to .59.
+
+With 20 natural pairs the intervals are wide (e.g. RRM TPR .40 [.22, .61]). The supported conclusion is negative: a template-built history signal is learned perfectly and does not transfer to natural conversations, and no tested patch or prompt makes Qwen3-4B tell whether a fact is already in its context. A fix would need natural history pairs for fitting, or a method that attends to the history rather than the final token's state.
+
 ### 5.4 Many behaviours at once (E006, CLINC150)
 
 Each of K intents triggers a distinct code word as the reply's first token. We compare all K rules in the prompt, a router that inserts one rule, K-rank patches, and a linear probe on the same keys.
