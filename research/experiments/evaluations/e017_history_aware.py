@@ -26,10 +26,13 @@ def synth(rows, off=7):
                  [{"role": "user", "content": "Quick recap of what we covered so far?"}, {"role": "assistant", "content": "Earlier in this chat: " + rec}])
             out.append({**r, "history": h, "label": lab, "kind": "in_context_synth"})
     return out
-STR, SDV = synth(read("train")), synth(read("dev")); H2 = read("hard2"); HIC = [r for r in H2 if r["kind"] == "in_context"]; TEST = read("test")
+FIT = os.environ.get("FIT", "synth")
+if FIT == "natural": _hf = read("history_fit"); STR, SDV = [r for r in _hf if r["pair"] <= 20], [r for r in _hf if r["pair"] > 20]  # E017b: naturally written pairs
+else: STR, SDV = synth(read("train")), synth(read("dev"))
+H2 = read("hard2"); HIC = [r for r in H2 if r["kind"] == "in_context"]; TEST = read("test")
 y = lambda rows: np.array([r["label"] for r in rows])
 def J(s, yy): return float((s[yy == 1] > 0).mean() - (s[yy == 0] > 0).mean())
-out = {"meta": provenance(NAME, exp="E017", grid_layers=G, probe_layers=PROBE_L, history_rule=HIST), "probe": {}, "prompts": {}, "sweeps": {}, "selected": {}}
+out = {"meta": provenance(NAME, exp="E017" + ("b" if FIT == "natural" else ""), fit=FIT, grid_layers=G, probe_layers=PROBE_L, history_rule=HIST), "probe": {}, "prompts": {}, "sweeps": {}, "selected": {}}
 
 # Part A
 _, Htr, _ = collect(model, tok, [COND["none"](r) for r in STR], PROBE_L)
@@ -98,4 +101,4 @@ for name, (rf, ctx) in FINAL.items():
     out["selected"][name] = res
     print("SEL", f"{name[:70]:70s}", "| hard2 IC", res["hard2_in_context"]["tpr"], res["hard2_in_context"]["fpr"], res["hard2_in_context"]["auroc"],
           "| hard2 all", res["hard2_all"]["tpr"], res["hard2_all"]["fpr"], "| test", res["test"]["tpr"], res["test"]["fpr"], "| used all/IC", res["hard2_used"], res["hard2_in_context_used"], flush=True)
-save("E017_history_" + NAME.split("/")[-1], out); print("E017_DONE")
+save("E017" + ("b_natural" if FIT == "natural" else "") + "_history_" + NAME.split("/")[-1], out); print("E017_DONE")

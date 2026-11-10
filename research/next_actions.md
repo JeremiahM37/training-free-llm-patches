@@ -1,7 +1,7 @@
 # Next actions (updated 2026-11-09)
 
 In order of value per cost:
-1. **History (E017 negative):** template pairs do not transfer. Only worth retrying with naturally written history pairs for fitting (a second hard2-style in_context set, ~40 pairs) — otherwise report as a limitation. E017 saves per-item outcomes; retrofit E016-style scripts the same way when they are next run.
+1. **History (E017/E017b negative):** presence is readable (probe ~.8 on natural pairs) but no patch or prompt acts on it. Untried: a probe-gated router that suppresses the call when the probe says the fact is present; an intervention at the history token positions. Cheap; one script on Qwen3-4B.
 2. **Done (E015).** Per-model selection on SmolLM3 (dev-only sweep of layer, rank, λ, α): E012 shows frozen recipes fail there; the open question is whether selection fixes it or the model's decision is simply not linearly accessible at the first token.
 3. Second reading wave: ~150 papers from `literature/reading_queue_index.jsonl.gz` and the citation-graph forward list (no hardware).
 4. RRM hook latency measurement; CF-LoRA vs RRM gap (hook-free distillation is the obvious next method).

@@ -239,7 +239,13 @@ Can the in_context failure be patched? Synthetic pairs were built from the train
   - Gated edits in either direction: barely moved synthetic dev (best J .10), and on natural pairs .05–.10 / .00–.10, AUROC .50.
   - An explicit history rule added to the prompt: suppresses calling on natural in_context (.05 / .15) and raises hard2 FPR to .59.
 
-With 20 natural pairs the intervals are wide (e.g. RRM TPR .40 [.22, .61]). The supported conclusion is negative: a template-built history signal is learned perfectly and does not transfer to natural conversations, and no tested patch or prompt makes Qwen3-4B tell whether a fact is already in its context. A fix would need natural history pairs for fitting, or a method that attends to the history rather than the final token's state.
+With 20 natural pairs the intervals are wide (e.g. RRM TPR .40 [.22, .61]). The supported conclusion is negative: a template-built history signal is learned perfectly and does not transfer to natural conversations, and no tested patch or prompt makes Qwen3-4B tell whether a fact is already in its context. **E017b, fitting on natural pairs.** The same protocol, with 40 naturally written history pairs (`history_fit.jsonl`, 10 earlier-used domains, disjoint from hard2): fit on pairs 1–20, select on 21–40, test on hard2. The probe improves to AUROC .78–.81 on hard2 at every layer from 2 on, so the signal is present and partly shared across natural conversations. Nothing turns it into behaviour:
+- no selected patch beats chance even on the selection pairs (best dev J: gates .05, RRM .00);
+- on hard2 in_context, AUROC is .41–.51 for every patch and .45–.56 for every prompt.
+
+So the limit is not the template: the presence of a fact in the conversation is linearly readable at the decision token, but none of these patches, nor a prompt, makes Qwen3-4B act on it. Promising next steps (not tried):
+- **a probe-gated router** (§5.4 already shows routers winning at many behaviours);
+- **an intervention on the history positions** rather than on the final token.
 
 ### 5.4 Many behaviours at once (E006, CLINC150)
 
